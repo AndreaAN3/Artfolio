@@ -228,3 +228,132 @@ footer {
         font-size: 30px;
     }
 }
+
+
+
+/* ===== GALERIA DE PROYECTOS ===== */
+
+.projects {
+    display: block;
+    width: 100%;
+    padding: 90px 8%;
+    background-color: #ffffff;
+}
+
+.section-heading {
+    display: block;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-heading span {
+    display: block;
+    color: #b36d57;
+    font-size: 13px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.section-heading h2 {
+    color: #292522;
+    font-size: 38px;
+    margin: 15px 0;
+}
+
+.section-heading p {
+    color: #716963;
+    font-size: 16px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    width: 100%;
+}
+
+.project-card {
+    display: block;
+    background: #faf8f6;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+}
+
+.project-image {
+    display: flex;
+    height: 240px;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.project-image span {
+    background: white;
+    color: #292522;
+    padding: 10px 14px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.image-one {
+    background: linear-gradient(135deg, #d9b6a5, #8d6254);
+}
+
+.image-two {
+    background: linear-gradient(135deg, #d8c9b9, #a58a75);
+}
+
+.image-three {
+    background: linear-gradient(135deg, #c8b6a9, #6e625b);
+}
+
+.project-info {
+    display: block;
+    padding: 25px;
+}
+
+.project-info h3 {
+    color: #292522;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.project-info p {
+    color: #716963;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.project-info a {
+    color: #b36d57;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ===== ADAPTACION A CELULARES ===== */
+
+@media (max-width: 900px) {
+    .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects {
+        padding: 65px 6%;
+    }
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+}
