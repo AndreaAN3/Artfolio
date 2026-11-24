@@ -1,0 +1,980 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Creative Dashboard ♡ | Artfolio</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Nunito:wght@400;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #302538;
+            --pink: #ffd4e7;
+            --purple: #e8ddff;
+            --yellow: #fff0b8;
+            --blue: #d9edff;
+            --green: #d8f5dc;
+            --paper: #fff9fc;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: "Nunito", sans-serif;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px 6%;
+            background: white;
+            border-bottom: 3px solid var(--ink);
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ed6ca9;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .topbar-label {
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+        }
+
+        .topbar-link {
+            padding: 10px 16px;
+            background: var(--yellow);
+            border: 2px solid var(--ink);
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 900;
+            box-shadow: 3px 3px 0 var(--ink);
+        }
+
+        .logout-button {
+            padding: 10px 17px;
+            background: var(--pink);
+            border: 2px solid var(--ink);
+            border-radius: 30px;
+            box-shadow: 3px 3px 0 var(--ink);
+            color: var(--ink);
+            font-family: "Nunito", sans-serif;
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: transform 0.2s,
+                        background 0.2s;
+        }
+
+        .logout-button:hover {
+            background: var(--yellow);
+            transform: translateY(-2px);
+        }
+
+        .logout-button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid #8c64ce;
+            outline-offset: 4px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 245px minmax(0, 1fr);
+            min-height: calc(100vh - 82px);
+        }
+
+        .sidebar {
+            padding: 35px 20px;
+            background: #f4edff;
+            border-right: 3px solid var(--ink);
+        }
+
+        .sidebar-title {
+            margin: 0 0 22px;
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 13px 15px;
+            background: white;
+            border: 2px solid var(--ink);
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 900;
+            transition: transform 0.2s;
+        }
+
+        .nav-link:hover {
+            transform: translateX(4px);
+        }
+
+        .nav-link.active {
+            background: var(--pink);
+            box-shadow: 3px 3px 0 var(--ink);
+        }
+
+        .sidebar-note {
+            margin-top: 35px;
+            padding: 18px;
+            background: var(--yellow);
+            border: 2px dashed var(--ink);
+            border-radius: 16px;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .main {
+            min-width: 0;
+            padding: 42px 5% 90px;
+        }
+
+        .eyebrow {
+            font-family: "DM Mono", monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        .welcome {
+            position: relative;
+            margin-top: 20px;
+            padding: 35px;
+            background: var(--purple);
+            border: 3px solid var(--ink);
+            border-radius: 28px;
+            box-shadow: 6px 6px 0 var(--ink);
+            overflow: hidden;
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome::after {
+            content: "✿";
+            position: absolute;
+            top: -95px;
+            right: -15px;
+            font-size: 300px;
+            color: #ffffff80;
+            pointer-events: none;
+        }
+
+        .welcome-tag {
+            display: inline-block;
+            padding: 8px 14px;
+            background: white;
+            border: 2px solid var(--ink);
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .welcome h1 {
+            font-size: clamp(35px, 5vw, 58px);
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin: 20px 0 12px;
+            overflow-wrap: anywhere;
+        }
+
+        .welcome p {
+            max-width: 550px;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 42px 0 20px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: 25px;
+        }
+
+        .section-heading span {
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .stat-card {
+            padding: 23px;
+            border: 3px solid var(--ink);
+            border-radius: 22px;
+            box-shadow: 4px 4px 0 var(--ink);
+        }
+
+        .stat-card.pink {
+            background: var(--pink);
+        }
+
+        .stat-card.yellow {
+            background: var(--yellow);
+        }
+
+        .stat-card.blue {
+            background: var(--blue);
+        }
+
+        .stat-icon {
+            font-size: 32px;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 43px;
+            font-weight: 900;
+            margin: 8px 0;
+        }
+
+        .stat-label {
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+        }
+
+        .tools {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-height: 210px;
+            padding: 25px;
+            border: 3px solid var(--ink);
+            border-radius: 24px;
+            box-shadow: 5px 5px 0 var(--ink);
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-card.purple {
+            background: var(--purple);
+        }
+
+        .tool-card.pink {
+            background: var(--pink);
+        }
+
+        .tool-card.yellow {
+            background: var(--yellow);
+        }
+
+        .tool-card.blue {
+            background: var(--blue);
+        }
+
+        .tool-card.green {
+            background: var(--green);
+        }
+
+        .tool-icon {
+            font-size: 36px;
+        }
+
+        .tool-card h3 {
+            margin: 15px 0 8px;
+            font-size: 21px;
+        }
+
+        .tool-card p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .tool-arrow {
+            margin-top: auto;
+            align-self: flex-end;
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .activity {
+            padding: 25px;
+            background: white;
+            border: 3px solid var(--ink);
+            border-radius: 24px;
+            box-shadow: 5px 5px 0 var(--ink);
+        }
+
+        .activity h3 {
+            margin: 0 0 18px;
+            font-size: 20px;
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .activity-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 14px;
+            background: #fff9fc;
+            border: 2px solid var(--ink);
+            border-radius: 14px;
+        }
+
+        .activity-item strong {
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .activity-item span {
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+        }
+
+        .notice {
+            margin-top: 35px;
+            padding: 18px;
+            background: var(--yellow);
+            border: 2px dashed var(--ink);
+            border-radius: 16px;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 1000px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                border-right: none;
+                border-bottom: 3px solid var(--ink);
+            }
+
+            .sidebar-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .tools {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome {
+                padding: 25px;
+            }
+
+            .main {
+                padding: 30px 22px 70px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .tool-card,
+            .nav-link,
+            .logout-button {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+
+        <a href="../index.html" class="logo">
+            artfolio<span>!</span> ✳
+        </a>
+
+        <div class="topbar-right">
+
+            <span class="topbar-label">
+                ✳ CREATIVE STUDIO
+            </span>
+
+            <a href="../artista.html"
+               class="topbar-link">
+                VIEW MY PROFILE ↗
+            </a>
+
+            <form action="../logout"
+                  method="POST"
+                  aria-label="Cerrar sesión"
+                  style="margin:0;">
+
+                <button type="submit"
+                        class="logout-button">
+                    LOG OUT ♡
+                </button>
+
+            </form>
+
+        </div>
+
+    </header>
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <p class="sidebar-title">
+                ♡ YOUR WORKSPACE
+            </p>
+
+            <nav class="sidebar-nav"
+                 aria-label="Navegación del administrador">
+
+                <a href="../admin/dashboard"
+                   class="nav-link active"
+                   aria-current="page">
+                    🏠 DASHBOARD
+                </a>
+
+                <a href="../admin/editor"
+                   class="nav-link">
+                    🎀 PROFILE EDITOR
+                </a>
+
+                <a href="../admin/mis-obras"
+                   class="nav-link">
+                    🎨 MY ARTWORK
+                </a>
+
+                <a href="../admin/mis-enlaces"
+                   class="nav-link">
+                    🔗 MY LINKS
+                </a>
+
+                <a href="../artista.html"
+                   class="nav-link">
+                    ☀️ PUBLIC PROFILE
+                </a>
+
+                <a href="../enlaces.html"
+                   class="nav-link">
+                    💗 PUBLIC LINKS
+                </a>
+
+                <a href="../index.html"
+                   class="nav-link">
+                    ✳ BACK TO ARTFOLIO
+                </a>
+
+            </nav>
+
+            <div class="sidebar-note">
+                ✿ Every little creation deserves
+                a place to shine. Keep making art! ♡
+            </div>
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+
+        <main class="main">
+
+            <span class="eyebrow">
+                ✳ YOUR CREATIVE SPACE
+            </span>
+
+            <!-- WELCOME -->
+
+            <section class="welcome">
+
+                <div class="welcome-content">
+
+                    <span class="welcome-tag">
+                        ♡ WELCOME BACK
+                    </span>
+
+                    <h1>
+                        Hello,
+                        <span id="dashboardName">a sunny</span>!
+                        ☀️
+                    </h1>
+
+                    <p>
+                        Welcome to your creative universe.
+                        Manage your artwork, customize your
+                        profile and share your little world
+                        with everyone.
+                    </p>
+
+                </div>
+
+            </section>
+
+            <!-- STATISTICS -->
+
+            <div class="section-heading">
+                <h2>YOUR LITTLE STATS ✿</h2>
+                <span>CREATIVE OVERVIEW</span>
+            </div>
+
+            <section class="stats"
+                     aria-label="Estadísticas del portafolio">
+
+                <div class="stat-card pink">
+
+                    <div class="stat-icon">🎨</div>
+
+                    <span class="stat-number"
+                          id="artworkCount">
+                        0
+                    </span>
+
+                    <span class="stat-label">
+                        TOTAL ARTWORKS
+                    </span>
+
+                </div>
+
+                <div class="stat-card yellow">
+
+                    <div class="stat-icon">🔗</div>
+
+                    <span class="stat-number"
+                          id="linkCount">
+                        0
+                    </span>
+
+                    <span class="stat-label">
+                        SAVED LINKS
+                    </span>
+
+                </div>
+
+                <div class="stat-card blue">
+
+                    <div class="stat-icon">✿</div>
+
+                    <span class="stat-number"
+                          id="categoryCount">
+                        0
+                    </span>
+
+                    <span class="stat-label">
+                        ART CATEGORIES
+                    </span>
+
+                </div>
+
+            </section>
+
+            <!-- CREATIVE TOOLS -->
+
+            <div class="section-heading">
+                <h2>YOUR CREATIVE TOOLS ♡</h2>
+                <span>QUICK ACCESS</span>
+            </div>
+
+            <section class="tools"
+                     aria-label="Herramientas del artista">
+
+                <a href="../admin/editor"
+                   class="tool-card purple">
+
+                    <span class="tool-icon">🎀</span>
+
+                    <h3>Profile Editor</h3>
+
+                    <p>
+                        Personaliza tu nombre artístico,
+                        biografía, avatar y colores.
+                    </p>
+
+                    <span class="tool-arrow">↗</span>
+
+                </a>
+
+                <a href="../admin/mis-obras"
+                   class="tool-card pink">
+
+                    <span class="tool-icon">🎨</span>
+
+                    <h3>My Artwork</h3>
+
+                    <p>
+                        Agrega, organiza y elimina
+                        tus creaciones artísticas.
+                    </p>
+
+                    <span class="tool-arrow">↗</span>
+
+                </a>
+
+                <a href="../admin/mis-enlaces"
+                   class="tool-card yellow">
+
+                    <span class="tool-icon">🔗</span>
+
+                    <h3>My Links</h3>
+
+                    <p>
+                        Administra tus redes sociales,
+                        enlaces y proyectos.
+                    </p>
+
+                    <span class="tool-arrow">↗</span>
+
+                </a>
+
+                <a href="../artista.html"
+                   class="tool-card blue">
+
+                    <span class="tool-icon">☀️</span>
+
+                    <h3>Public Profile</h3>
+
+                    <p>
+                        Visualiza cómo se presenta
+                        tu portafolio artístico.
+                    </p>
+
+                    <span class="tool-arrow">↗</span>
+
+                </a>
+
+                <a href="../enlaces.html"
+                   class="tool-card green">
+
+                    <span class="tool-icon">💗</span>
+
+                    <h3>My Public Links</h3>
+
+                    <p>
+                        Visita tu página pública
+                        de enlaces personalizados.
+                    </p>
+
+                    <span class="tool-arrow">↗</span>
+
+                </a>
+
+                <a href="../index.html"
+                   class="tool-card purple">
+
+                    <span class="tool-icon">✳</span>
+
+                    <h3>Explore Artfolio</h3>
+
+                    <p>
+                        Regresa a la plataforma
+                        principal de artistas.
+                    </p>
+
+                    <span class="tool-arrow">↗</span>
+
+                </a>
+
+            </section>
+
+            <!-- RECENT ARTWORK -->
+
+            <div class="section-heading">
+                <h2>RECENT CREATIONS ✨</h2>
+                <span>YOUR LATEST ARTWORK</span>
+            </div>
+
+            <section class="activity">
+
+                <h3>✿ Your creative activity</h3>
+
+                <div id="recentArtworks"
+                     class="activity-list"
+                     aria-live="polite">
+                </div>
+
+            </section>
+
+            <!-- NOTICE -->
+
+            <div class="notice">
+                ✿ Tu espacio creativo está en construcción.
+                El acceso a esta ruta administrativa se
+                controla mediante una sesión de usuario
+                en el servidor.
+
+                Por ahora, las estadísticas y las obras
+                se consultan desde los datos guardados
+                en este navegador mediante localStorage.
+
+                La integración completa con MySQL
+                sigue pendiente. ♡
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                "use strict";
+
+                const PROFILE_KEY =
+                    "artfolio_artist_design_v1";
+
+                const ARTWORK_KEY =
+                    "artfolio_artworks_v1";
+
+                const LINKS_KEY =
+                    "artfolio_links_v1";
+
+                const CATEGORIES = [
+                    "ilustracion",
+                    "fotografia",
+                    "digital",
+                    "animacion",
+                    "grafico"
+                ];
+
+                function readStorage(key, fallback) {
+
+                    try {
+
+                        const saved =
+                            localStorage.getItem(key);
+
+                        return saved === null
+                            ? fallback
+                            : JSON.parse(saved);
+
+                    } catch (error) {
+
+                        return fallback;
+                    }
+                }
+
+                function loadProfile() {
+
+                    const profile =
+                        readStorage(PROFILE_KEY, null);
+
+                    if (profile &&
+                        typeof profile === "object" &&
+                        typeof profile.name === "string") {
+
+                        document.getElementById(
+                            "dashboardName"
+                        ).textContent =
+                            profile.name.slice(0, 60) ||
+                            "a sunny";
+                    }
+                }
+
+                function loadStatistics() {
+
+                    const savedArtworks =
+                        readStorage(ARTWORK_KEY, []);
+
+                    const savedLinks =
+                        readStorage(LINKS_KEY, []);
+
+                    const artworks =
+                        Array.isArray(savedArtworks)
+                            ? savedArtworks
+                                .slice(0, 40)
+                                .filter(function (art) {
+
+                                    return art &&
+                                        typeof art.title === "string" &&
+                                        art.title.trim() !== "" &&
+                                        CATEGORIES.includes(
+                                            art.category
+                                        );
+                                })
+                            : [];
+
+                    const links =
+                        Array.isArray(savedLinks)
+                            ? savedLinks
+                                .slice(0, 25)
+                                .filter(function (link) {
+
+                                    return link &&
+                                        typeof link.title === "string" &&
+                                        link.title.trim() !== "" &&
+                                        typeof link.url === "string" &&
+                                        link.url.startsWith("https://");
+                                })
+                            : [];
+
+                    const categories =
+                        new Set(
+                            artworks.map(
+                                art => art.category
+                            )
+                        );
+
+                    document.getElementById(
+                        "artworkCount"
+                    ).textContent = artworks.length;
+
+                    document.getElementById(
+                        "linkCount"
+                    ).textContent = links.length;
+
+                    document.getElementById(
+                        "categoryCount"
+                    ).textContent = categories.size;
+
+                    renderRecentArtworks(artworks);
+                }
+
+                function renderRecentArtworks(artworks) {
+
+                    const container =
+                        document.getElementById(
+                            "recentArtworks"
+                        );
+
+                    container.replaceChildren();
+
+                    if (artworks.length === 0) {
+
+                        const empty =
+                            document.createElement("p");
+
+                        empty.textContent =
+                            "No artworks yet. Your creative journey starts here! ♡";
+
+                        container.appendChild(empty);
+
+                        return;
+                    }
+
+                    artworks.slice(0, 5).forEach(
+                        function (artwork) {
+
+                            const item =
+                                document.createElement("div");
+
+                            item.className = "activity-item";
+
+                            const title =
+                                document.createElement("strong");
+
+                            title.textContent =
+                                "🎨 " +
+                                artwork.title.slice(0, 100);
+
+                            const category =
+                                document.createElement("span");
+
+                            category.textContent =
+                                artwork.category.toUpperCase();
+
+                            item.append(title, category);
+
+                            container.appendChild(item);
+                        }
+                    );
+                }
+
+                function refreshDashboard() {
+                    loadProfile();
+                    loadStatistics();
+                }
+
+                refreshDashboard();
+
+                // Actualizar al regresar a esta pestaña
+
+                window.addEventListener(
+                    "pageshow",
+                    refreshDashboard
+                );
+
+                window.addEventListener(
+                    "storage",
+                    refreshDashboard
+                );
+
+            }
+        );
+    </script>
+
+</body>
+</html>
