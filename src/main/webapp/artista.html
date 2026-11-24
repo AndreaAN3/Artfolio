@@ -1,0 +1,3402 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Descubre un universo creativo en Artfolio.">
+
+    <meta name="theme-color" content="#fff9fc">
+
+    <title>Artist Profile ✿ | Artfolio</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Nunito:wght@400;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+
+        :root {
+            --sunny-pink: #ffd4e7;
+            --sunny-purple: #e8ddff;
+            --sunny-yellow: #fff0b8;
+            --sunny-blue: #d9edff;
+            --sunny-green: #d8f5dc;
+            --sunny-ink: #302538;
+            --profile-color: #e8ddff;
+            --links-color: #e8ddff;
+        }
+
+        .artist-page {
+            font-family: "Nunito", sans-serif;
+            color: var(--sunny-ink);
+            background: #fff9fc;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .artist-page * {
+            box-sizing: border-box;
+        }
+
+        .artist-page [hidden] {
+            display: none !important;
+        }
+
+        .artist-page a:focus-visible,
+        .artist-page button:focus-visible {
+            outline: 3px solid #8270f5;
+            outline-offset: 4px;
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .artist-topbar {
+            padding: 22px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: white;
+            border-bottom: 2px solid var(--sunny-ink);
+        }
+
+        .artist-logo {
+            color: var(--sunny-ink);
+            font-size: 26px;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .artist-logo span {
+            color: #f06aa6;
+        }
+
+        .artist-navigation {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .back-home,
+        .nav-link {
+            color: var(--sunny-ink);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 900;
+            border: 2px solid var(--sunny-ink);
+            border-radius: 30px;
+            padding: 11px 18px;
+            background: var(--sunny-yellow);
+            box-shadow: 3px 3px 0 var(--sunny-ink);
+            transition: transform .2s;
+        }
+
+        .nav-link {
+            background: var(--sunny-purple);
+        }
+
+        .back-home:hover,
+        .nav-link:hover {
+            transform: translateY(-3px);
+        }
+
+        /* =====================================
+           MAIN CONTAINER
+        ===================================== */
+
+        .artist-container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 55px 24px 90px;
+        }
+
+        .profile-label {
+            font-family: "DM Mono", monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* =====================================
+           PROFILE BANNER
+        ===================================== */
+
+        .profile-banner {
+            position: relative;
+            background: var(--profile-color);
+            border: 3px solid var(--sunny-ink);
+            border-radius: 32px;
+            padding: 55px 45px;
+            box-shadow: 8px 8px 0 var(--sunny-ink);
+            overflow: hidden;
+            transition: background .3s;
+        }
+
+        .profile-banner::after {
+            content: "✿";
+            position: absolute;
+            right: 25px;
+            top: -55px;
+            font-size: 210px;
+            color: #ffffff80;
+            pointer-events: none;
+        }
+
+        .profile-content {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .avatar {
+            width: 170px;
+            height: 170px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 78px;
+            background: var(--sunny-pink);
+            border: 3px solid var(--sunny-ink);
+            border-radius: 50%;
+            box-shadow: 6px 6px 0 var(--sunny-ink);
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .profile-info h1 {
+            font-size: clamp(42px, 8vw, 90px);
+            line-height: 1.05;
+            font-weight: 900;
+            margin: 12px 0;
+            letter-spacing: -3px;
+            overflow-wrap: anywhere;
+        }
+
+        .profile-info h1 span {
+            color: #ee6ba9;
+        }
+
+        .profile-info p {
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 650px;
+            overflow-wrap: anywhere;
+            white-space: pre-wrap;
+        }
+
+        .profile-tag {
+            display: inline-block;
+            background: white;
+            border: 2px solid var(--sunny-ink);
+            border-radius: 50px;
+            padding: 8px 15px;
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+            max-width: 100%;
+        }
+
+        .profile-specialty {
+            font-family: "DM Mono", monospace;
+            font-size: 12px !important;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        /* =====================================
+           BUTTONS
+        ===================================== */
+
+        .profile-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .edit-profile-button {
+            display: inline-block;
+            padding: 12px 20px;
+            background: var(--sunny-yellow);
+            border: 2px solid var(--sunny-ink);
+            border-radius: 30px;
+            color: var(--sunny-ink);
+            font-family: "Nunito", sans-serif;
+            font-size: 12px;
+            font-weight: 900;
+            text-decoration: none;
+            box-shadow: 3px 3px 0 var(--sunny-ink);
+            transition: transform .2s;
+            cursor: pointer;
+            overflow-wrap: anywhere;
+        }
+
+        .edit-profile-button:hover {
+            transform: translateY(-3px);
+            background: var(--sunny-pink);
+        }
+
+        .edit-profile-button.pink {
+            background: var(--sunny-pink);
+        }
+
+        .edit-profile-button.blue {
+            background: var(--sunny-blue);
+        }
+
+        .edit-profile-button.white {
+            background: white;
+        }
+
+        .edit-profile-button.purple {
+            background: var(--sunny-purple);
+        }
+
+        /* =====================================
+           STICKERS
+        ===================================== */
+
+        .sticker-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .sticker {
+            background: white;
+            border: 2px solid var(--sunny-ink);
+            padding: 9px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .sticker:nth-child(2) {
+            background: var(--sunny-yellow);
+        }
+
+        .sticker:nth-child(3) {
+            background: var(--sunny-blue);
+        }
+
+        /* =====================================
+           OWNER CONTROLS
+        ===================================== */
+
+        .owner-panel {
+            background: white;
+            border: 2px dashed var(--sunny-ink);
+            border-radius: 24px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .owner-panel h3 {
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .owner-panel p {
+            font-size: 13px;
+            margin-top: 8px;
+            line-height: 1.7;
+        }
+
+        /* =====================================
+           SECTIONS
+        ===================================== */
+
+        .artist-section {
+            margin-top: 80px;
+        }
+
+        .artist-section h2 {
+            font-size: clamp(30px, 5vw, 50px);
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 650px;
+            margin-bottom: 28px;
+        }
+
+        /* =====================================
+           CREATIVE CATEGORIES
+        ===================================== */
+
+        .specialty-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit,
+                minmax(min(100%, 185px), 1fr));
+            gap: 22px;
+        }
+
+        .specialty-card {
+            min-height: 190px;
+            border: 3px solid var(--sunny-ink);
+            border-radius: 25px;
+            padding: 24px;
+            box-shadow: 5px 5px 0 var(--sunny-ink);
+            transition: transform .2s;
+            cursor: pointer;
+            color: var(--sunny-ink);
+            font-family: "Nunito", sans-serif;
+            text-align: left;
+            background: white;
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .specialty-icon {
+            display: block;
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .specialty-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .specialty-card p {
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .specialty-count {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 6px 12px;
+            background: white;
+            border: 2px solid var(--sunny-ink);
+            border-radius: 30px;
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+        }
+
+        /* =====================================
+           GALLERY FILTERS
+        ===================================== */
+
+        .gallery-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        .filter-button {
+            border: 2px solid var(--sunny-ink);
+            border-radius: 30px;
+            padding: 11px 16px;
+            background: white;
+            color: var(--sunny-ink);
+            font-family: "Nunito", sans-serif;
+            font-size: 12px;
+            font-weight: 900;
+            box-shadow: 3px 3px 0 var(--sunny-ink);
+            cursor: pointer;
+            transition: transform .2s;
+        }
+
+        .filter-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .filter-button.active {
+            background: var(--sunny-pink);
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 var(--sunny-ink);
+        }
+
+        .gallery-counter {
+            font-family: "DM Mono", monospace;
+            font-size: 12px;
+            margin-bottom: 22px;
+            letter-spacing: 1px;
+        }
+
+        /* =====================================
+           ARTWORK GALLERY
+        ===================================== */
+
+        .artwork-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .artwork-card {
+            min-width: 0;
+            background: white;
+            border: 3px solid var(--sunny-ink);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 5px 5px 0 var(--sunny-ink);
+            transition: transform .25s;
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .artwork-preview {
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 75px;
+            position: relative;
+            overflow: hidden;
+            background: var(--sunny-purple);
+        }
+
+        .artwork-preview img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .artwork-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .artwork-placeholder span {
+            font-size: 70px;
+        }
+
+        .artwork-placeholder small {
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+        }
+
+        .artwork-details {
+            padding: 22px;
+        }
+
+        .artwork-details small {
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+        }
+
+        .artwork-details h3 {
+            font-size: 21px;
+            margin-top: 8px;
+            overflow-wrap: anywhere;
+        }
+
+        .artwork-description {
+            font-size: 13px;
+            line-height: 1.7;
+            margin-top: 12px;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .artwork-date {
+            display: block;
+            margin-top: 14px;
+            color: #706675;
+        }
+
+        .artwork-details .profile-actions {
+            margin-top: 18px;
+        }
+
+        /* =====================================
+           LINKS PANEL
+        ===================================== */
+
+        .links-panel {
+            background: var(--links-color);
+            border: 3px solid var(--sunny-ink);
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: 6px 6px 0 var(--sunny-ink);
+        }
+
+        .artist-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .artist-link {
+            display: inline-block;
+            padding: 14px 23px;
+            border: 2px solid var(--sunny-ink);
+            border-radius: 40px;
+            background: white;
+            text-decoration: none;
+            color: var(--sunny-ink);
+            font-weight: 900;
+            box-shadow: 3px 3px 0 var(--sunny-ink);
+            transition: transform .2s;
+            overflow-wrap: anywhere;
+            max-width: 100%;
+        }
+
+        .artist-link:hover {
+            transform: translateY(-4px);
+        }
+
+        /* =====================================
+           LOADING AND EMPTY STATES
+        ===================================== */
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 45px 25px;
+            border: 2px dashed var(--sunny-ink);
+            border-radius: 25px;
+            background: #fff0f7;
+        }
+
+        .empty-state .empty-icon {
+            display: block;
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .empty-state h3 {
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .page-status {
+            padding: 15px 0;
+            font-family: "DM Mono", monospace;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        /* =====================================
+           ARTIST DIRECTORY
+        ===================================== */
+
+        .directory-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit,
+                minmax(min(100%, 230px), 1fr));
+            gap: 22px;
+            margin-top: 25px;
+        }
+
+        .directory-card {
+            padding: 25px;
+            border: 3px solid var(--sunny-ink);
+            border-radius: 25px;
+            box-shadow: 5px 5px 0 var(--sunny-ink);
+            background: var(--sunny-purple);
+            overflow-wrap: anywhere;
+        }
+
+        .directory-avatar {
+            display: grid;
+            place-items: center;
+            width: 75px;
+            height: 75px;
+            background: white;
+            border: 2px solid var(--sunny-ink);
+            border-radius: 50%;
+            font-size: 38px;
+            margin-bottom: 18px;
+            overflow: hidden;
+        }
+
+        .directory-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .directory-card h3 {
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .directory-card p {
+            margin-top: 12px;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        .artist-footer {
+            text-align: center;
+            padding: 35px 20px;
+            background: var(--sunny-pink);
+            border-top: 3px solid var(--sunny-ink);
+            font-weight: 900;
+            overflow-wrap: anywhere;
+        }
+
+        .artist-footer a {
+            display: inline-block;
+            margin-top: 12px;
+            color: var(--sunny-ink);
+            font-size: 12px;
+        }
+
+        /* =====================================
+           RESPONSIVE
+        ===================================== */
+
+        @media (max-width: 900px) {
+
+            .artwork-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 800px) {
+
+            .profile-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-banner {
+                padding: 40px 22px;
+            }
+
+            .sticker-row,
+            .profile-actions {
+                justify-content: center;
+            }
+
+            .artist-topbar {
+                padding: 18px 5%;
+            }
+
+            .back-home,
+            .nav-link {
+                font-size: 11px;
+            }
+
+            .artist-section {
+                margin-top: 60px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .artwork-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .artist-container {
+                padding: 35px 18px 65px;
+            }
+
+            .gallery-filters {
+                gap: 8px;
+            }
+
+            .filter-button {
+                font-size: 11px;
+                padding: 10px 12px;
+            }
+
+            .artist-links {
+                flex-direction: column;
+            }
+
+            .artist-link {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .avatar {
+                width: 135px;
+                height: 135px;
+                font-size: 60px;
+            }
+
+            .links-panel {
+                padding: 24px;
+            }
+
+            .profile-info h1 {
+                letter-spacing: -1px;
+            }
+
+            .specialty-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .artist-page * {
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body class="artist-page">
+
+    <!-- HEADER -->
+
+    <header class="artist-topbar">
+
+        <a href="index.html"
+           class="artist-logo">
+
+            artfolio<span>!</span> ✳
+
+        </a>
+
+        <nav class="artist-navigation"
+             aria-label="Navegación del perfil">
+
+            <a href="index.html#artistas"
+               class="back-home">
+
+                ← HOME
+
+            </a>
+
+            <a href="#mis-obras"
+               class="nav-link"
+               id="navGallery"
+               hidden>
+
+                GALLERY ✳
+
+            </a>
+
+            <a href="#"
+               class="nav-link"
+               id="navPublicLinks"
+               hidden>
+
+                LINKS ♡
+
+            </a>
+
+            <a href="login.html"
+               class="nav-link"
+               id="sessionLink">
+
+                SIGN IN ↗
+
+            </a>
+
+        </nav>
+
+    </header>
+
+    <main class="artist-container">
+
+        <!-- PAGE STATUS -->
+
+        <p class="page-status"
+           id="pageStatus"
+           role="status">
+
+            ♡ LOADING CREATIVE UNIVERSE...
+
+        </p>
+
+        <!-- ERROR STATE -->
+
+        <section id="errorSection"
+                 hidden>
+
+            <div class="empty-state">
+
+                <span class="empty-icon">💌</span>
+
+                <h3 id="errorTitle">
+
+                    OOPS! SOMETHING HAPPENED
+
+                </h3>
+
+                <p id="errorMessage">
+
+                    No se pudo cargar el perfil.
+
+                </p>
+
+                <div class="profile-actions"
+                     style="justify-content:center">
+
+                    <a href="index.html#artistas"
+                       class="edit-profile-button">
+
+                        DISCOVER ARTISTS ↗
+
+                    </a>
+
+                    <button type="button"
+                            id="retryButton"
+                            class="edit-profile-button pink">
+
+                        TRY AGAIN ♡
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ARTIST DIRECTORY -->
+
+        <section id="directorySection"
+                 hidden>
+
+            <p class="profile-label">
+
+                ✳ THE CREATIVE COMMUNITY
+
+            </p>
+
+            <h1 style="font-size:clamp(32px,6vw,60px);
+                       font-weight:900">
+
+                DISCOVER ARTISTS ♡
+
+            </h1>
+
+            <p class="section-subtitle">
+
+                Choose a creative universe to explore.
+
+            </p>
+
+            <div class="directory-grid"
+                 id="directoryGrid">
+
+            </div>
+
+        </section>
+
+        <!-- PUBLIC ARTIST PROFILE -->
+
+        <div id="publicProfile"
+             hidden>
+
+            <p class="profile-label"
+               id="profileLabel">
+
+                ✳ ARTIST PROFILE
+
+            </p>
+
+            <section class="profile-banner"
+                     id="profileBanner">
+
+                <div class="profile-content">
+
+                    <div class="avatar"
+                         id="artistAvatar"
+                         role="img"
+                         aria-label="Avatar del artista">
+
+                        ☀️
+
+                    </div>
+
+                    <div class="profile-info">
+
+                        <span class="profile-tag"
+                              id="artistWelcome">
+
+                            ♡ WELCOME TO MY WORLD
+
+                        </span>
+
+                        <h1 id="artistName">
+
+                            Creative artist
+
+                        </h1>
+
+                        <p class="profile-specialty"
+                           id="artistSpecialty"
+                           hidden>
+
+                        </p>
+
+                        <p id="artistBio">
+
+                        </p>
+
+                        <div class="profile-actions">
+
+                            <a href="#mis-obras"
+                               class="edit-profile-button">
+
+                                🎨 EXPLORE MY ART
+
+                            </a>
+
+                            <a href="#"
+                               id="profilePublicLinks"
+                               class="edit-profile-button white">
+
+                                💗 MY PUBLIC LINKS ↗
+
+                            </a>
+
+                            <button type="button"
+                                    id="shareButton"
+                                    class="edit-profile-button pink">
+
+                                ✨ SHARE PROFILE
+
+                            </button>
+
+                        </div>
+
+                        <p id="shareStatus"
+                           class="page-status"
+                           role="status">
+
+                        </p>
+
+                        <div class="sticker-row">
+
+                            <span class="sticker">
+
+                                🎀 CREATIVE SOUL
+
+                            </span>
+
+                            <span class="sticker">
+
+                                ✿ ART LOVER
+
+                            </span>
+
+                            <span class="sticker">
+
+                                ✨ MADE WITH LOVE
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- OWNER CONTROLS -->
+
+            <section class="owner-panel"
+                     id="ownerPanel"
+                     hidden>
+
+                <h3>
+
+                    YOUR CREATIVE CONTROL ROOM ✳
+
+                </h3>
+
+                <p>
+
+                    Estás viendo tu propio perfil público.
+                    Puedes administrar tu espacio creativo.
+
+                </p>
+
+                <div class="profile-actions">
+
+                    <a href="admin/editor"
+                       class="edit-profile-button">
+
+                        ✎ CUSTOMIZE MY PROFILE
+
+                    </a>
+
+                    <a href="admin/mis-obras"
+                       class="edit-profile-button pink">
+
+                        🎨 MANAGE MY ARTWORK
+
+                    </a>
+
+                    <a href="admin/mis-enlaces"
+                       class="edit-profile-button blue">
+
+                        🔗 MANAGE MY LINKS
+
+                    </a>
+
+                    <a href="admin/dashboard"
+                       class="edit-profile-button purple">
+
+                        DASHBOARD ↗
+
+                    </a>
+
+                </div>
+
+            </section>
+
+            <!-- CREATIVE CATEGORIES -->
+
+            <section class="artist-section">
+
+                <h2>MY CREATIVE WORLD ✳</h2>
+
+                <p class="section-subtitle">
+
+                    Different ways of expressing ideas,
+                    feelings and stories through art.
+
+                </p>
+
+                <div class="specialty-grid"
+                     id="specialtyGrid">
+
+                </div>
+
+            </section>
+
+            <!-- ARTWORK GALLERY -->
+
+            <section class="artist-section"
+                     id="mis-obras">
+
+                <h2>MY LITTLE GALLERY ♡</h2>
+
+                <p class="section-subtitle">
+
+                    A collection of original artwork
+                    from my creative universe.
+
+                </p>
+
+                <div class="gallery-filters"
+                     id="galleryFilters"
+                     role="group"
+                     aria-label="Filtrar obras por categoría">
+
+                    <button type="button"
+                            class="filter-button active"
+                            data-filter="all"
+                            aria-pressed="true">
+
+                        ALL ART ✳
+
+                    </button>
+
+                    <button type="button"
+                            class="filter-button"
+                            data-filter="ilustracion"
+                            aria-pressed="false">
+
+                        🎨 ILLUSTRATION
+
+                    </button>
+
+                    <button type="button"
+                            class="filter-button"
+                            data-filter="fotografia"
+                            aria-pressed="false">
+
+                        📸 PHOTOGRAPHY
+
+                    </button>
+
+                    <button type="button"
+                            class="filter-button"
+                            data-filter="digital"
+                            aria-pressed="false">
+
+                        💿 DIGITAL DESIGN
+
+                    </button>
+
+                    <button type="button"
+                            class="filter-button"
+                            data-filter="animacion"
+                            aria-pressed="false">
+
+                        ✨ ANIMATION
+
+                    </button>
+
+                    <button type="button"
+                            class="filter-button"
+                            data-filter="grafico"
+                            aria-pressed="false">
+
+                        💗 GRAPHIC DESIGN
+
+                    </button>
+
+                </div>
+
+                <p class="gallery-counter"
+                   id="galleryCounter"
+                   aria-live="polite">
+
+                    LOADING ARTWORK...
+
+                </p>
+
+                <div class="artwork-grid"
+                     id="artistArtworkGrid"
+                     aria-live="polite">
+
+                    <div class="empty-state">
+
+                        <span class="empty-icon">🎨</span>
+
+                        <h3>LOADING THE ART...</h3>
+
+                        <p>
+
+                            Consultando obras publicadas.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="profile-actions">
+
+                    <a href="admin/mis-obras"
+                       id="addArtworkLink"
+                       class="edit-profile-button"
+                       hidden>
+
+                        + ADD NEW ARTWORK ↗
+
+                    </a>
+
+                    <a href="index.html#galeria"
+                       class="edit-profile-button white">
+
+                        EXPLORE ARTFOLIO GALLERY ♡
+
+                    </a>
+
+                </div>
+
+            </section>
+
+            <!-- ARTIST LINKS -->
+
+            <section class="artist-section"
+                     id="mis-enlaces">
+
+                <div class="links-panel">
+
+                    <h2>LET'S CONNECT! 💌</h2>
+
+                    <p class="section-subtitle">
+
+                        Find my creative projects and
+                        artistic updates here.
+
+                    </p>
+
+                    <div class="artist-links"
+                         id="artistLinks"
+                         aria-live="polite">
+
+                        <p class="page-status">
+
+                            LOADING CREATIVE LINKS...
+
+                        </p>
+
+                    </div>
+
+                    <div class="profile-actions">
+
+                        <a href="#"
+                           id="allPublicLinks"
+                           class="edit-profile-button white">
+
+                            ♡ VIEW ALL MY LINKS ↗
+
+                        </a>
+
+                        <a href="admin/mis-enlaces"
+                           id="editLinksButton"
+                           class="edit-profile-button"
+                           hidden>
+
+                            ✎ EDIT MY LINKS
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="artist-footer">
+
+        <p id="footerText">
+
+            © 2026 ARTFOLIO ♡
+            MADE WITH LOVE AND CREATIVITY ✳
+
+        </p>
+
+        <a href="index.html">
+
+            EXPLORE THE CREATIVE UNIVERSE ↗
+
+        </a>
+
+    </footer>
+
+    <!-- DYNAMIC ARTIST PROFILE -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                "use strict";
+
+                // =====================================
+                // API CONFIGURATION
+                // =====================================
+
+                const base = new URL(
+                    "./",
+                    window.location.href
+                );
+
+                const params = new URLSearchParams(
+                    window.location.search
+                );
+
+                const requestedId =
+                    params.get("id");
+
+                const API_ARTISTAS = new URL(
+                    "api/publico/artistas",
+                    base
+                );
+
+                const API_PERFIL = new URL(
+                    "api/publico/perfil",
+                    base
+                );
+
+                const API_OBRAS = new URL(
+                    "resources/obras",
+                    base
+                );
+
+                const API_ENLACES = new URL(
+                    "api/publico/enlaces",
+                    base
+                );
+
+                const API_PRIVADO = new URL(
+                    "api/privado/perfil",
+                    base
+                );
+
+                // =====================================
+                // DOM ELEMENTS
+                // =====================================
+
+                const $ = id =>
+                    document.getElementById(id);
+
+                const pageStatus =
+                    $("pageStatus");
+
+                const publicProfile =
+                    $("publicProfile");
+
+                const errorSection =
+                    $("errorSection");
+
+                const directorySection =
+                    $("directorySection");
+
+                const directoryGrid =
+                    $("directoryGrid");
+
+                const artworkGrid =
+                    $("artistArtworkGrid");
+
+                const galleryCounter =
+                    $("galleryCounter");
+
+                const specialtyGrid =
+                    $("specialtyGrid");
+
+                const artistLinks =
+                    $("artistLinks");
+
+                const filterButtons =
+                    document.querySelectorAll(
+                        ".filter-button"
+                    );
+
+                // =====================================
+                // STATE
+                // =====================================
+
+                let currentArtistId = null;
+
+                let sessionArtistId = null;
+
+                let obras = [];
+
+                let activeFilter = "all";
+
+                let galleryReady = false;
+
+                // =====================================
+                // CATEGORIES
+                // =====================================
+
+                const categories = {
+
+                    ilustracion: {
+
+                        label: "Ilustraciones",
+
+                        english: "Illustration",
+
+                        icon: "🎨",
+
+                        color: "#ffd4e7",
+
+                        description:
+                            "Characters, drawings and imaginary worlds."
+                    },
+
+                    fotografia: {
+
+                        label: "Fotografía",
+
+                        english: "Photography",
+
+                        icon: "📸",
+
+                        color: "#d9edff",
+
+                        description:
+                            "Moments, textures and visual memories."
+                    },
+
+                    digital: {
+
+                        label: "Diseño digital",
+
+                        english: "Digital Design",
+
+                        icon: "💿",
+
+                        color: "#e8ddff",
+
+                        description:
+                            "Color, composition and creative experiments."
+                    },
+
+                    animacion: {
+
+                        label: "Animación",
+
+                        english: "Animation",
+
+                        icon: "✨",
+
+                        color: "#fff0b8",
+
+                        description:
+                            "Stories and creativity in motion."
+                    },
+
+                    grafico: {
+
+                        label: "Diseño gráfico",
+
+                        english: "Graphic Design",
+
+                        icon: "💗",
+
+                        color: "#d8f5dc",
+
+                        description:
+                            "Typography, shapes and visual expression."
+                    }
+                };
+
+                // =====================================
+                // SAFE ELEMENT CREATION
+                // =====================================
+
+                function element(
+                    tag,
+                    className,
+                    content
+                ) {
+
+                    const node =
+                        document.createElement(tag);
+
+                    if (className) {
+
+                        node.className = className;
+                    }
+
+                    if (content !== undefined) {
+
+                        node.textContent = content;
+                    }
+
+                    return node;
+                }
+
+                function text(value, fallback = "") {
+
+                    if (typeof value !== "string") {
+
+                        return fallback;
+                    }
+
+                    return value.trim() || fallback;
+                }
+
+                // =====================================
+                // ID VALIDATION
+                // =====================================
+
+                function validId(value) {
+
+                    if (
+                        value === null ||
+                        value === undefined ||
+                        value === ""
+                    ) {
+
+                        return false;
+                    }
+
+                    return /^\d+$/.test(
+                        String(value)
+                    ) &&
+
+                        Number.isSafeInteger(
+                            Number(value)
+                        ) &&
+
+                        Number(value) > 0 &&
+
+                        Number(value) <= 2147483647;
+                }
+
+                // =====================================
+                // URL VALIDATION
+                // =====================================
+
+                function safeUrl(value) {
+
+                    if (
+                        !value ||
+                        typeof value !== "string"
+                    ) {
+
+                        return "";
+                    }
+
+                    try {
+
+                        const url =
+                            new URL(value.trim());
+
+                        if (
+                            url.protocol !== "https:" &&
+                            url.protocol !== "http:"
+                        ) {
+
+                            return "";
+                        }
+
+                        if (
+                            !url.hostname ||
+                            url.username ||
+                            url.password
+                        ) {
+
+                            return "";
+                        }
+
+                        return url.href;
+
+                    } catch (error) {
+
+                        return "";
+                    }
+                }
+
+                // =====================================
+                // COLOR VALIDATION
+                // =====================================
+
+                function safeColor(value) {
+
+                    return typeof value === "string" &&
+
+                        /^#[0-9a-fA-F]{6}$/.test(value)
+
+                        ? value
+
+                        : "#e8ddff";
+                }
+
+                // =====================================
+                // CATEGORY NORMALIZATION
+                // =====================================
+
+                function normalizeCategory(value) {
+
+                    const category = String(value || "")
+
+                        .normalize("NFD")
+
+                        .replace(/[\u0300-\u036f]/g, "")
+
+                        .trim()
+
+                        .toLowerCase();
+
+                    const mapping = {
+
+                        ilustracion: "ilustracion",
+
+                        ilustraciones: "ilustracion",
+
+                        fotografia: "fotografia",
+
+                        digital: "digital",
+
+                        "diseno digital": "digital",
+
+                        animacion: "animacion",
+
+                        grafico: "grafico",
+
+                        "diseno grafico": "grafico"
+                    };
+
+                    return Object.hasOwn(
+                        mapping,
+                        category
+                    )
+
+                        ? mapping[category]
+
+                        : "";
+                }
+
+                // =====================================
+                // CREATE SAFE LINKS
+                // =====================================
+
+                function createLink(
+                    label,
+                    href,
+                    className,
+                    external = false
+                ) {
+
+                    const anchor = element(
+
+                        "a",
+
+                        className,
+
+                        label
+
+                    );
+
+                    anchor.href = href;
+
+                    if (external) {
+
+                        anchor.target = "_blank";
+
+                        anchor.rel =
+                            "noopener noreferrer";
+                    }
+
+                    return anchor;
+                }
+
+                function artistUrl(id) {
+
+                    const url = new URL(
+                        "artista.html",
+                        base
+                    );
+
+                    url.searchParams.set(
+                        "id",
+                        id
+                    );
+
+                    return url.href;
+                }
+
+                function linksUrl(id) {
+
+                    const url = new URL(
+                        "enlaces.html",
+                        base
+                    );
+
+                    url.searchParams.set(
+                        "id",
+                        id
+                    );
+
+                    return url.href;
+                }
+
+                // =====================================
+                // EMPTY STATES
+                // =====================================
+
+                function showEmpty(
+                    container,
+                    icon,
+                    title,
+                    message
+                ) {
+
+                    const empty = element(
+
+                        "div",
+
+                        "empty-state"
+
+                    );
+
+                    empty.append(
+
+                        element(
+                            "span",
+                            "empty-icon",
+                            icon
+                        ),
+
+                        element(
+                            "h3",
+                            "",
+                            title
+                        ),
+
+                        element(
+                            "p",
+                            "",
+                            message
+                        )
+
+                    );
+
+                    container.replaceChildren(empty);
+                }
+
+                // =====================================
+                // ERROR STATE
+                // =====================================
+
+                function showError(title, message) {
+
+                    publicProfile.hidden = true;
+
+                    directorySection.hidden = true;
+
+                    errorSection.hidden = false;
+
+                    $("errorTitle").textContent =
+                        title;
+
+                    $("errorMessage").textContent =
+                        message;
+
+                    $("navGallery").hidden = true;
+
+                    $("navPublicLinks").hidden = true;
+
+                    pageStatus.textContent = "";
+
+                    document.title =
+                        "Artist Profile | Artfolio";
+                }
+
+                // =====================================
+                // API REQUEST
+                // =====================================
+
+                async function request(url) {
+
+                    const response = await fetch(url, {
+
+                        method: "GET",
+
+                        headers: {
+
+                            "Accept": "application/json"
+
+                        },
+
+                        cache: "no-store",
+
+                        credentials: "same-origin"
+
+                    });
+
+                    if (!response.ok) {
+
+                        let message =
+                            "Error HTTP " +
+                            response.status;
+
+                        try {
+
+                            const result =
+                                await response.json();
+
+                            if (result.error) {
+
+                                message =
+                                    result.error;
+                            }
+
+                        } catch (error) {
+
+                            // Conservar mensaje HTTP.
+                        }
+
+                        const error =
+                            new Error(message);
+
+                        error.status =
+                            response.status;
+
+                        throw error;
+                    }
+
+                    return await response.json();
+                }
+
+                // =====================================
+                // SESSION VERIFICATION
+                // =====================================
+
+                async function checkSession() {
+
+                    try {
+
+                        const profile =
+                            await request(API_PRIVADO);
+
+                        if (validId(profile.id)) {
+
+                            sessionArtistId =
+                                Number(profile.id);
+
+                            $("sessionLink").href =
+
+                                new URL(
+                                    "admin/dashboard",
+                                    base
+                                ).href;
+
+                            $("sessionLink").textContent =
+
+                                "MY DASHBOARD ↗";
+                        }
+
+                    } catch (error) {
+
+                        sessionArtistId = null;
+
+                        $("sessionLink").href =
+
+                            new URL(
+                                "login.html",
+                                base
+                            ).href;
+
+                        $("sessionLink").textContent =
+
+                            "SIGN IN ↗";
+                    }
+                }
+
+                // =====================================
+                // OWNER CONTROLS
+                // =====================================
+
+                function updateOwnerControls() {
+
+                    const isOwner =
+
+                        sessionArtistId !== null &&
+
+                        currentArtistId !== null &&
+
+                        sessionArtistId ===
+                            currentArtistId;
+
+                    $("ownerPanel").hidden =
+                        !isOwner;
+
+                    $("addArtworkLink").hidden =
+                        !isOwner;
+
+                    $("editLinksButton").hidden =
+                        !isOwner;
+                }
+
+                // =====================================
+                // AVATAR
+                // =====================================
+
+                function renderAvatar(
+                    container,
+                    artista
+                ) {
+
+                    const avatar = text(
+
+                        artista.avatar,
+
+                        "☀️"
+
+                    );
+
+                    container.textContent =
+                        avatar;
+
+                    container.setAttribute(
+
+                        "aria-label",
+
+                        "Avatar de " +
+
+                        text(
+                            artista.nombreArtistico,
+                            "artista"
+                        )
+
+                    );
+
+                    const imageUrl =
+                        safeUrl(artista.fotoPerfil);
+
+                    if (!imageUrl) {
+
+                        return;
+                    }
+
+                    const image =
+                        document.createElement("img");
+
+                    image.alt = text(
+
+                        artista.nombreArtistico,
+
+                        "Artista"
+
+                    );
+
+                    image.loading = "lazy";
+
+                    image.referrerPolicy =
+                        "no-referrer";
+
+                    image.addEventListener(
+
+                        "error",
+
+                        function () {
+
+                            container.textContent =
+                                avatar;
+
+                        },
+
+                        { once: true }
+
+                    );
+
+                    container.replaceChildren(image);
+
+                    image.src = imageUrl;
+                }
+
+                // =====================================
+                // RENDER PUBLIC PROFILE
+                // =====================================
+
+                function renderProfile(perfil) {
+
+                    const name = text(
+
+                        perfil.nombreArtistico,
+
+                        "Creative artist"
+
+                    );
+
+                    document.title =
+
+                        name + " ✿ | Artfolio";
+
+                    $("profileLabel").textContent =
+
+                        "✳ ARTIST PROFILE / " +
+
+                        String(perfil.id).padStart(
+                            3,
+                            "0"
+                        );
+
+                    $("artistName").replaceChildren(
+
+                        document.createTextNode(
+                            name + " "
+                        ),
+
+                        element(
+                            "span",
+                            "",
+                            "✿"
+                        )
+
+                    );
+
+                    $("artistBio").textContent =
+
+                        text(
+
+                            perfil.biografia,
+
+                            "Welcome to my creative universe! ♡"
+
+                        );
+
+                    $("artistWelcome").textContent =
+
+                        text(
+
+                            perfil.mensajeBienvenida,
+
+                            "♡ WELCOME TO MY WORLD"
+
+                        );
+
+                    const specialty = text(
+                        perfil.especialidad
+                    );
+
+                    $("artistSpecialty").textContent =
+                        specialty;
+
+                    $("artistSpecialty").hidden =
+                        !specialty;
+
+                    document.documentElement.style
+                        .setProperty(
+
+                            "--profile-color",
+
+                            safeColor(
+                                perfil.colorPrincipal
+                            )
+
+                        );
+
+                    document.documentElement.style
+                        .setProperty(
+
+                            "--links-color",
+
+                            safeColor(
+                                perfil.colorEnlaces
+                            )
+
+                        );
+
+                    renderAvatar(
+
+                        $("artistAvatar"),
+
+                        perfil
+
+                    );
+
+                    const publicLinks =
+                        linksUrl(perfil.id);
+
+                    $("navPublicLinks").href =
+                        publicLinks;
+
+                    $("profilePublicLinks").href =
+                        publicLinks;
+
+                    $("allPublicLinks").href =
+                        publicLinks;
+
+                    $("navGallery").hidden = false;
+
+                    $("navPublicLinks").hidden =
+                        false;
+
+                    $("footerText").textContent =
+
+                        "© " +
+
+                        new Date().getFullYear() +
+
+                        " " +
+
+                        name +
+
+                        " ♡ MADE WITH LOVE ON ARTFOLIO ✳";
+
+                    publicProfile.hidden = false;
+
+                    pageStatus.textContent =
+
+                        "♡ WELCOME TO THIS CREATIVE UNIVERSE";
+
+                    updateOwnerControls();
+                }
+
+                // =====================================
+                // CREATIVE CATEGORIES
+                // =====================================
+
+                function renderSpecialties() {
+
+                    specialtyGrid.replaceChildren();
+
+                    Object.entries(categories)
+                        .forEach(function (entry) {
+
+                            const key = entry[0];
+
+                            const category = entry[1];
+
+                            const count = obras.filter(
+
+                                obra =>
+
+                                    normalizeCategory(
+                                        obra.categoria
+                                    ) === key
+
+                            ).length;
+
+                            const card = element(
+
+                                "button",
+
+                                "specialty-card"
+
+                            );
+
+                            card.type = "button";
+
+                            card.style.background =
+                                category.color;
+
+                            card.append(
+
+                                element(
+
+                                    "span",
+
+                                    "specialty-icon",
+
+                                    category.icon
+
+                                ),
+
+                                element(
+
+                                    "h3",
+
+                                    "",
+
+                                    category.english
+
+                                ),
+
+                                element(
+
+                                    "p",
+
+                                    "",
+
+                                    category.description
+
+                                ),
+
+                                element(
+
+                                    "span",
+
+                                    "specialty-count",
+
+                                    galleryReady
+
+                                    ? count +
+
+                                      " ARTWORK" +
+
+                                      (count === 1 ? "" : "S")
+
+                                    : "EXPLORE CATEGORY"
+
+                                )
+
+                            );
+
+                            card.addEventListener(
+
+                                "click",
+
+                                function () {
+
+                                    setFilter(key);
+
+                                    const reducedMotion =
+
+                                        window.matchMedia(
+
+                                            "(prefers-reduced-motion: reduce)"
+
+                                        ).matches;
+
+                                    $("mis-obras").scrollIntoView({
+
+                                        behavior: reducedMotion
+
+                                            ? "auto"
+
+                                            : "smooth"
+
+                                    });
+                                }
+
+                            );
+
+                            specialtyGrid.appendChild(
+                                card
+                            );
+
+                        });
+                }
+
+                // =====================================
+                // FORMAT PUBLICATION DATE
+                // =====================================
+
+                function formatDate(value) {
+
+                    if (!value) {
+
+                        return "";
+                    }
+
+                    const date = new Date(value);
+
+                    if (
+                        Number.isNaN(date.getTime())
+                    ) {
+
+                        return "";
+                    }
+
+                    return new Intl.DateTimeFormat(
+
+                        "es-MX",
+
+                        {
+
+                            day: "numeric",
+
+                            month: "long",
+
+                            year: "numeric"
+
+                        }
+
+                    ).format(date);
+                }
+
+                // =====================================
+                // CREATE ARTWORK CARD
+                // =====================================
+
+                function createArtworkCard(obra) {
+
+                    const categoryKey =
+
+                        normalizeCategory(
+                            obra.categoria
+                        );
+
+                    const category =
+
+                        categories[categoryKey] || {
+
+                            label: "Creative artwork",
+
+                            icon: "✳",
+
+                            color: "#e8ddff"
+
+                        };
+
+                    const card = element(
+
+                        "article",
+
+                        "artwork-card"
+
+                    );
+
+                    card.dataset.category =
+                        categoryKey;
+
+                    const preview = element(
+
+                        "div",
+
+                        "artwork-preview"
+
+                    );
+
+                    preview.style.background =
+                        category.color;
+
+                    const placeholder = element(
+
+                        "div",
+
+                        "artwork-placeholder"
+
+                    );
+
+                    placeholder.append(
+
+                        element(
+
+                            "span",
+
+                            "",
+
+                            category.icon
+
+                        ),
+
+                        element(
+
+                            "small",
+
+                            "",
+
+                            "CREATIVE ARTWORK ♡"
+
+                        )
+
+                    );
+
+                    preview.appendChild(
+                        placeholder
+                    );
+
+                    // IMAGE OR COVER
+
+                    const imageUrl =
+
+                        safeUrl(obra.imagenPortada) ||
+
+                        safeUrl(obra.archivoUrl);
+
+                    if (imageUrl) {
+
+                        const image =
+
+                            document.createElement("img");
+
+                        image.alt = text(
+
+                            obra.titulo,
+
+                            "Obra artística"
+
+                        );
+
+                        image.loading = "lazy";
+
+                        image.referrerPolicy =
+                            "no-referrer";
+
+                        image.addEventListener(
+
+                            "error",
+
+                            function () {
+
+                                preview.replaceChildren(
+                                    placeholder
+                                );
+
+                            },
+
+                            { once: true }
+
+                        );
+
+                        preview.replaceChildren(
+                            image
+                        );
+
+                        image.src = imageUrl;
+                    }
+
+                    // ARTWORK INFORMATION
+
+                    const details = element(
+
+                        "div",
+
+                        "artwork-details"
+
+                    );
+
+                    details.append(
+
+                        element(
+
+                            "small",
+
+                            "",
+
+                            category.label.toUpperCase()
+
+                        ),
+
+                        element(
+
+                            "h3",
+
+                            "",
+
+                            text(
+
+                                obra.titulo,
+
+                                "Untitled artwork"
+
+                            )
+
+                        )
+
+                    );
+
+                    if (text(obra.descripcion)) {
+
+                        details.appendChild(
+
+                            element(
+
+                                "p",
+
+                                "artwork-description",
+
+                                obra.descripcion
+
+                            )
+
+                        );
+                    }
+
+                    const date = formatDate(
+
+                        obra.fechaPublicacion
+
+                    );
+
+                    if (date) {
+
+                        details.appendChild(
+
+                            element(
+
+                                "small",
+
+                                "artwork-date",
+
+                                date
+
+                            )
+
+                        );
+                    }
+
+                    // ORIGINAL ARTWORK LINK
+
+                    const artworkUrl =
+
+                        safeUrl(obra.archivoUrl);
+
+                    if (artworkUrl) {
+
+                        const actions = element(
+
+                            "div",
+
+                            "profile-actions"
+
+                        );
+
+                        actions.appendChild(
+
+                            createLink(
+
+                                "VIEW ARTWORK ↗",
+
+                                artworkUrl,
+
+                                "edit-profile-button pink",
+
+                                true
+
+                            )
+
+                        );
+
+                        details.appendChild(
+                            actions
+                        );
+                    }
+
+                    card.append(
+
+                        preview,
+
+                        details
+
+                    );
+
+                    return card;
+                }
+
+                // =====================================
+                // RENDER GALLERY
+                // =====================================
+
+                function renderGallery() {
+
+                    artworkGrid.replaceChildren();
+
+                    const filtered = obras.filter(
+
+                        function (obra) {
+
+                            return activeFilter === "all" ||
+
+                                normalizeCategory(
+
+                                    obra.categoria
+
+                                ) === activeFilter;
+
+                        }
+
+                    );
+
+                    galleryCounter.textContent =
+
+                        "SHOWING " +
+
+                        filtered.length +
+
+                        " ARTWORK" +
+
+                        (filtered.length === 1 ? "" : "S") +
+
+                        " ♡";
+
+                    if (filtered.length === 0) {
+
+                        showEmpty(
+
+                            artworkGrid,
+
+                            "🌷",
+
+                            "MORE ART IS COMING!",
+
+                            activeFilter === "all"
+
+                                ? "Este artista todavía no tiene obras publicadas."
+
+                                : "Todavía no hay obras publicadas en esta categoría."
+
+                        );
+
+                        return;
+                    }
+
+                    filtered.forEach(
+
+                        function (obra) {
+
+                            artworkGrid.appendChild(
+
+                                createArtworkCard(obra)
+
+                            );
+                        }
+                    );
+                }
+
+                // =====================================
+                // GALLERY FILTERS
+                // =====================================
+
+                function setFilter(filter) {
+
+                    activeFilter = filter;
+
+                    filterButtons.forEach(
+
+                        function (button) {
+
+                            const selected =
+
+                                button.dataset.filter ===
+                                    activeFilter;
+
+                            button.classList.toggle(
+
+                                "active",
+
+                                selected
+
+                            );
+
+                            button.setAttribute(
+
+                                "aria-pressed",
+
+                                String(selected)
+
+                            );
+                        }
+                    );
+
+                    if (galleryReady) {
+
+                        renderGallery();
+                    }
+                }
+
+                filterButtons.forEach(
+
+                    function (button) {
+
+                        button.addEventListener(
+
+                            "click",
+
+                            function () {
+
+                                setFilter(
+                                    button.dataset.filter
+                                );
+
+                            }
+                        );
+                    }
+                );
+
+                // =====================================
+                // LOAD ARTIST ARTWORK
+                // =====================================
+
+                async function loadArtworks(id) {
+
+                    try {
+
+                        const url =
+                            new URL(API_OBRAS.href);
+
+                        url.searchParams.set(
+
+                            "artistaId",
+
+                            id
+
+                        );
+
+                        const result =
+                            await request(url);
+
+                        if (!Array.isArray(result)) {
+
+                            throw new Error(
+
+                                "Respuesta de obras no válida."
+
+                            );
+                        }
+
+                        obras = result.filter(
+
+                            obra =>
+
+                                obra &&
+
+                                obra.publicada === true &&
+
+                                Number(obra.artistaId) ===
+                                    Number(id)
+
+                        );
+
+                        galleryReady = true;
+
+                        renderSpecialties();
+
+                        renderGallery();
+
+                    } catch (error) {
+
+                        console.error(
+
+                            "Error al cargar obras:",
+
+                            error
+
+                        );
+
+                        galleryReady = false;
+
+                        galleryCounter.textContent =
+
+                            "GALLERY UNAVAILABLE";
+
+                        showEmpty(
+
+                            artworkGrid,
+
+                            "🎨",
+
+                            "WE COULDN'T LOAD THE ART",
+
+                            "No se pudieron consultar las obras."
+
+                        );
+                    }
+                }
+
+                // =====================================
+                // LOAD PUBLIC LINKS
+                // =====================================
+
+                async function loadLinks(id) {
+
+                    try {
+
+                        const url =
+                            new URL(API_ENLACES.href);
+
+                        url.searchParams.set(
+
+                            "id",
+
+                            id
+
+                        );
+
+                        const result =
+                            await request(url);
+
+                        if (
+
+                            !result ||
+
+                            Number(result.artistaId) !==
+                                Number(id) ||
+
+                            !Array.isArray(result.enlaces)
+
+                        ) {
+
+                            throw new Error(
+
+                                "Respuesta de enlaces no válida."
+
+                            );
+                        }
+
+                        artistLinks.replaceChildren();
+
+                        const enlaces =
+
+                            result.enlaces
+
+                                .filter(enlace => enlace)
+
+                                .sort(
+
+                                    (a, b) =>
+
+                                        Number(a.orden) -
+                                        Number(b.orden)
+
+                                        ||
+
+                                        Number(a.id) -
+                                        Number(b.id)
+
+                                );
+
+                        let count = 0;
+
+                        enlaces.forEach(
+
+                            function (enlace) {
+
+                                const url =
+
+                                    safeUrl(enlace.url);
+
+                                if (!url) {
+
+                                    return;
+                                }
+
+                                const label =
+
+                                    text(
+
+                                        enlace.icono,
+
+                                        "🌷"
+
+                                    ) +
+
+                                    " " +
+
+                                    text(
+
+                                        enlace.titulo,
+
+                                        "Creative link"
+
+                                    ) +
+
+                                    " ↗";
+
+                                artistLinks.appendChild(
+
+                                    createLink(
+
+                                        label,
+
+                                        url,
+
+                                        "artist-link",
+
+                                        true
+
+                                    )
+
+                                );
+
+                                count++;
+                            }
+                        );
+
+                        if (count === 0) {
+
+                            artistLinks.appendChild(
+
+                                element(
+
+                                    "p",
+
+                                    "page-status",
+
+                                    "♡ Este artista todavía no ha agregado enlaces."
+
+                                )
+
+                            );
+                        }
+
+                        document.documentElement.style
+                            .setProperty(
+
+                                "--links-color",
+
+                                safeColor(
+                                    result.colorEnlaces
+                                )
+
+                            );
+
+                    } catch (error) {
+
+                        console.error(
+
+                            "Error al cargar enlaces:",
+
+                            error
+
+                        );
+
+                        artistLinks.replaceChildren(
+
+                            element(
+
+                                "p",
+
+                                "page-status",
+
+                                "No se pudieron cargar los enlaces."
+
+                            )
+
+                        );
+                    }
+                }
+
+                // =====================================
+                // ARTIST DIRECTORY
+                // =====================================
+
+                async function loadDirectory() {
+
+                    publicProfile.hidden = true;
+
+                    directorySection.hidden = false;
+
+                    pageStatus.textContent =
+
+                        "♡ DISCOVER OUR CREATIVE COMMUNITY";
+
+                    document.title =
+
+                        "Discover Artists ✿ | Artfolio";
+
+                    showEmpty(
+
+                        directoryGrid,
+
+                        "🎀",
+
+                        "LOADING CREATIVE MINDS...",
+
+                        "Consultando artistas registrados."
+
+                    );
+
+                    try {
+
+                        const result =
+
+                            await request(API_ARTISTAS);
+
+                        if (!Array.isArray(result)) {
+
+                            throw new Error(
+
+                                "Directorio no válido."
+
+                            );
+                        }
+
+                        const artistas = result.filter(
+
+                            artista =>
+
+                                artista &&
+
+                                validId(artista.id)
+
+                        );
+
+                        directoryGrid.replaceChildren();
+
+                        if (artistas.length === 0) {
+
+                            showEmpty(
+
+                                directoryGrid,
+
+                                "🌷",
+
+                                "OUR COMMUNITY IS GROWING!",
+
+                                "Todavía no hay artistas registrados."
+
+                            );
+
+                            return;
+                        }
+
+                        artistas.forEach(
+
+                            function (artista) {
+
+                                const card = element(
+
+                                    "article",
+
+                                    "directory-card"
+
+                                );
+
+                                card.style.background =
+
+                                    safeColor(
+
+                                        artista.colorPrincipal
+
+                                    );
+
+                                const avatar = element(
+
+                                    "div",
+
+                                    "directory-avatar"
+
+                                );
+
+                                renderAvatar(
+
+                                    avatar,
+
+                                    artista
+
+                                );
+
+                                const actions = element(
+
+                                    "div",
+
+                                    "profile-actions"
+
+                                );
+
+                                actions.append(
+
+                                    createLink(
+
+                                        "VIEW PROFILE ↗",
+
+                                        artistUrl(
+                                            artista.id
+                                        ),
+
+                                        "edit-profile-button"
+
+                                    ),
+
+                                    createLink(
+
+                                        "LINKS ♡",
+
+                                        linksUrl(
+                                            artista.id
+                                        ),
+
+                                        "edit-profile-button white"
+
+                                    )
+
+                                );
+
+                                card.append(
+
+                                    avatar,
+
+                                    element(
+
+                                        "h3",
+
+                                        "",
+
+                                        text(
+
+                                            artista.nombreArtistico,
+
+                                            "Creative artist"
+
+                                        )
+
+                                    ),
+
+                                    element(
+
+                                        "p",
+
+                                        "",
+
+                                        text(
+
+                                            artista.biografia,
+
+                                            "Welcome to my creative universe!"
+
+                                        )
+
+                                    ),
+
+                                    actions
+
+                                );
+
+                                directoryGrid.appendChild(
+                                    card
+                                );
+                            }
+                        );
+
+                    } catch (error) {
+
+                        showError(
+
+                            "OOPS! SOMETHING HAPPENED",
+
+                            "No se pudo cargar el directorio de artistas."
+
+                        );
+                    }
+                }
+
+                // =====================================
+                // SHARE PROFILE
+                // =====================================
+
+                $("shareButton").addEventListener(
+
+                    "click",
+
+                    async function () {
+
+                        if (!currentArtistId) {
+
+                            return;
+                        }
+
+                        const url =
+
+                            artistUrl(currentArtistId);
+
+                        const title =
+
+                            document.title;
+
+                        try {
+
+                            if (
+                                typeof navigator.share ===
+                                    "function"
+                            ) {
+
+                                await navigator.share({
+
+                                    title: title,
+
+                                    url: url
+
+                                });
+
+                                $("shareStatus").textContent =
+
+                                    "♡ THANK YOU FOR SHARING!";
+
+                            } else if (
+                                navigator.clipboard &&
+                                window.isSecureContext
+                            ) {
+
+                                await navigator.clipboard
+                                    .writeText(url);
+
+                                $("shareStatus").textContent =
+
+                                    "♡ PROFILE LINK COPIED!";
+
+                            } else {
+
+                                window.prompt(
+
+                                    "Copia el enlace de este perfil:",
+
+                                    url
+
+                                );
+                            }
+
+                        } catch (error) {
+
+                            if (
+                                error.name !== "AbortError"
+                            ) {
+
+                                window.prompt(
+
+                                    "Copia el enlace de este perfil:",
+
+                                    url
+
+                                );
+                            }
+                        }
+                    }
+                );
+
+                // =====================================
+                // RETRY
+                // =====================================
+
+                $("retryButton").addEventListener(
+
+                    "click",
+
+                    function () {
+
+                        window.location.reload();
+
+                    }
+                );
+
+                // =====================================
+                // INITIALIZE PUBLIC PROFILE
+                // =====================================
+
+                async function initialize() {
+
+                    const sessionCheck = checkSession();
+
+                    // Si no existe ID, mostrar directorio
+                    // o el perfil de la sesión actual.
+
+                    if (requestedId === null) {
+
+                        await sessionCheck;
+
+                        if (sessionArtistId !== null) {
+
+                            window.location.replace(
+
+                                artistUrl(sessionArtistId)
+
+                            );
+
+                            return;
+                        }
+
+                        await loadDirectory();
+
+                        return;
+                    }
+
+                    // Validar identificador.
+
+                    if (!validId(requestedId)) {
+
+                        showError(
+
+                            "INVALID ARTIST PROFILE",
+
+                            "El identificador del artista no es válido."
+
+                        );
+
+                        return;
+                    }
+
+                    currentArtistId =
+                        Number(requestedId);
+
+                    try {
+
+                        const url =
+                            new URL(API_PERFIL.href);
+
+                        url.searchParams.set(
+
+                            "id",
+
+                            currentArtistId
+
+                        );
+
+                        const perfil =
+                            await request(url);
+
+                        if (
+
+                            !perfil ||
+
+                            Number(perfil.id) !==
+                                currentArtistId
+
+                        ) {
+
+                            throw new Error(
+
+                                "Respuesta de perfil no válida."
+
+                            );
+                        }
+
+                        renderProfile(perfil);
+
+                        renderSpecialties();
+
+                        await Promise.allSettled([
+
+                            loadArtworks(
+                                currentArtistId
+                            ),
+
+                            loadLinks(
+                                currentArtistId
+                            ),
+
+                            sessionCheck
+
+                        ]);
+
+                        updateOwnerControls();
+
+                    } catch (error) {
+
+                        console.error(
+
+                            "Error al cargar perfil:",
+
+                            error
+
+                        );
+
+                        if (error.status === 404) {
+
+                            showError(
+
+                                "ARTIST NOT FOUND ♡",
+
+                                "Este perfil artístico no existe."
+
+                            );
+
+                        } else {
+
+                            showError(
+
+                                "OOPS! SOMETHING HAPPENED",
+
+                                "No se pudo cargar el perfil del artista. Intenta nuevamente."
+
+                            );
+                        }
+                    }
+                }
+
+                initialize();
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>

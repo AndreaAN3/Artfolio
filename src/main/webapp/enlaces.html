@@ -1,0 +1,2289 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#fff9fc">
+
+    <meta name="description"
+          content="Descubre enlaces, proyectos y redes creativas en Artfolio.">
+
+    <title>My Little World ♡ | Artfolio</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Nunito:wght@400;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        :root {
+            --ink: #302538;
+            --pink: #ffd4e7;
+            --purple: #e8ddff;
+            --yellow: #fff0b8;
+            --blue: #d9edff;
+            --green: #d8f5dc;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #fff9fc;
+            color: var(--ink);
+            font-family: "Nunito", sans-serif;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #8270f5;
+            outline-offset: 4px;
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px 6%;
+            background: white;
+            border-bottom: 3px solid var(--ink);
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ed6ca9;
+        }
+
+        .topnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .back,
+        .topnav-link {
+            display: inline-block;
+            padding: 11px 18px;
+            background: var(--yellow);
+            border: 2px solid var(--ink);
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 900;
+            box-shadow: 3px 3px 0 var(--ink);
+            transition: transform .2s;
+        }
+
+        .topnav-link {
+            background: var(--purple);
+        }
+
+        .back:hover,
+        .topnav-link:hover {
+            transform: translateY(-3px);
+        }
+
+        /* =====================================
+           MAIN PAGE
+        ===================================== */
+
+        .page {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 55px 22px 85px;
+        }
+
+        .eyebrow {
+            display: block;
+            margin-bottom: 22px;
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        /* =====================================
+           PROFILE CARD
+        ===================================== */
+
+        .profile-card {
+            --theme: #e8ddff;
+            position: relative;
+            padding: 45px 30px;
+            background: var(--theme);
+            border: 3px solid var(--ink);
+            border-radius: 38px;
+            box-shadow: 8px 8px 0 var(--ink);
+            text-align: center;
+            overflow: hidden;
+            transition: background .3s;
+        }
+
+        .decoration {
+            position: absolute;
+            top: -60px;
+            right: -30px;
+            font-size: 210px;
+            color: #ffffff80;
+            pointer-events: none;
+        }
+
+        .decoration-bottom {
+            position: absolute;
+            bottom: -50px;
+            left: -25px;
+            font-size: 150px;
+            color: #ffffff65;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 9px 15px;
+            background: white;
+            border: 2px solid var(--ink);
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 900;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+        }
+
+        /* =====================================
+           ARTIST AVATAR
+        ===================================== */
+
+        .avatar {
+            width: 135px;
+            height: 135px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto 20px;
+            background: white;
+            border: 3px solid var(--ink);
+            border-radius: 50%;
+            box-shadow: 5px 5px 0 var(--ink);
+            font-size: 68px;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .artist-name {
+            margin: 10px 0;
+            font-size: clamp(35px, 7vw, 54px);
+            font-weight: 900;
+            letter-spacing: -2px;
+            overflow-wrap: anywhere;
+        }
+
+        .artist-bio {
+            max-width: 390px;
+            margin: 0 auto 30px;
+            font-size: 14px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        /* =====================================
+           PUBLIC LINKS
+        ===================================== */
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .links-counter {
+            margin-bottom: 18px;
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .link-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 17px 20px;
+            background: white;
+            border: 2px solid var(--ink);
+            border-radius: 17px;
+            box-shadow: 4px 4px 0 var(--ink);
+            font-size: 14px;
+            font-weight: 900;
+            text-decoration: none;
+            overflow-wrap: anywhere;
+            transition: transform .2s, background .2s;
+        }
+
+        .link-button:hover {
+            transform: translateY(-3px);
+            background: var(--yellow);
+        }
+
+        .link-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .link-title {
+            flex: 1;
+            min-width: 0;
+            text-align: center;
+            overflow-wrap: anywhere;
+        }
+
+        .link-arrow {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        /* =====================================
+           EMPTY AND ERROR STATES
+        ===================================== */
+
+        .empty-state {
+            padding: 30px 18px;
+            background: #ffffff9c;
+            border: 2px dashed var(--ink);
+            border-radius: 17px;
+            font-size: 13px;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .empty-state h2 {
+            margin: 10px 0;
+            font-size: 25px;
+            font-weight: 900;
+        }
+
+        .empty-state p {
+            margin: 10px 0;
+        }
+
+        .empty-icon {
+            display: block;
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+
+        .status {
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            text-align: center;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        /* =====================================
+           KAWAII STICKERS
+        ===================================== */
+
+        .stickers {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .stickers span {
+            padding: 8px 13px;
+            background: white;
+            border: 2px solid var(--ink);
+            border-radius: 25px;
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .stickers span:nth-child(2) {
+            background: var(--yellow);
+        }
+
+        .stickers span:nth-child(3) {
+            background: var(--pink);
+        }
+
+        /* =====================================
+           ACTION BUTTONS
+        ===================================== */
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 35px;
+        }
+
+        .edit-link {
+            display: inline-block;
+            padding: 13px 22px;
+            background: var(--yellow);
+            color: var(--ink);
+            border: 2px solid var(--ink);
+            border-radius: 30px;
+            box-shadow: 3px 3px 0 var(--ink);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 900;
+            transition: transform .2s;
+            cursor: pointer;
+        }
+
+        .edit-link.secondary {
+            background: var(--pink);
+        }
+
+        .edit-link.purple {
+            background: var(--purple);
+        }
+
+        .edit-link.blue {
+            background: var(--blue);
+        }
+
+        .edit-link.white {
+            background: white;
+        }
+
+        .edit-link:hover {
+            transform: translateY(-3px);
+        }
+
+        /* =====================================
+           OWNER CONTROLS
+        ===================================== */
+
+        .owner-panel {
+            margin-top: 35px;
+            padding: 25px 18px;
+            background: white;
+            border: 2px dashed var(--ink);
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .owner-panel h2 {
+            font-size: 19px;
+            font-weight: 900;
+            margin: 0 0 10px;
+        }
+
+        .owner-panel p {
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .owner-panel .actions {
+            margin-top: 20px;
+        }
+
+        /* =====================================
+           ARTIST DIRECTORY
+        ===================================== */
+
+        .directory {
+            padding: 30px 22px;
+            background: var(--purple);
+            border: 3px solid var(--ink);
+            border-radius: 30px;
+            box-shadow: 6px 6px 0 var(--ink);
+            text-align: center;
+        }
+
+        .directory h1 {
+            font-size: 32px;
+            font-weight: 900;
+            margin: 10px 0;
+        }
+
+        .directory > p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .directory-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 25px;
+        }
+
+        .directory-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px;
+            border: 2px solid var(--ink);
+            border-radius: 20px;
+            background: white;
+            box-shadow: 3px 3px 0 var(--ink);
+            text-decoration: none;
+            text-align: left;
+            transition: transform .2s;
+        }
+
+        .directory-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .directory-avatar {
+            display: grid;
+            place-items: center;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--ink);
+            border-radius: 50%;
+            background: var(--pink);
+            font-size: 30px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .directory-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .directory-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .directory-info strong {
+            display: block;
+            font-size: 18px;
+            overflow-wrap: anywhere;
+        }
+
+        .directory-info small {
+            display: block;
+            margin-top: 5px;
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        .footer {
+            margin-top: 35px;
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            text-align: center;
+            line-height: 2;
+            overflow-wrap: anywhere;
+        }
+
+        .footer a {
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        /* =====================================
+           RESPONSIVE
+        ===================================== */
+
+        @media (max-width: 500px) {
+
+            .profile-card {
+                padding: 35px 18px;
+            }
+
+            .page {
+                padding: 40px 16px 65px;
+            }
+
+            .topbar {
+                justify-content: center;
+            }
+
+            .topnav {
+                justify-content: center;
+            }
+
+            .link-button {
+                padding: 15px 12px;
+                gap: 10px;
+                font-size: 13px;
+            }
+
+            .link-icon {
+                font-size: 21px;
+            }
+
+            .avatar {
+                width: 115px;
+                height: 115px;
+                font-size: 55px;
+            }
+
+            .actions {
+                gap: 12px;
+            }
+
+            .edit-link {
+                font-size: 11px;
+                padding: 12px 17px;
+            }
+
+            .directory {
+                padding: 25px 16px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            * {
+                transition: none !important;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+
+        <a href="index.html"
+           class="logo">
+
+            artfolio<span>!</span> ✳
+
+        </a>
+
+        <nav class="topnav"
+             aria-label="Navegación pública">
+
+            <a href="artista.html"
+               class="back"
+               id="navProfile"
+               hidden>
+
+                ← ARTIST PROFILE
+
+            </a>
+
+            <a href="index.html"
+               class="topnav-link">
+
+                HOME ♡
+
+            </a>
+
+            <a href="login.html"
+               class="topnav-link"
+               id="sessionLink">
+
+                SIGN IN ↗
+
+            </a>
+
+        </nav>
+
+    </header>
+
+    <main class="page">
+
+        <span class="eyebrow">
+
+            ✳ A LITTLE CORNER OF THE INTERNET
+
+        </span>
+
+        <!-- LOADING STATUS -->
+
+        <p class="status"
+           id="pageStatus"
+           role="status">
+
+            ♡ LOADING CREATIVE UNIVERSE...
+
+        </p>
+
+        <!-- ERROR STATE -->
+
+        <section class="empty-state"
+                 id="errorSection"
+                 hidden>
+
+            <span class="empty-icon">
+
+                💌
+
+            </span>
+
+            <h2 id="errorTitle">
+
+                OOPS! SOMETHING HAPPENED
+
+            </h2>
+
+            <p id="errorMessage">
+
+                No se pudo cargar la página de enlaces.
+
+            </p>
+
+            <div class="actions">
+
+                <a href="index.html#artistas"
+                   class="edit-link">
+
+                    DISCOVER ARTISTS ↗
+
+                </a>
+
+                <button type="button"
+                        class="edit-link secondary"
+                        id="retryButton">
+
+                    TRY AGAIN ♡
+
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- PUBLIC ARTIST DIRECTORY -->
+
+        <section class="directory"
+                 id="directorySection"
+                 hidden>
+
+            <span class="tag">
+
+                ✳ CREATIVE COMMUNITY
+
+            </span>
+
+            <h1>
+
+                FIND YOUR FAVORITE ARTIST ♡
+
+            </h1>
+
+            <p>
+
+                Explore the creative links
+                of our Artfolio community.
+
+            </p>
+
+            <div class="directory-list"
+                 id="directoryList">
+
+            </div>
+
+        </section>
+
+        <!-- PUBLIC LINKS PROFILE -->
+
+        <section class="profile-card"
+                 id="profileCard"
+                 hidden>
+
+            <div class="decoration"
+                 aria-hidden="true">
+
+                ✿
+
+            </div>
+
+            <div class="decoration-bottom"
+                 aria-hidden="true">
+
+                ♡
+
+            </div>
+
+            <div class="content">
+
+                <span class="tag"
+                      id="welcomeTag">
+
+                    ♡ WELCOME TO MY WORLD
+
+                </span>
+
+                <div class="avatar"
+                     id="artistAvatar"
+                     role="img"
+                     aria-label="Avatar del artista">
+
+                    ☀️
+
+                </div>
+
+                <h1 class="artist-name"
+                    id="artistName">
+
+                    Creative artist
+
+                </h1>
+
+                <p class="artist-bio"
+                   id="artistBio">
+
+                </p>
+
+                <!-- DYNAMIC LINKS -->
+
+                <p class="links-counter"
+                   id="linksCounter"
+                   aria-live="polite">
+
+                    LOADING LINKS...
+
+                </p>
+
+                <div class="links"
+                     id="publicLinks"
+                     aria-live="polite">
+
+                </div>
+
+                <!-- STICKERS -->
+
+                <div class="stickers">
+
+                    <span>
+
+                        🎨 ART LOVER
+
+                    </span>
+
+                    <span>
+
+                        ✿ CREATIVE SOUL
+
+                    </span>
+
+                    <span>
+
+                        💗 MADE WITH LOVE
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- PUBLIC ACTIONS -->
+
+        <div class="actions"
+             id="publicActions"
+             hidden>
+
+            <a href="#"
+               id="viewProfile"
+               class="edit-link secondary">
+
+                ☀️ VIEW MY PROFILE ♡
+
+            </a>
+
+            <button type="button"
+                    class="edit-link"
+                    id="shareButton">
+
+                ✨ SHARE MY LINKS
+
+            </button>
+
+            <a href="index.html#galeria"
+               class="edit-link white">
+
+                EXPLORE ART ↗
+
+            </a>
+
+        </div>
+
+        <p class="status"
+           id="shareStatus"
+           role="status">
+
+        </p>
+
+        <!-- PRIVATE OWNER CONTROLS -->
+
+        <section class="owner-panel"
+                 id="ownerPanel"
+                 hidden>
+
+            <h2>
+
+                YOUR LITTLE CONTROL ROOM ✳
+
+            </h2>
+
+            <p>
+
+                Estás viendo tu propia página pública.
+                Personaliza tus enlaces y tu universo creativo.
+
+            </p>
+
+            <div class="actions">
+
+                <a href="admin/mis-enlaces"
+                   class="edit-link">
+
+                    ✎ CUSTOMIZE MY LINKS
+
+                </a>
+
+                <a href="admin/editor"
+                   class="edit-link secondary">
+
+                    🎀 EDIT MY PROFILE
+
+                </a>
+
+                <a href="admin/dashboard"
+                   class="edit-link purple">
+
+                    ✳ MY DASHBOARD ↗
+
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+
+        <footer class="footer">
+
+            MADE WITH ♡ ON
+
+            <a href="index.html">
+
+                ARTFOLIO
+
+            </a>
+
+            <div id="footerCopyright">
+
+                © 2026 ARTFOLIO ✿
+
+            </div>
+
+        </footer>
+
+    </main>
+
+    <!-- DYNAMIC PROFILE / THEME / LINKS -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                "use strict";
+
+                // =====================================
+                // API CONFIGURATION
+                // =====================================
+
+                const base = new URL(
+                    "./",
+                    window.location.href
+                );
+
+                const params = new URLSearchParams(
+                    window.location.search
+                );
+
+                const requestedId =
+                    params.get("id");
+
+                const API_ENLACES = new URL(
+                    "api/publico/enlaces",
+                    base
+                );
+
+                const API_ARTISTAS = new URL(
+                    "api/publico/artistas",
+                    base
+                );
+
+                const API_PRIVADO = new URL(
+                    "api/privado/perfil",
+                    base
+                );
+
+                // =====================================
+                // DOM ELEMENTS
+                // =====================================
+
+                const $ = id =>
+                    document.getElementById(id);
+
+                const profileCard =
+                    $("profileCard");
+
+                const linksContainer =
+                    $("publicLinks");
+
+                const linksCounter =
+                    $("linksCounter");
+
+                const pageStatus =
+                    $("pageStatus");
+
+                const directorySection =
+                    $("directorySection");
+
+                const directoryList =
+                    $("directoryList");
+
+                // =====================================
+                // STATE
+                // =====================================
+
+                let currentArtistId = null;
+
+                let sessionArtistId = null;
+
+                // =====================================
+                // SAFE ELEMENT CREATION
+                // =====================================
+
+                function element(
+                    tag,
+                    className,
+                    content
+                ) {
+
+                    const node =
+                        document.createElement(tag);
+
+                    if (className) {
+
+                        node.className = className;
+                    }
+
+                    if (content !== undefined) {
+
+                        node.textContent = content;
+                    }
+
+                    return node;
+                }
+
+                function text(value, fallback = "") {
+
+                    if (typeof value !== "string") {
+
+                        return fallback;
+                    }
+
+                    return value.trim() || fallback;
+                }
+
+                // =====================================
+                // ID VALIDATION
+                // =====================================
+
+                function validId(value) {
+
+                    if (
+
+                        value === null ||
+
+                        value === undefined ||
+
+                        value === ""
+
+                    ) {
+
+                        return false;
+                    }
+
+                    return /^\d+$/.test(
+
+                        String(value)
+
+                    ) &&
+
+                        Number.isSafeInteger(
+                            Number(value)
+                        ) &&
+
+                        Number(value) > 0 &&
+
+                        Number(value) <= 2147483647;
+                }
+
+                // =====================================
+                // URL VALIDATION
+                // =====================================
+
+                function safeUrl(value) {
+
+                    if (
+
+                        typeof value !== "string" ||
+
+                        !value.trim()
+
+                    ) {
+
+                        return "";
+                    }
+
+                    try {
+
+                        const url =
+                            new URL(value.trim());
+
+                        if (
+
+                            url.protocol !== "https:" &&
+
+                            url.protocol !== "http:"
+
+                        ) {
+
+                            return "";
+                        }
+
+                        if (
+
+                            !url.hostname ||
+
+                            url.username ||
+
+                            url.password
+
+                        ) {
+
+                            return "";
+                        }
+
+                        return url.href;
+
+                    } catch (error) {
+
+                        return "";
+                    }
+                }
+
+                // =====================================
+                // COLOR VALIDATION
+                // =====================================
+
+                function safeColor(value) {
+
+                    return typeof value === "string" &&
+
+                        /^#[0-9a-fA-F]{6}$/.test(value)
+
+                        ? value
+
+                        : "#e8ddff";
+                }
+
+                // =====================================
+                // PUBLIC PAGE URLS
+                // =====================================
+
+                function artistUrl(id) {
+
+                    const url = new URL(
+
+                        "artista.html",
+
+                        base
+
+                    );
+
+                    url.searchParams.set(
+
+                        "id",
+
+                        id
+
+                    );
+
+                    return url.href;
+                }
+
+                function linksUrl(id) {
+
+                    const url = new URL(
+
+                        "enlaces.html",
+
+                        base
+
+                    );
+
+                    url.searchParams.set(
+
+                        "id",
+
+                        id
+
+                    );
+
+                    return url.href;
+                }
+
+                // =====================================
+                // API REQUEST
+                // =====================================
+
+                async function request(url) {
+
+                    const response = await fetch(url, {
+
+                        method: "GET",
+
+                        headers: {
+
+                            "Accept": "application/json"
+
+                        },
+
+                        credentials: "same-origin",
+
+                        cache: "no-store"
+
+                    });
+
+                    if (!response.ok) {
+
+                        const error = new Error(
+
+                            "Error HTTP " +
+                            response.status
+
+                        );
+
+                        error.status =
+                            response.status;
+
+                        throw error;
+                    }
+
+                    return await response.json();
+                }
+
+                // =====================================
+                // ERROR STATE
+                // =====================================
+
+                function showError(title, message) {
+
+                    profileCard.hidden = true;
+
+                    directorySection.hidden = true;
+
+                    $("publicActions").hidden = true;
+
+                    $("ownerPanel").hidden = true;
+
+                    $("navProfile").hidden = true;
+
+                    $("errorSection").hidden = false;
+
+                    $("errorTitle").textContent =
+                        title;
+
+                    $("errorMessage").textContent =
+                        message;
+
+                    pageStatus.textContent = "";
+
+                    document.title =
+
+                        "Creative Links | Artfolio";
+                }
+
+                // =====================================
+                // EMPTY STATE
+                // =====================================
+
+                function showEmpty(
+                    container,
+                    icon,
+                    message
+                ) {
+
+                    const empty = element(
+
+                        "div",
+
+                        "empty-state"
+
+                    );
+
+                    empty.append(
+
+                        element(
+
+                            "span",
+
+                            "empty-icon",
+
+                            icon
+
+                        ),
+
+                        element(
+
+                            "p",
+
+                            "",
+
+                            message
+
+                        )
+
+                    );
+
+                    container.replaceChildren(empty);
+                }
+
+                // =====================================
+                // SESSION VERIFICATION
+                // =====================================
+
+                async function checkSession() {
+
+                    try {
+
+                        const profile =
+
+                            await request(API_PRIVADO);
+
+                        if (
+
+                            profile &&
+
+                            validId(profile.id)
+
+                        ) {
+
+                            sessionArtistId =
+                                Number(profile.id);
+
+                            $("sessionLink").href =
+
+                                new URL(
+
+                                    "admin/dashboard",
+
+                                    base
+
+                                ).href;
+
+                            $("sessionLink").textContent =
+
+                                "MY DASHBOARD ↗";
+                        }
+
+                    } catch (error) {
+
+                        sessionArtistId = null;
+
+                        $("sessionLink").href =
+
+                            new URL(
+
+                                "login.html",
+
+                                base
+
+                            ).href;
+
+                        $("sessionLink").textContent =
+
+                            "SIGN IN ↗";
+                    }
+                }
+
+                // =====================================
+                // OWNER CONTROLS
+                // =====================================
+
+                function updateOwnerControls() {
+
+                    const isOwner =
+
+                        sessionArtistId !== null &&
+
+                        currentArtistId !== null &&
+
+                        sessionArtistId ===
+                            currentArtistId;
+
+                    $("ownerPanel").hidden =
+                        !isOwner;
+                }
+
+                // =====================================
+                // AVATAR / PROFILE PHOTO
+                // =====================================
+
+                function renderAvatar(
+                    container,
+                    artista
+                ) {
+
+                    const avatar = text(
+
+                        artista.avatar,
+
+                        "☀️"
+
+                    );
+
+                    container.textContent =
+                        avatar;
+
+                    container.setAttribute(
+
+                        "aria-label",
+
+                        "Avatar de " +
+
+                        text(
+
+                            artista.nombreArtistico,
+
+                            "artista"
+
+                        )
+
+                    );
+
+                    const imageUrl =
+
+                        safeUrl(artista.fotoPerfil);
+
+                    if (!imageUrl) {
+
+                        return;
+                    }
+
+                    const image =
+
+                        document.createElement("img");
+
+                    image.alt = text(
+
+                        artista.nombreArtistico,
+
+                        "Artista"
+
+                    );
+
+                    image.loading = "lazy";
+
+                    image.referrerPolicy =
+                        "no-referrer";
+
+                    image.addEventListener(
+
+                        "error",
+
+                        function () {
+
+                            container.textContent =
+                                avatar;
+
+                        },
+
+                        { once: true }
+
+                    );
+
+                    container.replaceChildren(image);
+
+                    image.src = imageUrl;
+                }
+
+                // =====================================
+                // CREATE PUBLIC LINK
+                // =====================================
+
+                function createPublicLink(enlace) {
+
+                    if (
+
+                        !enlace ||
+
+                        typeof enlace !== "object"
+
+                    ) {
+
+                        return null;
+                    }
+
+                    const title =
+                        text(enlace.titulo);
+
+                    const url =
+                        safeUrl(enlace.url);
+
+                    if (!title || !url) {
+
+                        return null;
+                    }
+
+                    const icon = text(
+
+                        enlace.icono,
+
+                        "🌷"
+
+                    );
+
+                    const anchor = element(
+
+                        "a",
+
+                        "link-button"
+
+                    );
+
+                    anchor.href = url;
+
+                    anchor.target = "_blank";
+
+                    anchor.rel =
+                        "noopener noreferrer";
+
+                    const iconElement = element(
+
+                        "span",
+
+                        "link-icon",
+
+                        icon
+
+                    );
+
+                    iconElement.setAttribute(
+
+                        "aria-hidden",
+
+                        "true"
+
+                    );
+
+                    const titleElement = element(
+
+                        "span",
+
+                        "link-title",
+
+                        title
+
+                    );
+
+                    const arrow = element(
+
+                        "span",
+
+                        "link-arrow",
+
+                        "↗"
+
+                    );
+
+                    arrow.setAttribute(
+
+                        "aria-hidden",
+
+                        "true"
+
+                    );
+
+                    anchor.append(
+
+                        iconElement,
+
+                        titleElement,
+
+                        arrow
+
+                    );
+
+                    return anchor;
+                }
+
+                // =====================================
+                // RENDER PUBLIC LINKS
+                // =====================================
+
+                function renderLinks(enlaces) {
+
+                    linksContainer.replaceChildren();
+
+                    const sortedLinks =
+
+                        enlaces
+
+                            .filter(
+
+                                enlace =>
+
+                                    enlace &&
+
+                                    typeof enlace === "object"
+
+                            )
+
+                            .slice()
+
+                            .sort(
+
+                                (a, b) =>
+
+                                    Number(a.orden) -
+
+                                    Number(b.orden)
+
+                                    ||
+
+                                    Number(a.id) -
+
+                                    Number(b.id)
+
+                            );
+
+                    let count = 0;
+
+                    sortedLinks.forEach(
+
+                        function (enlace) {
+
+                            const anchor =
+
+                                createPublicLink(enlace);
+
+                            if (!anchor) {
+
+                                return;
+                            }
+
+                            linksContainer.appendChild(
+
+                                anchor
+
+                            );
+
+                            count++;
+
+                        }
+                    );
+
+                    linksCounter.textContent =
+
+                        count +
+
+                        " CREATIVE LINK" +
+
+                        (count === 1 ? "" : "S") +
+
+                        " ♡";
+
+                    if (count === 0) {
+
+                        showEmpty(
+
+                            linksContainer,
+
+                            "🌷",
+
+                            "My little link collection is coming soon!"
+
+                        );
+                    }
+                }
+
+                // =====================================
+                // RENDER ARTIST PROFILE
+                // =====================================
+
+                function renderProfile(profile) {
+
+                    const name = text(
+
+                        profile.nombreArtistico,
+
+                        "Creative artist"
+
+                    );
+
+                    const bio = text(
+
+                        profile.biografia,
+
+                        "Welcome to my little creative universe!"
+
+                    );
+
+                    const welcome = text(
+
+                        profile.mensajeBienvenida,
+
+                        "♡ WELCOME TO MY WORLD"
+
+                    );
+
+                    $("artistName").textContent =
+                        name;
+
+                    $("artistBio").textContent =
+                        bio;
+
+                    $("welcomeTag").textContent =
+                        welcome;
+
+                    document.title =
+
+                        name +
+
+                        " ♡ Links | Artfolio";
+
+                    const description =
+
+                        document.querySelector(
+
+                            'meta[name="description"]'
+
+                        );
+
+                    if (description) {
+
+                        description.content =
+
+                            "Descubre los enlaces creativos de " +
+
+                            name +
+
+                            " en Artfolio.";
+
+                    }
+
+                    // APPLY PERSONALIZED THEME
+
+                    const theme =
+
+                        safeColor(profile.colorEnlaces);
+
+                    profileCard.style.setProperty(
+
+                        "--theme",
+
+                        theme
+
+                    );
+
+                    const themeMeta =
+
+                        document.querySelector(
+
+                            'meta[name="theme-color"]'
+
+                        );
+
+                    if (themeMeta) {
+
+                        themeMeta.content =
+                            theme;
+                    }
+
+                    // APPLY AVATAR OR PROFILE PHOTO
+
+                    renderAvatar(
+
+                        $("artistAvatar"),
+
+                        profile
+
+                    );
+
+                    // CONNECT PUBLIC PROFILE
+
+                    const publicProfile =
+
+                        artistUrl(profile.artistaId);
+
+                    $("navProfile").href =
+                        publicProfile;
+
+                    $("viewProfile").href =
+                        publicProfile;
+
+                    $("navProfile").hidden = false;
+
+                    // COPYRIGHT
+
+                    $("footerCopyright").textContent =
+
+                        "© " +
+
+                        new Date().getFullYear() +
+
+                        " " +
+
+                        name +
+
+                        " ✿";
+
+                    // RENDER LINKS
+
+                    renderLinks(profile.enlaces);
+
+                    profileCard.hidden = false;
+
+                    $("publicActions").hidden = false;
+
+                    pageStatus.textContent =
+
+                        "♡ WELCOME TO THIS LITTLE WORLD";
+
+                    updateOwnerControls();
+                }
+
+                // =====================================
+                // LOAD PUBLIC LINKS FROM MYSQL
+                // =====================================
+
+                async function loadPublicProfile(id) {
+
+                    try {
+
+                        const url =
+
+                            new URL(API_ENLACES.href);
+
+                        url.searchParams.set(
+
+                            "id",
+
+                            id
+
+                        );
+
+                        const profile =
+
+                            await request(url);
+
+                        if (
+
+                            !profile ||
+
+                            Number(profile.artistaId) !==
+                                Number(id) ||
+
+                            !Array.isArray(profile.enlaces)
+
+                        ) {
+
+                            throw new Error(
+
+                                "Respuesta del servidor no válida."
+
+                            );
+                        }
+
+                        renderProfile(profile);
+
+                    } catch (error) {
+
+                        console.error(
+
+                            "Error al cargar enlaces:",
+
+                            error
+
+                        );
+
+                        if (error.status === 404) {
+
+                            showError(
+
+                                "ARTIST NOT FOUND ♡",
+
+                                "Este perfil artístico no existe."
+
+                            );
+
+                        } else {
+
+                            showError(
+
+                                "OOPS! SOMETHING HAPPENED",
+
+                                "No se pudieron cargar los enlaces del artista. Intenta nuevamente."
+
+                            );
+                        }
+                    }
+                }
+
+                // =====================================
+                // ARTIST DIRECTORY
+                // =====================================
+
+                async function loadDirectory() {
+
+                    directorySection.hidden = false;
+
+                    document.title =
+
+                        "Discover Creative Links ♡ | Artfolio";
+
+                    pageStatus.textContent =
+
+                        "♡ EXPLORE OUR CREATIVE COMMUNITY";
+
+                    showEmpty(
+
+                        directoryList,
+
+                        "🎀",
+
+                        "Cargando artistas registrados..."
+
+                    );
+
+                    try {
+
+                        const result =
+
+                            await request(API_ARTISTAS);
+
+                        if (!Array.isArray(result)) {
+
+                            throw new Error(
+
+                                "Directorio de artistas no válido."
+
+                            );
+                        }
+
+                        const artistas = result.filter(
+
+                            artista =>
+
+                                artista &&
+
+                                validId(artista.id)
+
+                        );
+
+                        directoryList.replaceChildren();
+
+                        if (artistas.length === 0) {
+
+                            showEmpty(
+
+                                directoryList,
+
+                                "🌷",
+
+                                "Todavía no hay artistas registrados."
+
+                            );
+
+                            return;
+                        }
+
+                        artistas.forEach(
+
+                            function (artista) {
+
+                                const card = element(
+
+                                    "a",
+
+                                    "directory-card"
+
+                                );
+
+                                card.href =
+
+                                    linksUrl(artista.id);
+
+                                const avatar = element(
+
+                                    "div",
+
+                                    "directory-avatar"
+
+                                );
+
+                                avatar.style.background =
+
+                                    safeColor(
+
+                                        artista.colorPrincipal
+
+                                    );
+
+                                renderAvatar(
+
+                                    avatar,
+
+                                    artista
+
+                                );
+
+                                const info = element(
+
+                                    "div",
+
+                                    "directory-info"
+
+                                );
+
+                                info.append(
+
+                                    element(
+
+                                        "strong",
+
+                                        "",
+
+                                        text(
+
+                                            artista.nombreArtistico,
+
+                                            "Creative artist"
+
+                                        )
+
+                                    ),
+
+                                    element(
+
+                                        "small",
+
+                                        "",
+
+                                        "EXPLORE CREATIVE LINKS ♡"
+
+                                    )
+
+                                );
+
+                                const arrow = element(
+
+                                    "span",
+
+                                    "link-arrow",
+
+                                    "↗"
+
+                                );
+
+                                arrow.setAttribute(
+
+                                    "aria-hidden",
+
+                                    "true"
+
+                                );
+
+                                card.append(
+
+                                    avatar,
+
+                                    info,
+
+                                    arrow
+
+                                );
+
+                                directoryList.appendChild(
+
+                                    card
+
+                                );
+
+                            }
+                        );
+
+                    } catch (error) {
+
+                        console.error(
+
+                            "Error al cargar artistas:",
+
+                            error
+
+                        );
+
+                        showError(
+
+                            "OOPS! SOMETHING HAPPENED",
+
+                            "No se pudo cargar el directorio de artistas."
+
+                        );
+                    }
+                }
+
+                // =====================================
+                // SHARE PUBLIC LINKS
+                // =====================================
+
+                $("shareButton").addEventListener(
+
+                    "click",
+
+                    async function () {
+
+                        if (!currentArtistId) {
+
+                            return;
+                        }
+
+                        const url =
+
+                            linksUrl(currentArtistId);
+
+                        const title =
+
+                            document.title;
+
+                        try {
+
+                            if (
+
+                                typeof navigator.share ===
+
+                                "function"
+
+                            ) {
+
+                                await navigator.share({
+
+                                    title: title,
+
+                                    url: url
+
+                                });
+
+                                $("shareStatus").textContent =
+
+                                    "♡ THANK YOU FOR SHARING!";
+
+                            } else if (
+
+                                navigator.clipboard &&
+
+                                window.isSecureContext
+
+                            ) {
+
+                                await navigator.clipboard
+
+                                    .writeText(url);
+
+                                $("shareStatus").textContent =
+
+                                    "♡ CREATIVE LINK COPIED!";
+
+                            } else {
+
+                                window.prompt(
+
+                                    "Copia el enlace de esta página:",
+
+                                    url
+
+                                );
+                            }
+
+                        } catch (error) {
+
+                            if (
+
+                                error.name !== "AbortError"
+
+                            ) {
+
+                                window.prompt(
+
+                                    "Copia el enlace de esta página:",
+
+                                    url
+
+                                );
+                            }
+                        }
+                    }
+                );
+
+                // =====================================
+                // RETRY BUTTON
+                // =====================================
+
+                $("retryButton").addEventListener(
+
+                    "click",
+
+                    function () {
+
+                        window.location.reload();
+
+                    }
+                );
+
+                // =====================================
+                // INITIALIZE
+                // =====================================
+
+                async function initialize() {
+
+                    const sessionCheck =
+                        checkSession();
+
+                    // Si no se proporciona un ID,
+                    // mostrar los enlaces del usuario
+                    // autenticado o el directorio.
+
+                    if (requestedId === null) {
+
+                        await sessionCheck;
+
+                        if (sessionArtistId !== null) {
+
+                            window.location.replace(
+
+                                linksUrl(sessionArtistId)
+
+                            );
+
+                            return;
+                        }
+
+                        await loadDirectory();
+
+                        return;
+                    }
+
+                    // Validate artist ID.
+
+                    if (!validId(requestedId)) {
+
+                        showError(
+
+                            "INVALID ARTIST PROFILE",
+
+                            "El identificador del artista no es válido."
+
+                        );
+
+                        return;
+                    }
+
+                    currentArtistId =
+
+                        Number(requestedId);
+
+                    await Promise.allSettled([
+
+                        loadPublicProfile(
+
+                            currentArtistId
+
+                        ),
+
+                        sessionCheck
+
+                    ]);
+
+                    updateOwnerControls();
+                }
+
+                initialize();
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>

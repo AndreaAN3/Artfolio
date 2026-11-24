@@ -1738,3 +1738,502 @@ a {
     }
 
 }
+
+/* ==========================================
+   24 — EXTRA KAWAII EXPERIENCE
+   ARTFOLIO / PLAYFUL HYBRID
+   ========================================== */
+
+:root {
+    --kawaii-lilac: #e8d9ff;
+    --kawaii-cream: #fff9e9;
+    --kawaii-shadow: rgba(119, 75, 145, 0.16);
+    --kawaii-glass: rgba(255, 255, 255, 0.56);
+}
+
+/* Cristal suave en navegación */
+
+.header {
+    background: rgba(255, 244, 248, 0.76);
+    backdrop-filter: blur(24px) saturate(155%);
+    -webkit-backdrop-filter: blur(24px) saturate(155%);
+    box-shadow: 0 8px 30px rgba(119, 75, 145, 0.045);
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.header:hover {
+    background: rgba(255, 250, 253, 0.91);
+    box-shadow: 0 10px 35px var(--kawaii-shadow);
+}
+
+/* Botones más kawaii */
+
+.button-primary,
+.header-button,
+.contact-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.button-primary {
+    border: 2px solid rgba(255, 255, 255, 0.65);
+    box-shadow:
+        0 7px 0 #d63e89,
+        0 12px 24px rgba(246, 83, 161, 0.18);
+}
+
+.button-primary:hover {
+    transform: translateY(3px) scale(1.035);
+    box-shadow:
+        0 3px 0 #d63e89,
+        0 9px 22px rgba(246, 83, 161, 0.23);
+}
+
+.header-button {
+    background: rgba(255, 255, 255, 0.45);
+    border-color: rgba(48, 36, 60, 0.25);
+}
+
+.header-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px var(--kawaii-shadow);
+}
+
+/* Tarjetas con efecto sticker */
+
+.discipline-card,
+.gallery-card {
+    transition:
+        transform 0.35s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.35s ease;
+}
+
+.discipline-card {
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    box-shadow:
+        0 8px 0 rgba(48, 36, 60, 0.055),
+        0 15px 30px rgba(48, 36, 60, 0.045);
+}
+
+.discipline-card:hover {
+    transform: translateY(-11px) rotate(-1.5deg);
+    box-shadow:
+        0 12px 0 rgba(48, 36, 60, 0.06),
+        0 22px 35px var(--kawaii-shadow);
+}
+
+.discipline-card:nth-child(even):hover {
+    transform: translateY(-11px) rotate(1.5deg);
+}
+
+.discipline-emoji {
+    transition: transform 0.35s ease;
+}
+
+.discipline-card:hover .discipline-emoji {
+    transform: rotate(-12deg) scale(1.2);
+}
+
+.card-decoration {
+    transition: transform 0.4s ease;
+}
+
+.discipline-card:hover .card-decoration {
+    transform: rotate(35deg) scale(1.3);
+}
+
+/* Galería con profundidad */
+
+.gallery-card {
+    border-radius: 20px;
+}
+
+.gallery-art {
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.75);
+    border-radius: 20px;
+    box-shadow: 0 12px 25px rgba(48, 36, 60, 0.07);
+    transition: box-shadow 0.35s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-8px);
+}
+
+.gallery-card:hover .gallery-art {
+    box-shadow: 0 20px 38px rgba(119, 75, 145, 0.17);
+}
+
+.gallery-card:hover .art-sticker,
+.gallery-card:hover .photo-sticker,
+.gallery-card:hover .digital-sticker {
+    animation: sticker-float 1.2s ease-in-out infinite;
+}
+
+/* Liquid glass para el proyecto digital */
+
+.glass-card {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.64),
+        rgba(255, 255, 255, 0.19)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.9),
+        0 18px 40px rgba(48, 36, 60, 0.12);
+}
+
+/* Stickers flotantes */
+
+.floating-bow,
+.floating-heart,
+.floating-star,
+.floating-flower,
+.about-bow,
+.about-heart {
+    animation: sticker-float 4s ease-in-out infinite;
+}
+
+.floating-heart {
+    animation-delay: -1s;
+}
+
+.floating-star {
+    animation-delay: -2s;
+}
+
+.floating-flower {
+    animation-delay: -3s;
+}
+
+/* Brillitos del cursor */
+
+.cursor-sparkle {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    font-size: 15px;
+    line-height: 1;
+    color: var(--hot-pink);
+    text-shadow: 0 2px 8px rgba(246, 83, 161, 0.25);
+    animation: cursor-sparkle-pop 650ms ease-out forwards;
+}
+
+@keyframes cursor-sparkle-pop {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -110%) scale(1.5) rotate(35deg);
+    }
+}
+
+/* Aparición suave al desplazarse */
+
+.kawaii-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 700ms ease,
+        transform 700ms cubic-bezier(.2,.8,.2,1);
+}
+
+.kawaii-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Accesibilidad */
+
+:focus-visible {
+    outline: 3px dashed var(--hot-pink);
+    outline-offset: 5px;
+}
+
+@media (max-width: 700px) {
+    .discipline-card:hover,
+    .discipline-card:nth-child(even):hover,
+    .gallery-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .cursor-sparkle {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .kawaii-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .floating-bow,
+    .floating-heart,
+    .floating-star,
+    .floating-flower,
+    .about-bow,
+    .about-heart {
+        animation: none;
+    }
+}
+
+/* ==========================================
+   ARTFOLIO — KAWAII INTERACTIONS
+   Responsive + Motion + Glass Effects
+   ========================================== */
+
+/* Animaciones al desplazarse */
+
+.kawaii-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.kawaii-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Navegación activa */
+
+.navigation a.active {
+    color: #b04b92;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 7px;
+}
+
+/* Tarjetas interactivas */
+
+.discipline-card,
+.gallery-card {
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.discipline-card.is-hovered,
+.gallery-card.is-hovered {
+    transform: translateY(-7px) rotate(-1deg);
+    box-shadow: 8px 10px 0 rgba(179, 128, 191, 0.17);
+}
+
+/* Cursor kawaii */
+
+.cursor-sparkle {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    font-size: 20px;
+    color: #e58db9;
+    animation: sparkle-float 0.75s ease-out forwards;
+}
+
+@keyframes sparkle-float {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, -90%) scale(0.4) rotate(35deg);
+    }
+}
+
+/* Botón de menú móvil */
+
+.mobile-menu-button {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(80, 50, 90, 0.2);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #44314b;
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1002;
+}
+
+/* Efecto glass */
+
+.header {
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+/* Evita que el encabezado tape las secciones */
+
+html {
+    scroll-padding-top: 100px;
+}
+
+main section[id] {
+    scroll-margin-top: 100px;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 900px) {
+
+    .header {
+        position: relative;
+        z-index: 1000;
+    }
+
+    .mobile-menu-button {
+        display: flex;
+    }
+
+    .header .navigation {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1001;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 16px 24px 24px;
+        background: rgba(255, 248, 253, 0.97);
+        border-bottom: 2px solid #e9c8e4;
+        box-shadow: 0 12px 24px rgba(80, 50, 90, 0.12);
+        backdrop-filter: blur(20px);
+    }
+
+    .header .navigation.menu-open {
+        display: flex;
+    }
+
+    .header .navigation a {
+        display: block;
+        padding: 13px 8px;
+        margin: 0;
+    }
+
+    .discipline-card.is-hovered,
+    .gallery-card.is-hovered {
+        transform: translateY(-3px);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .kawaii-reveal {
+        transform: translateY(14px);
+    }
+
+    .mobile-menu-button {
+        width: 42px;
+        height: 42px;
+    }
+
+    .cursor-sparkle {
+        display: none;
+    }
+}
+
+/* Accesibilidad: movimiento reducido */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .kawaii-reveal,
+    .kawaii-reveal.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .discipline-card,
+    .gallery-card {
+        transition: none;
+    }
+
+    .cursor-sparkle {
+        display: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* ARTFOLIO - INTERACTIVE GALLERY */
+
+.gallery-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 35px 0 18px;
+}
+
+.filter-btn {
+    border: 2px solid #292522;
+    background: #ffffff;
+    color: #292522;
+    border-radius: 100px;
+    padding: 12px 20px;
+    font-family: "Nunito", sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 #292522;
+    transition: transform 0.2s, background 0.2s,
+                box-shadow 0.2s;
+}
+
+.filter-btn:hover {
+    transform: translateY(-3px);
+    background: #fff0f7;
+}
+
+.filter-btn.active {
+    background: #ffacd5;
+    box-shadow: 1px 1px 0 #292522;
+    transform: translate(2px, 2px);
+}
+
+.filter-btn:focus-visible {
+    outline: 3px solid #8270f5;
+    outline-offset: 3px;
+}
+
+.gallery-count {
+    margin-bottom: 22px;
+    font-family: "DM Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.gallery-card[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 600px) {
+    .gallery-filters {
+        gap: 9px;
+    }
+
+    .filter-btn {
+        padding: 10px 14px;
+        font-size: 11px;
+    }
+}
