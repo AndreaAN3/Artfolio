@@ -1,0 +1,2302 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Artwork ♡ | Artfolio</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Nunito:wght@400;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        :root {
+            --ink: #302538;
+            --pink: #ffd4e7;
+            --purple: #e8ddff;
+            --yellow: #fff0b8;
+            --blue: #d9edff;
+            --green: #d8f5dc;
+            --paper: #fff9fc;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: "Nunito", sans-serif;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        select:focus-visible {
+            outline: 3px solid #8c64ce;
+            outline-offset: 3px;
+        }
+
+        /* HEADER */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px 6%;
+            background: white;
+            border-bottom: 3px solid var(--ink);
+        }
+
+        .logo {
+            color: var(--ink);
+            font-size: 27px;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ed6ca9;
+        }
+
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .back {
+            display: inline-block;
+            padding: 11px 18px;
+            background: var(--yellow);
+            border: 2px solid var(--ink);
+            border-radius: 30px;
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 900;
+            box-shadow: 3px 3px 0 var(--ink);
+            transition: transform .2s;
+        }
+
+        .back:hover {
+            transform: translateY(-3px);
+        }
+
+        .back.pink {
+            background: var(--pink);
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1250px;
+            margin: auto;
+            padding: 45px 24px 90px;
+        }
+
+        .eyebrow {
+            font-family: "DM Mono", monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: clamp(40px, 7vw, 80px);
+            line-height: 1.05;
+            font-weight: 900;
+            letter-spacing: -3px;
+            margin: 16px 0;
+        }
+
+        h1 span {
+            color: #e96ca8;
+        }
+
+        .intro {
+            max-width: 700px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        .workspace {
+            display: grid;
+            grid-template-columns: 360px minmax(0, 1fr);
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* FORMULARIO */
+
+        .panel {
+            background: white;
+            border: 3px solid var(--ink);
+            border-radius: 27px;
+            padding: 28px;
+            box-shadow: 6px 6px 0 var(--ink);
+            min-width: 0;
+        }
+
+        .panel h2 {
+            font-size: 25px;
+            margin: 0 0 10px;
+        }
+
+        .panel-description {
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 13px;
+            border: 2px solid var(--ink);
+            border-radius: 13px;
+            background: #fffafd;
+            color: var(--ink);
+        }
+
+        .field textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .image-help {
+            font-size: 11px;
+            line-height: 1.6;
+            margin-top: 7px;
+            color: #66566e;
+        }
+
+        /* VISTA PREVIA */
+
+        .image-preview {
+            width: 100%;
+            height: 190px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--purple);
+            border: 2px dashed var(--ink);
+            border-radius: 17px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .image-placeholder {
+            text-align: center;
+            font-size: 45px;
+        }
+
+        .image-placeholder small {
+            display: block;
+            font-size: 12px;
+            font-weight: 900;
+            margin-top: 8px;
+        }
+
+        /* BOTONES */
+
+        .primary-button {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--ink);
+            border-radius: 15px;
+            background: var(--pink);
+            color: var(--ink);
+            font-weight: 900;
+            box-shadow: 3px 3px 0 var(--ink);
+            transition: background .2s;
+        }
+
+        .primary-button:hover {
+            background: var(--yellow);
+        }
+
+        .secondary-button {
+            display: none;
+            margin-top: 12px;
+            background: var(--yellow);
+        }
+
+        .status {
+            font-size: 12px;
+            min-height: 20px;
+            line-height: 1.6;
+            margin: 16px 0 0;
+            overflow-wrap: anywhere;
+        }
+
+        .status.success {
+            color: #34734b;
+        }
+
+        .status.error {
+            color: #b82d55;
+        }
+
+        /* GALERIA */
+
+        .gallery-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .gallery-heading h2 {
+            font-size: 28px;
+            margin: 0;
+        }
+
+        .counter {
+            font-family: "DM Mono", monospace;
+            font-size: 12px;
+        }
+
+        /* FILTROS */
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-bottom: 25px;
+        }
+
+        .filter {
+            background: white;
+            border: 2px solid var(--ink);
+            border-radius: 25px;
+            padding: 9px 13px;
+            font-size: 11px;
+            font-weight: 900;
+            transition: background .2s;
+        }
+
+        .filter:hover {
+            background: var(--purple);
+        }
+
+        .filter.active {
+            background: var(--pink);
+        }
+
+        /* TARJETAS */
+
+        .artwork-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .artwork-card {
+            background: white;
+            border: 3px solid var(--ink);
+            border-radius: 23px;
+            overflow: hidden;
+            box-shadow: 5px 5px 0 var(--ink);
+            min-width: 0;
+            transition: transform .25s;
+            animation: artworkAppear .4s ease both;
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-4px);
+        }
+
+        @keyframes artworkAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .artwork-image {
+            width: 100%;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--purple);
+            overflow: hidden;
+            font-size: 65px;
+        }
+
+        .artwork-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .artwork-info {
+            padding: 20px;
+        }
+
+        .artwork-category {
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        .artwork-info h3 {
+            font-size: 22px;
+            margin: 9px 0;
+            overflow-wrap: anywhere;
+        }
+
+        .artwork-info p {
+            font-size: 13px;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+            white-space: pre-wrap;
+        }
+
+        /* ESTADO DE PUBLICACION */
+
+        .publication-status {
+            display: inline-block;
+            padding: 7px 12px;
+            border: 2px solid var(--ink);
+            border-radius: 20px;
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .publication-status.published {
+            background: var(--green);
+        }
+
+        .publication-status.draft {
+            background: var(--yellow);
+        }
+
+        /* ACCIONES */
+
+        .artwork-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .edit-button,
+        .delete-button,
+        .view-button {
+            display: inline-block;
+            padding: 10px 14px;
+            border: 2px solid var(--ink);
+            border-radius: 20px;
+            color: var(--ink);
+            font-size: 11px;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .edit-button {
+            background: var(--blue);
+        }
+
+        .delete-button {
+            background: var(--yellow);
+        }
+
+        .view-button {
+            background: var(--green);
+        }
+
+        .edit-button:hover {
+            background: var(--purple);
+        }
+
+        .delete-button:hover {
+            background: #ffb5c9;
+        }
+
+        .view-button:hover {
+            background: var(--pink);
+        }
+
+        /* GALERIA VACIA */
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 55px 25px;
+            border: 3px dashed var(--ink);
+            border-radius: 25px;
+            background: var(--purple);
+        }
+
+        .empty-state span {
+            font-size: 65px;
+        }
+
+        .empty-state h3 {
+            font-size: 24px;
+            margin: 12px 0;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+        }
+
+        /* AVISO */
+
+        .notice {
+            margin-top: 25px;
+            background: var(--yellow);
+            border: 2px dashed var(--ink);
+            border-radius: 15px;
+            padding: 17px;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 950px) {
+
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .artwork-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+
+            .container {
+                padding: 30px 18px 60px;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .topbar {
+                padding: 18px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="topbar">
+
+    <a href="../index.html" class="logo">
+        artfolio<span>!</span> ✳
+    </a>
+
+    <div class="topbar-actions">
+
+        <a href="../admin/dashboard"
+           class="back">
+
+            ← DASHBOARD
+
+        </a>
+
+        <a href="../artista.html"
+           id="publicProfileLink"
+           class="back pink">
+
+            ☀️ MY ARTIST PROFILE
+
+        </a>
+
+    </div>
+
+</header>
+
+<!-- CONTENIDO PRINCIPAL -->
+
+<main class="container">
+
+    <span class="eyebrow">
+        ✳ ARTFOLIO / CREATIVE MANAGER
+    </span>
+
+    <h1>
+
+        MY LITTLE<br>
+
+        <span>ART COLLECTION!</span> 🎨
+
+    </h1>
+
+    <p class="intro">
+
+        Organiza tus creaciones, agrega nuevas obras
+        y construye tu propio universo artístico.
+        Cada creación tiene una historia que contar ♡
+
+    </p>
+
+    <div class="workspace">
+
+        <!-- FORMULARIO -->
+
+        <section class="panel"
+                 aria-labelledby="formTitle">
+
+            <h2 id="formTitle">
+                ✿ ADD NEW ARTWORK
+            </h2>
+
+            <p class="panel-description">
+
+                Give your creation a little space
+                in your artistic universe.
+
+            </p>
+
+            <form id="artworkForm">
+
+                <!-- TITULO -->
+
+                <div class="field">
+
+                    <label for="artTitle">
+                        ARTWORK TITLE
+                    </label>
+
+                    <input type="text"
+                           id="artTitle"
+                           maxlength="200"
+                           placeholder="My beautiful creation"
+                           required>
+
+                </div>
+
+                <!-- CATEGORIA -->
+
+                <div class="field">
+
+                    <label for="artCategory">
+                        CATEGORY
+                    </label>
+
+                    <select id="artCategory" required>
+
+                        <option value="Ilustraciones">
+                            🎨 Illustration
+                        </option>
+
+                        <option value="Fotografía">
+                            📸 Photography
+                        </option>
+
+                        <option value="Diseño digital">
+                            💿 Digital Design
+                        </option>
+
+                        <option value="Animación">
+                            ✨ Animation
+                        </option>
+
+                        <option value="Diseño gráfico">
+                            💗 Graphic Design
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- DESCRIPCION -->
+
+                <div class="field">
+
+                    <label for="artDescription">
+                        DESCRIPTION
+                    </label>
+
+                    <textarea
+                        id="artDescription"
+                        maxlength="10000"
+                        placeholder="Tell the story behind your artwork..."></textarea>
+
+                </div>
+
+                <!-- PORTADA -->
+
+                <div class="field">
+
+                    <label for="artImage">
+                        COVER IMAGE URL
+                    </label>
+
+                    <input type="url"
+                           id="artImage"
+                           maxlength="500"
+                           placeholder="https://example.com/cover.jpg">
+
+                    <p class="image-help">
+
+                        Agrega una URL de imagen para
+                        utilizarla como portada de tu obra.
+
+                    </p>
+
+                </div>
+
+                <!-- URL DE LA OBRA -->
+
+                <div class="field">
+
+                    <label for="artFile">
+                        ARTWORK URL
+                    </label>
+
+                    <input type="url"
+                           id="artFile"
+                           maxlength="500"
+                           placeholder="https://example.com/my-artwork">
+
+                    <p class="image-help">
+
+                        Agrega la dirección de tu ilustración,
+                        fotografía, diseño o animación.
+
+                        Puedes dejarla vacía si guardas
+                        la obra como borrador.
+
+                    </p>
+
+                </div>
+
+                <!-- PUBLICACION -->
+
+                <div class="field">
+
+                    <label for="artPublished">
+                        PUBLICATION STATUS
+                    </label>
+
+                    <select id="artPublished">
+
+                        <option value="false">
+                            🌙 Draft / Borrador
+                        </option>
+
+                        <option value="true">
+                            ☀️ Published / Publicada
+                        </option>
+
+                    </select>
+
+                    <p class="image-help">
+
+                        Los borradores permanecen privados.
+                        Las obras publicadas estarán disponibles
+                        en la galería pública cuando se conecte.
+
+                    </p>
+
+                </div>
+
+                <!-- VISTA PREVIA -->
+
+                <div class="image-preview"
+                     id="imagePreview">
+
+                    <div class="image-placeholder">
+
+                        🖼️
+
+                        <small>
+                            YOUR ART PREVIEW
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <!-- BOTONES -->
+
+                <button type="submit"
+                        id="submitArtworkButton"
+                        class="primary-button"
+                        disabled>
+
+                    ♡ ADD TO MY COLLECTION
+
+                </button>
+
+                <button type="button"
+                        id="cancelEditButton"
+                        class="primary-button secondary-button">
+
+                    ↺ CANCEL EDIT
+
+                </button>
+
+                <p id="formStatus"
+                   class="status"
+                   role="status"
+                   aria-live="polite">
+
+                    Conectando con MySQL...
+
+                </p>
+
+            </form>
+
+        </section>
+
+        <!-- GALERIA -->
+
+        <section aria-labelledby="galleryTitle">
+
+            <div class="gallery-heading">
+
+                <h2 id="galleryTitle">
+                    MY ARTWORK ✳
+                </h2>
+
+                <span id="artCounter"
+                      class="counter">
+
+                    0 ARTWORKS
+
+                </span>
+
+            </div>
+
+            <!-- FILTROS -->
+
+            <div class="filters"
+                 role="group"
+                 aria-label="Filtrar obras">
+
+                <button type="button"
+                        class="filter active"
+                        data-filter="all"
+                        aria-pressed="true">
+
+                    ALL
+
+                </button>
+
+                <button type="button"
+                        class="filter"
+                        data-filter="Ilustraciones"
+                        aria-pressed="false">
+
+                    🎨 ILLUSTRATION
+
+                </button>
+
+                <button type="button"
+                        class="filter"
+                        data-filter="Fotografía"
+                        aria-pressed="false">
+
+                    📸 PHOTO
+
+                </button>
+
+                <button type="button"
+                        class="filter"
+                        data-filter="Diseño digital"
+                        aria-pressed="false">
+
+                    💿 DIGITAL
+
+                </button>
+
+                <button type="button"
+                        class="filter"
+                        data-filter="Animación"
+                        aria-pressed="false">
+
+                    ✨ ANIMATION
+
+                </button>
+
+                <button type="button"
+                        class="filter"
+                        data-filter="Diseño gráfico"
+                        aria-pressed="false">
+
+                    💗 GRAPHIC
+
+                </button>
+
+                <button type="button"
+                        class="filter"
+                        data-filter="published"
+                        aria-pressed="false">
+
+                    ☀️ PUBLISHED
+
+                </button>
+
+                <button type="button"
+                        class="filter"
+                        data-filter="draft"
+                        aria-pressed="false">
+
+                    🌙 DRAFTS
+
+                </button>
+
+            </div>
+
+            <!-- CONTENEDOR DE OBRAS -->
+
+            <div id="artworkGrid"
+                 class="artwork-grid"
+                 aria-live="polite">
+
+                <div class="empty-state">
+
+                    <span>🌷</span>
+
+                    <h3>LOADING YOUR ART!</h3>
+
+                    <p>
+                        Estamos preparando tu colección ♡
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- INFORMACION -->
+
+            <div class="notice">
+
+                ✿ Tus obras se guardan permanentemente
+                en la base de datos MySQL.
+
+                Cada artista administra su propia colección
+                mediante una sesión privada.
+
+                Los borradores no se incluyen en la
+                colección pública. ♡
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    "use strict";
+
+    // ==========================================
+    // CONFIGURACION DE LAS API
+    // ==========================================
+
+    const context =
+        window.location.pathname.split("/admin/")[0];
+
+    const API_OBRAS =
+        context + "/api/privado/obras";
+
+    const API_PERFIL =
+        context + "/api/privado/perfil";
+
+    const CATEGORIES = {
+
+        "Ilustraciones": {
+            label: "ILLUSTRATION",
+            emoji: "🎨"
+        },
+
+        "Fotografía": {
+            label: "PHOTOGRAPHY",
+            emoji: "📸"
+        },
+
+        "Diseño digital": {
+            label: "DIGITAL DESIGN",
+            emoji: "💿"
+        },
+
+        "Animación": {
+            label: "ANIMATION",
+            emoji: "✨"
+        },
+
+        "Diseño gráfico": {
+            label: "GRAPHIC DESIGN",
+            emoji: "💗"
+        }
+    };
+
+    // ==========================================
+    // ELEMENTOS HTML
+    // ==========================================
+
+    const form =
+        document.getElementById("artworkForm");
+
+    const titleInput =
+        document.getElementById("artTitle");
+
+    const categoryInput =
+        document.getElementById("artCategory");
+
+    const descriptionInput =
+        document.getElementById("artDescription");
+
+    const imageInput =
+        document.getElementById("artImage");
+
+    const fileInput =
+        document.getElementById("artFile");
+
+    const publishedInput =
+        document.getElementById("artPublished");
+
+    const imagePreview =
+        document.getElementById("imagePreview");
+
+    const grid =
+        document.getElementById("artworkGrid");
+
+    const counter =
+        document.getElementById("artCounter");
+
+    const status =
+        document.getElementById("formStatus");
+
+    const formTitle =
+        document.getElementById("formTitle");
+
+    const submitButton =
+        document.getElementById("submitArtworkButton");
+
+    const cancelEditButton =
+        document.getElementById("cancelEditButton");
+
+    const publicProfileLink =
+        document.getElementById("publicProfileLink");
+
+    const filterButtons =
+        document.querySelectorAll(".filter");
+
+    // ==========================================
+    // VARIABLES
+    // ==========================================
+
+    let artworks = [];
+
+    let activeFilter = "all";
+
+    let editingId = null;
+
+    let csrfToken = "";
+
+    let ready = false;
+
+    let busy = false;
+
+    // ==========================================
+    // CREAR ELEMENTOS DE FORMA SEGURA
+    // ==========================================
+
+    function createElement(tag, className, text) {
+
+        const element =
+            document.createElement(tag);
+
+        if (className) {
+
+            element.className = className;
+        }
+
+        if (text !== undefined) {
+
+            element.textContent = text;
+        }
+
+        return element;
+    }
+
+    // ==========================================
+    // MOSTRAR MENSAJES
+    // ==========================================
+
+    function showStatus(message, type = "") {
+
+        status.textContent = message;
+
+        status.className =
+            "status" + (type ? " " + type : "");
+    }
+
+    // ==========================================
+    // VALIDAR URL
+    // ==========================================
+
+    function safeUrl(value) {
+
+        if (!value || typeof value !== "string") {
+
+            return "";
+        }
+
+        try {
+
+            const url =
+                new URL(value.trim());
+
+            if (
+                url.protocol !== "https:" &&
+                url.protocol !== "http:"
+            ) {
+
+                return "";
+            }
+
+            if (
+                !url.hostname ||
+                url.username ||
+                url.password
+            ) {
+
+                return "";
+            }
+
+            return url.href;
+
+        } catch (error) {
+
+            return "";
+        }
+    }
+
+    // ==========================================
+    // CONEXION CON EL SERVIDOR
+    // ==========================================
+
+    async function request(
+        url,
+        method = "GET",
+        data
+    ) {
+
+        const headers = {
+
+            "Accept": "application/json"
+
+        };
+
+        if (method !== "GET") {
+
+            headers["X-CSRF-Token"] =
+                csrfToken;
+        }
+
+        if (data !== undefined) {
+
+            headers["Content-Type"] =
+                "application/json";
+        }
+
+        const response = await fetch(url, {
+
+            method: method,
+
+            headers: headers,
+
+            credentials: "same-origin",
+
+            cache: "no-store",
+
+            body: data === undefined
+
+                ? undefined
+
+                : JSON.stringify(data)
+
+        });
+
+        // Sesion expirada
+
+        if (response.status === 401) {
+
+            window.location.href =
+                context + "/login.html";
+
+            throw new Error(
+                "Debes iniciar sesión nuevamente."
+            );
+        }
+
+        let result;
+
+        try {
+
+            result = await response.json();
+
+        } catch (error) {
+
+            throw new Error(
+                "El servidor devolvió una respuesta no válida."
+            );
+        }
+
+        if (
+            !response.ok ||
+            result.success === false
+        ) {
+
+            throw new Error(
+
+                result.error ||
+
+                result.mensaje ||
+
+                "No se pudo completar la operación."
+
+            );
+        }
+
+        return result;
+    }
+
+    // ==========================================
+    // CONTROLAR BOTONES
+    // ==========================================
+
+    function updateControls() {
+
+        const disabled =
+            busy || !ready;
+
+        form.querySelectorAll(
+
+            "input, select, textarea, button"
+
+        ).forEach(function (element) {
+
+            element.disabled = disabled;
+
+        });
+
+        grid.querySelectorAll("button")
+            .forEach(function (button) {
+
+                button.disabled = disabled;
+
+            });
+
+        filterButtons.forEach(function (button) {
+
+            button.disabled = disabled;
+
+        });
+    }
+
+    function setBusy(value) {
+
+        busy = value;
+
+        updateControls();
+    }
+
+    // ==========================================
+    // CARGAR OBRAS DESDE MYSQL
+    // ==========================================
+
+    async function loadArtworks() {
+
+        const result =
+            await request(API_OBRAS);
+
+        if (!Array.isArray(result)) {
+
+            throw new Error(
+                "No se recibió una lista válida de obras."
+            );
+        }
+
+        artworks = result;
+
+        renderArtworks();
+    }
+
+    // ==========================================
+    // FILTRAR OBRAS
+    // ==========================================
+
+    function setFilter(filter) {
+
+        activeFilter = filter;
+
+        filterButtons.forEach(function (button) {
+
+            const selected =
+                button.dataset.filter === filter;
+
+            button.classList.toggle(
+                "active",
+                selected
+            );
+
+            button.setAttribute(
+                "aria-pressed",
+                String(selected)
+            );
+
+        });
+
+        renderArtworks();
+    }
+
+    function matchesFilter(artwork) {
+
+        if (activeFilter === "all") {
+
+            return true;
+        }
+
+        if (activeFilter === "published") {
+
+            return artwork.publicada === true;
+        }
+
+        if (activeFilter === "draft") {
+
+            return artwork.publicada !== true;
+        }
+
+        return artwork.categoria === activeFilter;
+    }
+
+    // ==========================================
+    // VISTA PREVIA DE PORTADA
+    // ==========================================
+
+    function updateImagePreview() {
+
+        const url =
+            safeUrl(imageInput.value);
+
+        imagePreview.replaceChildren();
+
+        if (!url) {
+
+            const placeholder = createElement(
+                "div",
+                "image-placeholder"
+            );
+
+            placeholder.append(
+
+                createElement(
+                    "div",
+                    "",
+                    "🖼️"
+                ),
+
+                createElement(
+                    "small",
+                    "",
+                    "YOUR ART PREVIEW"
+                )
+
+            );
+
+            imagePreview.appendChild(
+                placeholder
+            );
+
+            return;
+        }
+
+        const img =
+            document.createElement("img");
+
+        img.alt =
+            "Vista previa de la obra";
+
+        img.referrerPolicy =
+            "no-referrer";
+
+        img.onerror = function () {
+
+            if (img.parentElement === imagePreview) {
+
+                imagePreview.replaceChildren(
+
+                    createElement(
+                        "span",
+                        "",
+                        "IMAGE NOT AVAILABLE ♡"
+                    )
+
+                );
+            }
+        };
+
+        img.src = url;
+
+        imagePreview.appendChild(img);
+    }
+
+    // ==========================================
+    // REINICIAR FORMULARIO
+    // ==========================================
+
+    function cancelEditing() {
+
+        editingId = null;
+
+        form.reset();
+
+        publishedInput.value = "false";
+
+        formTitle.textContent =
+            "✿ ADD NEW ARTWORK";
+
+        submitButton.textContent =
+            "♡ ADD TO MY COLLECTION";
+
+        cancelEditButton.style.display =
+            "none";
+
+        updateImagePreview();
+    }
+
+    // ==========================================
+    // EDITAR OBRA
+    // ==========================================
+
+    function startEditing(artwork) {
+
+        if (busy || !ready) {
+
+            return;
+        }
+
+        editingId = artwork.id;
+
+        titleInput.value =
+            artwork.titulo || "";
+
+        categoryInput.value =
+            artwork.categoria;
+
+        descriptionInput.value =
+            artwork.descripcion || "";
+
+        imageInput.value =
+            artwork.imagenPortada || "";
+
+        fileInput.value =
+            artwork.archivoUrl || "";
+
+        publishedInput.value =
+            String(artwork.publicada === true);
+
+        formTitle.textContent =
+            "✿ EDIT ARTWORK";
+
+        submitButton.textContent =
+            "♡ SAVE ARTWORK CHANGES";
+
+        cancelEditButton.style.display =
+            "block";
+
+        updateImagePreview();
+
+        showStatus(
+
+            "✿ Estás editando: " +
+            artwork.titulo
+
+        );
+
+        const reducedMotion =
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+        form.scrollIntoView({
+
+            behavior: reducedMotion
+                ? "auto"
+                : "smooth",
+
+            block: "start"
+
+        });
+
+        titleInput.focus({
+
+            preventScroll: true
+
+        });
+    }
+
+    // ==========================================
+    // ELIMINAR OBRA DE MYSQL
+    // ==========================================
+
+    async function deleteArtwork(artwork) {
+
+        if (busy || !ready) {
+
+            return;
+        }
+
+        const confirmed = window.confirm(
+
+            '¿Eliminar permanentemente la obra "' +
+
+            artwork.titulo +
+
+            '"?'
+
+        );
+
+        if (!confirmed) {
+
+            return;
+        }
+
+        setBusy(true);
+
+        showStatus(
+            "Eliminando obra..."
+        );
+
+        try {
+
+            const result = await request(
+
+                API_OBRAS +
+
+                "?id=" +
+
+                encodeURIComponent(artwork.id),
+
+                "DELETE"
+
+            );
+
+            artworks = artworks.filter(
+
+                item => item.id !== artwork.id
+
+            );
+
+            if (editingId === artwork.id) {
+
+                cancelEditing();
+            }
+
+            renderArtworks();
+
+            showStatus(
+
+                result.mensaje ||
+
+                "✿ Obra eliminada correctamente.",
+
+                "success"
+
+            );
+
+        } catch (error) {
+
+            showStatus(
+                error.message,
+                "error"
+            );
+
+        } finally {
+
+            setBusy(false);
+        }
+    }
+
+    // ==========================================
+    // MOSTRAR GALERIA
+    // ==========================================
+
+    function renderArtworks() {
+
+        grid.replaceChildren();
+
+        const filtered =
+            artworks.filter(matchesFilter);
+
+        counter.textContent =
+
+            filtered.length +
+
+            " / " +
+
+            artworks.length +
+
+            " ARTWORKS";
+
+        if (filtered.length === 0) {
+
+            const empty = createElement(
+                "div",
+                "empty-state"
+            );
+
+            empty.append(
+
+                createElement(
+                    "span",
+                    "",
+                    "🎨"
+                ),
+
+                createElement(
+                    "h3",
+                    "",
+                    "YOUR GALLERY IS WAITING!"
+                ),
+
+                createElement(
+                    "p",
+                    "",
+                    "No hay obras en esta categoría todavía ♡"
+                )
+
+            );
+
+            grid.appendChild(empty);
+
+            updateControls();
+
+            return;
+        }
+
+        filtered.forEach(function (artwork) {
+
+            const category =
+
+                Object.prototype.hasOwnProperty.call(
+                    CATEGORIES,
+                    artwork.categoria
+                )
+
+                ? CATEGORIES[artwork.categoria]
+
+                : {
+                    label: "ARTWORK",
+                    emoji: "🎨"
+                };
+
+            // Tarjeta
+
+            const card = createElement(
+                "article",
+                "artwork-card"
+            );
+
+            // Portada
+
+            const imageBox = createElement(
+                "div",
+                "artwork-image"
+            );
+
+            const imageUrl =
+                safeUrl(artwork.imagenPortada);
+
+            if (imageUrl) {
+
+                const img =
+                    document.createElement("img");
+
+                img.alt =
+                    artwork.titulo || "Artwork";
+
+                img.loading =
+                    "lazy";
+
+                img.referrerPolicy =
+                    "no-referrer";
+
+                img.onerror = function () {
+
+                    imageBox.textContent =
+                        category.emoji;
+                };
+
+                img.src = imageUrl;
+
+                imageBox.appendChild(img);
+
+            } else {
+
+                imageBox.textContent =
+                    category.emoji;
+            }
+
+            // Informacion
+
+            const info = createElement(
+                "div",
+                "artwork-info"
+            );
+
+            const categoryLabel = createElement(
+                "span",
+                "artwork-category",
+                category.label
+            );
+
+            const title = createElement(
+                "h3",
+                "",
+                artwork.titulo
+            );
+
+            const description = createElement(
+
+                "p",
+
+                "",
+
+                artwork.descripcion ||
+
+                "Made with creativity ♡"
+
+            );
+
+            // Estado
+
+            const publication = createElement(
+
+                "span",
+
+                artwork.publicada
+
+                    ? "publication-status published"
+
+                    : "publication-status draft",
+
+                artwork.publicada
+
+                    ? "☀️ PUBLISHED"
+
+                    : "🌙 DRAFT"
+
+            );
+
+            // Acciones
+
+            const actions = createElement(
+                "div",
+                "artwork-actions"
+            );
+
+            // Boton editar
+
+            const editButton = createElement(
+                "button",
+                "edit-button",
+                "✎ EDIT ARTWORK"
+            );
+
+            editButton.type = "button";
+
+            editButton.addEventListener(
+
+                "click",
+
+                function () {
+
+                    startEditing(artwork);
+                }
+
+            );
+
+            // Boton eliminar
+
+            const deleteButton = createElement(
+                "button",
+                "delete-button",
+                "✕ DELETE ARTWORK"
+            );
+
+            deleteButton.type = "button";
+
+            deleteButton.addEventListener(
+
+                "click",
+
+                function () {
+
+                    deleteArtwork(artwork);
+                }
+
+            );
+
+            actions.append(
+
+                editButton,
+
+                deleteButton
+
+            );
+
+            // Enlace para ver la obra
+
+            const artworkUrl =
+                safeUrl(artwork.archivoUrl);
+
+            if (artworkUrl) {
+
+                const viewLink = createElement(
+                    "a",
+                    "view-button",
+                    "♡ VIEW ARTWORK"
+                );
+
+                viewLink.href =
+                    artworkUrl;
+
+                viewLink.target =
+                    "_blank";
+
+                viewLink.rel =
+                    "noopener noreferrer";
+
+                actions.appendChild(
+                    viewLink
+                );
+            }
+
+            info.append(
+
+                categoryLabel,
+
+                title,
+
+                description,
+
+                publication,
+
+                actions
+
+            );
+
+            card.append(
+
+                imageBox,
+
+                info
+
+            );
+
+            grid.appendChild(card);
+
+        });
+
+        updateControls();
+    }
+
+    // ==========================================
+    // CREAR O ACTUALIZAR OBRA
+    // ==========================================
+
+    form.addEventListener(
+
+        "submit",
+
+        async function (event) {
+
+            event.preventDefault();
+
+            if (busy || !ready) {
+
+                return;
+            }
+
+            const title =
+                titleInput.value.trim();
+
+            const category =
+                categoryInput.value;
+
+            const description =
+                descriptionInput.value.trim();
+
+            const rawImage =
+                imageInput.value.trim();
+
+            const rawFile =
+                fileInput.value.trim();
+
+            const image =
+                safeUrl(rawImage);
+
+            const file =
+                safeUrl(rawFile);
+
+            const published =
+                publishedInput.value === "true";
+
+            // Validar titulo
+
+            if (!title || title.length > 200) {
+
+                showStatus(
+
+                    "El título debe contener entre 1 y 200 caracteres.",
+
+                    "error"
+
+                );
+
+                return;
+            }
+
+            // Validar categoria
+
+            if (!Object.prototype.hasOwnProperty.call(
+                CATEGORIES,
+                category
+            )) {
+
+                showStatus(
+
+                    "Selecciona una categoría válida.",
+
+                    "error"
+
+                );
+
+                return;
+            }
+
+            // Validar descripcion
+
+            if (description.length > 10000) {
+
+                showStatus(
+
+                    "La descripción es demasiado larga.",
+
+                    "error"
+
+                );
+
+                return;
+            }
+
+            // Validar portada
+
+            if (rawImage && !image) {
+
+                showStatus(
+
+                    "La URL de portada no es válida.",
+
+                    "error"
+
+                );
+
+                return;
+            }
+
+            // Validar archivo
+
+            if (rawFile && !file) {
+
+                showStatus(
+
+                    "La URL de la obra no es válida.",
+
+                    "error"
+
+                );
+
+                return;
+            }
+
+            if (
+                image.length > 500 ||
+                file.length > 500
+            ) {
+
+                showStatus(
+
+                    "Las URL deben tener máximo 500 caracteres.",
+
+                    "error"
+
+                );
+
+                return;
+            }
+
+            // Una obra publicada necesita URL
+
+            if (published && !file) {
+
+                showStatus(
+
+                    "Agrega la URL de la obra antes de publicarla.",
+
+                    "error"
+
+                );
+
+                return;
+            }
+
+            // Datos que recibe ObrasPrivadasServlet
+
+            const data = {
+
+                titulo: title,
+
+                categoria: category,
+
+                descripcion: description,
+
+                imagenPortada: image,
+
+                archivoUrl: file,
+
+                publicada: published
+
+            };
+
+            const isEditing =
+                editingId !== null;
+
+            const url = isEditing
+
+                ? API_OBRAS +
+
+                  "?id=" +
+
+                  encodeURIComponent(editingId)
+
+                : API_OBRAS;
+
+            const method = isEditing
+
+                ? "PUT"
+
+                : "POST";
+
+            setBusy(true);
+
+            showStatus(
+                "Guardando en MySQL..."
+            );
+
+            try {
+
+                const result = await request(
+
+                    url,
+
+                    method,
+
+                    data
+
+                );
+
+                cancelEditing();
+
+                try {
+
+                    await loadArtworks();
+
+                    setFilter("all");
+
+                    showStatus(
+
+                        result.mensaje ||
+
+                        (
+                            isEditing
+
+                            ? "♡ Obra actualizada correctamente."
+
+                            : "♡ Obra guardada en MySQL."
+                        ),
+
+                        "success"
+
+                    );
+
+                } catch (error) {
+
+                    ready = false;
+
+                    showStatus(
+
+                        "La obra se guardó, pero no se pudo " +
+
+                        "actualizar la galería. Recarga la página.",
+
+                        "error"
+
+                    );
+                }
+
+            } catch (error) {
+
+                showStatus(
+
+                    error.message,
+
+                    "error"
+
+                );
+
+            } finally {
+
+                setBusy(false);
+            }
+        }
+    );
+
+    // ==========================================
+    // EVENTOS
+    // ==========================================
+
+    cancelEditButton.addEventListener(
+
+        "click",
+
+        function () {
+
+            cancelEditing();
+
+            showStatus(
+                "✿ Edición cancelada."
+            );
+        }
+    );
+
+    filterButtons.forEach(function (button) {
+
+        button.addEventListener(
+
+            "click",
+
+            function () {
+
+                setFilter(
+                    button.dataset.filter
+                );
+            }
+        );
+    });
+
+    imageInput.addEventListener(
+
+        "input",
+
+        updateImagePreview
+
+    );
+
+    // ==========================================
+    // INICIALIZAR PAGINA
+    // ==========================================
+
+    async function initialize() {
+
+        ready = false;
+
+        setBusy(true);
+
+        showStatus(
+            "Conectando con MySQL..."
+        );
+
+        try {
+
+            // Obtener sesion y token CSRF
+
+            const perfil =
+                await request(API_PERFIL);
+
+            csrfToken =
+                perfil.csrfToken;
+
+            if (
+                typeof csrfToken !== "string" ||
+                !csrfToken
+            ) {
+
+                throw new Error(
+                    "No se recibió el token de seguridad."
+                );
+            }
+
+            // Preparar enlace al perfil del artista
+
+            if (perfil.id) {
+
+                publicProfileLink.href =
+
+                    context +
+
+                    "/artista.html?id=" +
+
+                    encodeURIComponent(perfil.id);
+            }
+
+            // Obtener obras del artista
+
+            await loadArtworks();
+
+            ready = true;
+
+            showStatus(
+
+                "♡ Galería conectada a MySQL.",
+
+                "success"
+
+            );
+
+        } catch (error) {
+
+            showStatus(
+
+                error.message,
+
+                "error"
+
+            );
+
+            grid.replaceChildren(
+
+                createElement(
+
+                    "div",
+
+                    "empty-state",
+
+                    "No se pudo cargar la galería. " +
+
+                    "Recarga la página para volver a intentarlo."
+
+                )
+
+            );
+
+        } finally {
+
+            setBusy(false);
+        }
+    }
+
+    // Ejecutar
+
+    updateImagePreview();
+
+    initialize();
+
+});
+
+</script>
+
+</body>
+</html>

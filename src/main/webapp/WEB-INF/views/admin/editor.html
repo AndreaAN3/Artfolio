@@ -1,0 +1,793 @@
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    "use strict";
+
+    // ==========================================
+    // CONEXION CON LAS API PRIVADAS
+    // ==========================================
+
+    const CONTEXT_PATH = window.location.pathname
+        .split("/admin/")[0];
+
+    const API_PERFIL =
+        CONTEXT_PATH + "/api/privado/perfil";
+
+    const API_CONFIGURACION =
+        CONTEXT_PATH + "/api/privado/configuracion";
+
+    let csrfToken = "";
+    let artistaId = null;
+    let loading = true;
+    let busy = false;
+    let ready = false;
+
+    // ==========================================
+    // CONFIGURACION PREDETERMINADA
+    // ==========================================
+
+    const DEFAULTS = {
+        name: "",
+        bio: "",
+        welcome: "♡ WELCOME TO MY WORLD",
+        avatar: "☀️",
+        color: "#e8ddff"
+    };
+
+    const ALLOWED_COLORS = [
+        "#ffd4e7",
+        "#e8ddff",
+        "#d9edff",
+        "#fff0b8",
+        "#d8f5dc"
+    ];
+
+    const ALLOWED_AVATARS = [
+        "☀️", "🌷", "🎀",
+        "🍓", "🌙", "🐰"
+    ];
+
+    // ==========================================
+    // ELEMENTOS DEL EDITOR
+    // ==========================================
+
+    const nameInput =
+        document.getElementById("artistName");
+
+    const bioInput =
+        document.getElementById("artistBio");
+
+    const welcomeInput =
+        document.getElementById("welcomeMessage");
+
+    const avatarInput =
+        document.getElementById("artistAvatar");
+
+    const preview =
+        document.getElementById("profilePreview");
+
+    const previewName =
+        document.getElementById("previewName");
+
+    const previewBio =
+        document.getElementById("previewBio");
+
+    const previewWelcome =
+        document.getElementById("previewWelcome");
+
+    const previewAvatar =
+        document.getElementById("previewAvatar");
+
+    const status =
+        document.getElementById("saveStatus");
+
+    const saveButton =
+        document.getElementById("saveButton");
+
+    const resetButton =
+        document.getElementById("resetButton");
+
+    const colorButtons =
+        document.querySelectorAll(".color-option");
+
+    let selectedColor = DEFAULTS.color;
+
+    let savedDesign = { ...DEFAULTS };
+
+    // ==========================================
+    // SOLICITUDES AL SERVIDOR
+    // ==========================================
+
+    async function apiRequest(url, options = {}) {
+
+        const method = options.method || "GET";
+
+        const headers = {
+            "Accept": "application/json"
+        };
+
+        if (options.body !== undefined) {
+
+            headers["Content-Type"] =
+                "application/json;charset=UTF-8";
+        }
+
+        if (method !== "GET" && method !== "HEAD") {
+
+            headers["X-CSRF-Token"] = csrfToken;
+        }
+
+        const response = await fetch(url, {
+
+            method: method,
+
+            headers: headers,
+
+            credentials: "same-origin",
+
+            cache: "no-store",
+
+            body: options.body === undefined
+                ? undefined
+                : JSON.stringify(options.body)
+        });
+
+        if (response.status === 401) {
+
+            ready = false;
+
+            window.location.href =
+                CONTEXT_PATH + "/login.html";
+
+            throw new Error(
+                "Tu sesión ha expirado."
+            );
+        }
+
+        let data;
+
+        try {
+
+            data = await response.json();
+
+        } catch (error) {
+
+            throw new Error(
+                "El servidor devolvió una respuesta no válida."
+            );
+        }
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "No se pudo completar la operación."
+            );
+        }
+
+        return data;
+    }
+
+    // ==========================================
+    // CONTROLAR ESTADO DEL EDITOR
+    // ==========================================
+
+    function updateControls() {
+
+        const disabled = loading || busy || !ready;
+
+        saveButton.disabled = disabled;
+        resetButton.disabled = disabled;
+
+        nameInput.disabled = disabled;
+        bioInput.disabled = disabled;
+        welcomeInput.disabled = disabled;
+        avatarInput.disabled = disabled;
+
+        colorButtons.forEach(function (button) {
+
+            button.disabled = disabled;
+        });
+    }
+
+    function setBusy(value) {
+
+        busy = value;
+
+        updateControls();
+    }
+
+    // ==========================================
+    // VALIDAR PERSONALIZACION
+    // ==========================================
+
+    function validateDesign(data) {
+
+        if (!data || typeof data !== "object" ||
+            Array.isArray(data)) {
+
+            return null;
+        }
+
+        return {
+
+            name: typeof data.name === "string"
+                ? data.name
+                : DEFAULTS.name,
+
+            bio: typeof data.bio === "string"
+                ? data.bio
+                : DEFAULTS.bio,
+
+            welcome: typeof data.welcome === "string"
+                ? data.welcome
+                : DEFAULTS.welcome,
+
+            avatar: ALLOWED_AVATARS.includes(data.avatar)
+                ? data.avatar
+                : DEFAULTS.avatar,
+
+            color: typeof data.color === "string" &&
+                /^#[0-9a-fA-F]{6}$/.test(data.color)
+                ? data.color
+                : DEFAULTS.color
+        };
+    }
+
+    function getCurrentDesign() {
+
+        return {
+
+            name: nameInput.value,
+
+            bio: bioInput.value,
+
+            welcome: welcomeInput.value,
+
+            avatar: avatarInput.value,
+
+            color: selectedColor
+        };
+    }
+
+    function hasUnsavedChanges() {
+
+        if (!ready || loading) {
+
+            return false;
+        }
+
+        const current =
+            validateDesign(getCurrentDesign());
+
+        return JSON.stringify(current) !==
+               JSON.stringify(savedDesign);
+    }
+
+    // ==========================================
+    // VISTA PREVIA EN TIEMPO REAL
+    // ==========================================
+
+    function updatePreview() {
+
+        const design = getCurrentDesign();
+
+        previewName.textContent =
+            design.name.trim() || "YOUR NAME ✿";
+
+        previewBio.textContent =
+            design.bio.trim() ||
+            "Your story goes here...";
+
+        previewWelcome.textContent =
+            design.welcome.trim() || "WELCOME ♡";
+
+        previewAvatar.textContent =
+            design.avatar;
+
+        preview.style.setProperty(
+            "--preview-color",
+            design.color
+        );
+    }
+
+    function updateStatus() {
+
+        if (loading || busy || !ready) {
+
+            return;
+        }
+
+        if (hasUnsavedChanges()) {
+
+            status.textContent =
+                "✿ Tienes cambios sin guardar.";
+
+        } else {
+
+            status.textContent = "";
+        }
+    }
+
+    // ==========================================
+    // SELECTOR DE COLORES
+    // ==========================================
+
+    function selectColor(color) {
+
+        if (!/^#[0-9a-fA-F]{6}$/.test(color)) {
+
+            return;
+        }
+
+        selectedColor = color;
+
+        colorButtons.forEach(function (button) {
+
+            button.setAttribute(
+
+                "aria-pressed",
+
+                String(
+                    button.dataset.color.toLowerCase()
+                    === color.toLowerCase()
+                )
+            );
+        });
+
+        updatePreview();
+    }
+
+    // ==========================================
+    // APLICAR PERSONALIZACION
+    // ==========================================
+
+    function applyDesign(design) {
+
+        const valid =
+            validateDesign(design) || DEFAULTS;
+
+        nameInput.value = valid.name;
+
+        bioInput.value = valid.bio;
+
+        welcomeInput.value = valid.welcome;
+
+        avatarInput.value = valid.avatar;
+
+        selectColor(valid.color);
+
+        updatePreview();
+    }
+
+    // ==========================================
+    // RECUPERAR DATOS DESDE MYSQL
+    // ==========================================
+
+    async function loadSavedDesign() {
+
+        loading = true;
+
+        updateControls();
+
+        status.textContent =
+            "✿ Cargando tu espacio creativo...";
+
+        try {
+
+            const [perfil, configuracion] =
+                await Promise.all([
+
+                    apiRequest(API_PERFIL),
+
+                    apiRequest(API_CONFIGURACION)
+                ]);
+
+            artistaId = perfil.id;
+
+            csrfToken = perfil.csrfToken || "";
+
+            if (!csrfToken) {
+
+                throw new Error(
+                    "No se pudo verificar la sesión."
+                );
+            }
+
+            savedDesign = validateDesign({
+
+                name: perfil.nombreArtistico,
+
+                bio: perfil.biografia,
+
+                welcome:
+                    configuracion.mensajeBienvenida,
+
+                avatar:
+                    configuracion.avatar,
+
+                color:
+                    configuracion.colorPrincipal
+
+            });
+
+            if (!savedDesign) {
+
+                throw new Error(
+                    "No se pudo recuperar el diseño."
+                );
+            }
+
+            applyDesign(savedDesign);
+
+            ready = true;
+
+            status.textContent =
+                "♡ Tu espacio creativo está listo.";
+
+            return true;
+
+        } catch (error) {
+
+            console.error(error);
+
+            ready = false;
+
+            status.textContent =
+                "No se pudo cargar el perfil: " +
+                error.message;
+
+            return false;
+
+        } finally {
+
+            loading = false;
+
+            updateControls();
+        }
+    }
+
+    // ==========================================
+    // EVENTOS DE VISTA PREVIA
+    // ==========================================
+
+    [nameInput, bioInput, welcomeInput].forEach(
+
+        function (input) {
+
+            input.addEventListener(
+                "input",
+                function () {
+
+                    updatePreview();
+
+                    updateStatus();
+                }
+            );
+        }
+    );
+
+    avatarInput.addEventListener(
+        "change",
+        function () {
+
+            updatePreview();
+
+            updateStatus();
+        }
+    );
+
+    colorButtons.forEach(function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                if (!ALLOWED_COLORS.includes(
+                        button.dataset.color)) {
+
+                    return;
+                }
+
+                selectColor(button.dataset.color);
+
+                updateStatus();
+            }
+        );
+    });
+
+    // ==========================================
+    // GUARDAR DISEÑO EN MYSQL
+    // ==========================================
+
+    saveButton.addEventListener(
+        "click",
+        async function (event) {
+
+            event.preventDefault();
+
+            if (busy || loading || !ready) {
+
+                return;
+            }
+
+            const current =
+                validateDesign(getCurrentDesign());
+
+            if (!current || !current.name.trim()) {
+
+                status.textContent =
+                    "Escribe un nombre artístico para guardar.";
+
+                nameInput.focus();
+
+                return;
+            }
+
+            current.name = current.name.trim();
+
+            current.bio = current.bio.trim();
+
+            current.welcome = current.welcome.trim();
+
+            if (current.name.length > 60 ||
+                current.bio.length > 500 ||
+                current.welcome.length > 100) {
+
+                status.textContent =
+                    "Revisa la longitud de los campos.";
+
+                return;
+            }
+
+            setBusy(true);
+
+            status.textContent =
+                "✿ Guardando tus cambios...";
+
+            let perfilGuardado = false;
+
+            try {
+
+                // Guardar nombre artistico y biografia.
+
+                await apiRequest(API_PERFIL, {
+
+                    method: "PUT",
+
+                    body: {
+
+                        nombreArtistico: current.name,
+
+                        biografia: current.bio
+                    }
+                });
+
+                perfilGuardado = true;
+
+                savedDesign.name = current.name;
+                savedDesign.bio = current.bio;
+
+                // Guardar configuracion visual.
+
+                const resultado = await apiRequest(
+                    API_CONFIGURACION,
+                    {
+
+                        method: "PUT",
+
+                        body: {
+
+                            avatar: current.avatar,
+
+                            colorPrincipal: current.color,
+
+                            mensajeBienvenida:
+                                current.welcome
+                        }
+                    }
+                );
+
+                const configuracion =
+                    resultado.configuracion;
+
+                savedDesign = validateDesign({
+
+                    name: current.name,
+
+                    bio: current.bio,
+
+                    avatar: configuracion.avatar,
+
+                    color:
+                        configuracion.colorPrincipal,
+
+                    welcome:
+                        configuracion.mensajeBienvenida
+                });
+
+                applyDesign(savedDesign);
+
+                status.textContent =
+                    "♡ ¡Diseño guardado correctamente en Artfolio!";
+
+            } catch (error) {
+
+                console.error(error);
+
+                status.textContent = perfilGuardado
+
+                    ? "El perfil se guardó, pero no se pudo " +
+                      "guardar la personalización. " +
+                      "Intenta nuevamente: " + error.message
+
+                    : "No se pudo guardar el diseño: " +
+                      error.message;
+
+            } finally {
+
+                setBusy(false);
+            }
+        }
+    );
+
+    // ==========================================
+    // RESTABLECER DISEÑO VISUAL
+    // ==========================================
+
+    resetButton.addEventListener(
+        "click",
+        async function (event) {
+
+            event.preventDefault();
+
+            if (busy || loading || !ready) {
+
+                return;
+            }
+
+            const confirmed = window.confirm(
+
+                "¿Quieres restablecer el diseño visual? " +
+
+                "Se restaurarán el avatar, el color " +
+
+                "y el mensaje de bienvenida. " +
+
+                "Tu nombre, biografía, obras y enlaces " +
+
+                "se conservarán."
+            );
+
+            if (!confirmed) {
+
+                return;
+            }
+
+            setBusy(true);
+
+            status.textContent =
+                "✿ Restaurando diseño original...";
+
+            try {
+
+                // Restablecer solamente los campos
+                // visuales de este editor.
+                // No modificar el color de los enlaces.
+
+                const resultado = await apiRequest(
+                    API_CONFIGURACION,
+                    {
+
+                        method: "PUT",
+
+                        body: {
+
+                            avatar: DEFAULTS.avatar,
+
+                            colorPrincipal:
+                                DEFAULTS.color,
+
+                            mensajeBienvenida:
+                                DEFAULTS.welcome
+                        }
+                    }
+                );
+
+                const configuracion =
+                    resultado.configuracion;
+
+                savedDesign = {
+
+                    ...savedDesign,
+
+                    avatar: configuracion.avatar,
+
+                    color:
+                        configuracion.colorPrincipal,
+
+                    welcome:
+                        configuracion.mensajeBienvenida
+                };
+
+                // Conservar los cambios pendientes
+                // del nombre y la biografia.
+
+                welcomeInput.value =
+                    savedDesign.welcome;
+
+                avatarInput.value =
+                    savedDesign.avatar;
+
+                selectColor(savedDesign.color);
+
+                updatePreview();
+
+                status.textContent =
+                    hasUnsavedChanges()
+
+                    ? "✿ Diseño restaurado. Tienes cambios " +
+                      "del perfil pendientes de guardar."
+
+                    : "✿ ¡Diseño restablecido correctamente!";
+
+            } catch (error) {
+
+                console.error(error);
+
+                status.textContent =
+                    "No se pudo restablecer el diseño: " +
+                    error.message;
+
+            } finally {
+
+                setBusy(false);
+            }
+        }
+    );
+
+    // ==========================================
+    // AVISO DE CAMBIOS PENDIENTES
+    // ==========================================
+
+    window.addEventListener(
+        "beforeunload",
+        function (event) {
+
+            if (hasUnsavedChanges() || busy) {
+
+                event.preventDefault();
+
+                event.returnValue = "";
+            }
+        }
+    );
+
+    // ==========================================
+    // ACTUALIZAR AL REGRESAR A LA PESTAÑA
+    // ==========================================
+
+    document.addEventListener(
+        "visibilitychange",
+        function () {
+
+            if (document.visibilityState === "visible"
+                    && ready
+                    && !loading
+                    && !busy
+                    && !hasUnsavedChanges()) {
+
+                loadSavedDesign();
+            }
+        }
+    );
+
+    // ==========================================
+    // CARGA INICIAL
+    // ==========================================
+
+    loadSavedDesign();
+
+});
+</script>

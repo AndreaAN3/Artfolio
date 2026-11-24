@@ -1,0 +1,2680 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Links ♡ | Artfolio</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Nunito:wght@400;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        :root {
+            --ink: #302538;
+            --pink: #ffd4e7;
+            --purple: #e8ddff;
+            --yellow: #fff0b8;
+            --blue: #d9edff;
+            --green: #d8f5dc;
+            --paper: #fff9fc;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: "Nunito", sans-serif;
+        }
+
+        button, input, select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible {
+            outline: 3px solid #8c64ce;
+            outline-offset: 3px;
+        }
+
+        /* HEADER */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px 6%;
+            background: white;
+            border-bottom: 3px solid var(--ink);
+        }
+
+        .logo {
+            color: var(--ink);
+            font-size: 27px;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ed6ca9;
+        }
+
+        .topbar-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .back {
+            display: inline-block;
+            padding: 11px 18px;
+            background: var(--yellow);
+            border: 2px solid var(--ink);
+            border-radius: 30px;
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 900;
+            box-shadow: 3px 3px 0 var(--ink);
+            transition: transform .2s;
+        }
+
+        .back:hover {
+            transform: translateY(-3px);
+        }
+
+        .back.pink {
+            background: var(--pink);
+        }
+
+        /* CONTENIDO */
+
+        .container {
+            max-width: 1250px;
+            margin: auto;
+            padding: 45px 24px 90px;
+        }
+
+        .eyebrow {
+            font-family: "DM Mono", monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: clamp(40px, 7vw, 80px);
+            line-height: 1.05;
+            font-weight: 900;
+            letter-spacing: -3px;
+            margin: 16px 0;
+        }
+
+        h1 span {
+            color: #e96ca8;
+        }
+
+        .intro {
+            max-width: 700px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        .workspace {
+            display: grid;
+            grid-template-columns:
+                minmax(0, 1fr) 380px;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .left-column {
+            display: grid;
+            gap: 28px;
+            min-width: 0;
+        }
+
+        /* PANELES */
+
+        .panel {
+            background: white;
+            border: 3px solid var(--ink);
+            border-radius: 27px;
+            padding: 28px;
+            box-shadow: 6px 6px 0 var(--ink);
+            min-width: 0;
+        }
+
+        .panel h2 {
+            font-size: 25px;
+            margin: 0 0 10px;
+        }
+
+        .panel-description {
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 13px;
+            border: 2px solid var(--ink);
+            border-radius: 13px;
+            background: #fffafd;
+            color: var(--ink);
+        }
+
+        .field-help {
+            font-size: 11px;
+            color: #66566e;
+            line-height: 1.6;
+            margin: 7px 0 0;
+        }
+
+        /* BOTONES */
+
+        .primary-button {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--ink);
+            border-radius: 15px;
+            background: var(--pink);
+            color: var(--ink);
+            font-weight: 900;
+            box-shadow: 3px 3px 0 var(--ink);
+            transition: background .2s;
+        }
+
+        .primary-button:hover {
+            background: var(--yellow);
+        }
+
+        .secondary-button {
+            display: none;
+            margin-top: 12px;
+            background: var(--yellow);
+        }
+
+        .status {
+            min-height: 20px;
+            font-size: 12px;
+            line-height: 1.7;
+            margin: 15px 0 0;
+            overflow-wrap: anywhere;
+        }
+
+        .status.success {
+            color: #34734b;
+        }
+
+        .status.error {
+            color: #b82d55;
+        }
+
+        /* LISTA DE ENLACES */
+
+        .list-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .counter {
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+        }
+
+        .links-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .link-card {
+            display: grid;
+            grid-template-columns:
+                55px minmax(0, 1fr);
+            align-items: center;
+            gap: 15px;
+            padding: 18px;
+            border: 2px solid var(--ink);
+            border-radius: 20px;
+            background: #fffafd;
+            box-shadow: 3px 3px 0 var(--ink);
+            animation: appear .3s ease both;
+        }
+
+        @keyframes appear {
+
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .link-icon {
+            display: grid;
+            place-items: center;
+            width: 55px;
+            height: 55px;
+            border: 2px solid var(--ink);
+            border-radius: 17px;
+            background: var(--purple);
+            font-size: 26px;
+        }
+
+        .link-info {
+            min-width: 0;
+        }
+
+        .link-info h3 {
+            margin: 0 0 6px;
+            font-size: 18px;
+            overflow-wrap: anywhere;
+        }
+
+        .link-url {
+            display: block;
+            font-size: 11px;
+            color: #66566e;
+            overflow-wrap: anywhere;
+            text-decoration: none;
+        }
+
+        .link-url:hover {
+            text-decoration: underline;
+        }
+
+        .link-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .small-button {
+            padding: 9px 13px;
+            border: 2px solid var(--ink);
+            border-radius: 20px;
+            color: var(--ink);
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .edit-button {
+            background: var(--blue);
+        }
+
+        .delete-button {
+            background: var(--yellow);
+        }
+
+        .move-button {
+            background: var(--green);
+        }
+
+        .small-button:hover:not(:disabled) {
+            background: var(--pink);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 35px 20px;
+            border: 2px dashed var(--ink);
+            border-radius: 20px;
+            background: var(--purple);
+        }
+
+        .empty-state span {
+            font-size: 45px;
+        }
+
+        .empty-state h3 {
+            font-size: 19px;
+            margin: 12px 0;
+        }
+
+        .empty-state p {
+            font-size: 13px;
+        }
+
+        /* PERSONALIZACION */
+
+        .color-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .color-option {
+            width: 43px;
+            height: 43px;
+            border: 2px solid var(--ink);
+            border-radius: 50%;
+            transition: transform .2s;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+
+        .color-option.active {
+            outline: 3px solid var(--ink);
+            outline-offset: 4px;
+        }
+
+        .custom-color {
+            width: 100%;
+            height: 45px;
+            padding: 4px;
+            background: white;
+            border: 2px solid var(--ink);
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        /* LIVE PREVIEW */
+
+        .preview-panel {
+            position: sticky;
+            top: 25px;
+        }
+
+        .preview-label {
+            display: inline-block;
+            background: var(--yellow);
+            padding: 7px 12px;
+            border: 2px solid var(--ink);
+            border-radius: 20px;
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            margin-bottom: 20px;
+        }
+
+        .phone {
+            width: 100%;
+            max-width: 310px;
+            margin: auto;
+            padding: 10px;
+            background: var(--ink);
+            border: 3px solid var(--ink);
+            border-radius: 40px;
+            box-shadow: 5px 5px 0 var(--purple);
+        }
+
+        .phone-screen {
+            --preview-color: #e8ddff;
+            min-height: 470px;
+            padding: 22px 16px 30px;
+            background: var(--preview-color);
+            border-radius: 28px;
+            text-align: center;
+            transition: background .3s;
+            overflow: hidden;
+        }
+
+        .phone-notch {
+            width: 75px;
+            height: 12px;
+            margin: 0 auto 25px;
+            background: var(--ink);
+            border-radius: 20px;
+        }
+
+        .preview-avatar {
+            display: grid;
+            place-items: center;
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 15px;
+            border: 3px solid var(--ink);
+            border-radius: 50%;
+            background: white;
+            font-size: 42px;
+            box-shadow: 4px 4px 0 var(--ink);
+        }
+
+        .preview-name {
+            font-size: 25px;
+            font-weight: 900;
+            margin: 10px 0;
+            overflow-wrap: anywhere;
+        }
+
+        .preview-message {
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            line-height: 1.7;
+            margin: 0 0 22px;
+            overflow-wrap: anywhere;
+        }
+
+        .preview-links {
+            display: grid;
+            gap: 12px;
+        }
+
+        .preview-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 12px;
+            background: white;
+            color: var(--ink);
+            border: 2px solid var(--ink);
+            border-radius: 15px;
+            box-shadow: 3px 3px 0 var(--ink);
+            font-size: 12px;
+            font-weight: 900;
+            text-decoration: none;
+            overflow-wrap: anywhere;
+            transition: transform .2s;
+        }
+
+        .preview-link:hover {
+            transform: translateY(-3px);
+        }
+
+        .preview-link span:last-child {
+            min-width: 0;
+        }
+
+        .preview-empty {
+            padding: 20px 12px;
+            border: 2px dashed var(--ink);
+            border-radius: 15px;
+            font-size: 12px;
+            background: rgba(255,255,255,.4);
+        }
+
+        .preview-footer {
+            margin-top: 30px;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .notice {
+            margin-top: 25px;
+            background: var(--yellow);
+            border: 2px dashed var(--ink);
+            border-radius: 15px;
+            padding: 17px;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 950px) {
+
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-panel {
+                position: static;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 30px 18px 60px;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+
+            .topbar {
+                padding: 18px;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .link-card {
+                padding: 13px;
+                gap: 10px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <a href="../index.html" class="logo">
+        artfolio<span>!</span> ✳
+    </a>
+
+    <div class="topbar-actions">
+
+        <a href="../admin/dashboard"
+           class="back">
+
+            ← DASHBOARD
+
+        </a>
+
+        <a href="../enlaces.html"
+           id="publicLinks"
+           class="back pink">
+
+            🌷 MY PUBLIC LINKS
+
+        </a>
+
+    </div>
+
+</header>
+
+<main class="container">
+
+    <span class="eyebrow">
+        ✳ ARTFOLIO / CREATIVE CONNECTIONS
+    </span>
+
+    <h1>
+
+        ALL MY LITTLE<br>
+
+        <span>LINKS!</span> 💌
+
+    </h1>
+
+    <p class="intro">
+
+        Todas tus redes sociales, proyectos y espacios
+        creativos reunidos en un pequeño universo.
+
+        Personaliza tu página de enlaces y comparte
+        tu mundo con los demás ♡
+
+    </p>
+
+    <div class="workspace">
+
+        <div class="left-column">
+
+            <!-- FORMULARIO -->
+
+            <section class="panel">
+
+                <h2 id="formTitle">
+                    ✿ ADD A NEW LINK
+                </h2>
+
+                <p class="panel-description">
+
+                    Connect your little corners
+                    of the internet.
+
+                </p>
+
+                <form id="linkForm">
+
+                    <div class="field">
+
+                        <label for="linkTitle">
+                            LINK TITLE
+                        </label>
+
+                        <input type="text"
+                               id="linkTitle"
+                               maxlength="70"
+                               placeholder="My Instagram"
+                               required>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label for="linkUrl">
+                            LINK URL
+                        </label>
+
+                        <input type="url"
+                               id="linkUrl"
+                               maxlength="2000"
+                               placeholder="https://instagram.com/"
+                               required>
+
+                        <p class="field-help">
+
+                            Introduce una dirección
+                            HTTP o HTTPS válida.
+
+                        </p>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label for="linkIcon">
+                            CHOOSE AN ICON
+                        </label>
+
+                        <select id="linkIcon">
+
+                            <option value="🌷">
+                                🌷 Flower
+                            </option>
+
+                            <option value="☀️">
+                                ☀️ Sunshine
+                            </option>
+
+                            <option value="🎀">
+                                🎀 Ribbon
+                            </option>
+
+                            <option value="💗">
+                                💗 Heart
+                            </option>
+
+                            <option value="📸">
+                                📸 Instagram
+                            </option>
+
+                            <option value="🎬">
+                                🎬 YouTube
+                            </option>
+
+                            <option value="🎵">
+                                🎵 TikTok
+                            </option>
+
+                            <option value="🎨">
+                                🎨 Portfolio
+                            </option>
+
+                            <option value="💻">
+                                💻 GitHub
+                            </option>
+
+                            <option value="✉️">
+                                ✉️ Contact
+                            </option>
+
+                            <option value="🛍️">
+                                🛍️ Shop
+                            </option>
+
+                            <option value="✨">
+                                ✨ Sparkles
+                            </option>
+
+                            <option value="🌙">
+                                🌙 Moon
+                            </option>
+
+                            <option value="🍓">
+                                🍓 Strawberry
+                            </option>
+
+                            <option value="🐰">
+                                🐰 Bunny
+                            </option>
+
+                            <option value="🔗">
+                                🔗 Website
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <button type="submit"
+                            id="saveLinkButton"
+                            class="primary-button"
+                            disabled>
+
+                        ♡ ADD TO MY LINKS
+
+                    </button>
+
+                    <button type="button"
+                            id="cancelEditButton"
+                            class="primary-button secondary-button">
+
+                        ↺ CANCEL EDIT
+
+                    </button>
+
+                    <p id="linkStatus"
+                       class="status"
+                       role="status"
+                       aria-live="polite">
+
+                        Conectando con MySQL...
+
+                    </p>
+
+                </form>
+
+            </section>
+
+            <!-- LISTA DE ENLACES -->
+
+            <section class="panel">
+
+                <div class="list-heading">
+
+                    <h2>MY LINKS ✳</h2>
+
+                    <span id="linkCounter"
+                          class="counter">
+
+                        0 LINKS
+
+                    </span>
+
+                </div>
+
+                <div id="linksList"
+                     class="links-list"
+                     aria-live="polite">
+
+                    <div class="empty-state">
+
+                        <span>🌷</span>
+
+                        <h3>LOADING YOUR LINKS!</h3>
+
+                        <p>
+                            Preparando tus conexiones ♡
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- PERSONALIZACION -->
+
+            <section class="panel">
+
+                <h2>MAKE IT YOURS! 🎀</h2>
+
+                <p class="panel-description">
+
+                    Selecciona el color de fondo
+                    de tu página pública de enlaces.
+
+                    Los cambios se muestran
+                    inmediatamente en la vista previa.
+
+                </p>
+
+                <div class="color-options"
+                     role="group"
+                     aria-label="Colores de fondo">
+
+                    <button type="button"
+                            class="color-option"
+                            data-color="#ffd4e7"
+                            aria-label="Rosa pastel"
+                            aria-pressed="false"
+                            style="background:#ffd4e7">
+                    </button>
+
+                    <button type="button"
+                            class="color-option"
+                            data-color="#e8ddff"
+                            aria-label="Lavanda"
+                            aria-pressed="false"
+                            style="background:#e8ddff">
+                    </button>
+
+                    <button type="button"
+                            class="color-option"
+                            data-color="#d9edff"
+                            aria-label="Azul pastel"
+                            aria-pressed="false"
+                            style="background:#d9edff">
+                    </button>
+
+                    <button type="button"
+                            class="color-option"
+                            data-color="#fff0b8"
+                            aria-label="Amarillo pastel"
+                            aria-pressed="false"
+                            style="background:#fff0b8">
+                    </button>
+
+                    <button type="button"
+                            class="color-option"
+                            data-color="#d8f5dc"
+                            aria-label="Verde pastel"
+                            aria-pressed="false"
+                            style="background:#d8f5dc">
+                    </button>
+
+                </div>
+
+                <div class="field">
+
+                    <label for="customColor">
+                        CUSTOM COLOR
+                    </label>
+
+                    <input type="color"
+                           id="customColor"
+                           class="custom-color"
+                           value="#e8ddff">
+
+                </div>
+
+                <button type="button"
+                        id="saveThemeButton"
+                        class="primary-button"
+                        disabled>
+
+                    ♡ SAVE MY STYLE
+
+                </button>
+
+                <p id="themeStatus"
+                   class="status"
+                   role="status"
+                   aria-live="polite">
+                </p>
+
+            </section>
+
+        </div>
+
+        <!-- VISTA PREVIA -->
+
+        <aside class="panel preview-panel">
+
+            <span class="preview-label">
+                ● LIVE PREVIEW
+            </span>
+
+            <div class="phone">
+
+                <div id="phoneScreen"
+                     class="phone-screen">
+
+                    <div class="phone-notch"></div>
+
+                    <div id="previewAvatar"
+                         class="preview-avatar">
+
+                        ☀️
+
+                    </div>
+
+                    <h2 id="previewName"
+                        class="preview-name">
+
+                        My artist name
+
+                    </h2>
+
+                    <p id="previewMessage"
+                       class="preview-message">
+
+                        ♡ WELCOME TO MY WORLD
+
+                    </p>
+
+                    <div id="previewLinks"
+                         class="preview-links">
+
+                        <div class="preview-empty">
+
+                            Your little links
+                            will appear here ♡
+
+                        </div>
+
+                    </div>
+
+                    <div class="preview-footer">
+
+                        MADE WITH ♡ BY ARTFOLIO
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="notice">
+
+                ✿ Tus enlaces y personalizaciones
+                se guardan en MySQL.
+
+                Cada artista administra su propia
+                página de enlaces.
+
+                La página pública se conectará
+                en el siguiente paso del proyecto.
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</main>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    "use strict";
+
+    // ==========================================
+    // API PRIVADAS
+    // ==========================================
+
+    const context =
+        window.location.pathname.split("/admin/")[0];
+
+    const API_PERFIL =
+        context + "/api/privado/perfil";
+
+    const API_ENLACES =
+        context + "/api/privado/enlaces";
+
+    const API_CONFIGURACION =
+        context + "/api/privado/configuracion";
+
+    // ==========================================
+    // ELEMENTOS HTML
+    // ==========================================
+
+    const form =
+        document.getElementById("linkForm");
+
+    const titleInput =
+        document.getElementById("linkTitle");
+
+    const urlInput =
+        document.getElementById("linkUrl");
+
+    const iconInput =
+        document.getElementById("linkIcon");
+
+    const formTitle =
+        document.getElementById("formTitle");
+
+    const saveButton =
+        document.getElementById("saveLinkButton");
+
+    const cancelButton =
+        document.getElementById("cancelEditButton");
+
+    const linkStatus =
+        document.getElementById("linkStatus");
+
+    const themeStatus =
+        document.getElementById("themeStatus");
+
+    const linksList =
+        document.getElementById("linksList");
+
+    const counter =
+        document.getElementById("linkCounter");
+
+    const previewLinks =
+        document.getElementById("previewLinks");
+
+    const previewAvatar =
+        document.getElementById("previewAvatar");
+
+    const previewName =
+        document.getElementById("previewName");
+
+    const previewMessage =
+        document.getElementById("previewMessage");
+
+    const phoneScreen =
+        document.getElementById("phoneScreen");
+
+    const customColor =
+        document.getElementById("customColor");
+
+    const saveThemeButton =
+        document.getElementById("saveThemeButton");
+
+    const publicLinks =
+        document.getElementById("publicLinks");
+
+    const colorButtons =
+        document.querySelectorAll(".color-option");
+
+    // ==========================================
+    // VARIABLES
+    // ==========================================
+
+    let links = [];
+
+    let editingId = null;
+
+    let csrfToken = "";
+
+    let ready = false;
+
+    let busy = false;
+
+    let selectedColor = "#e8ddff";
+
+    let savedColor = "#e8ddff";
+
+    // ==========================================
+    // CREAR ELEMENTOS
+    // ==========================================
+
+    function createElement(tag, className, text) {
+
+        const element =
+            document.createElement(tag);
+
+        if (className) {
+
+            element.className = className;
+        }
+
+        if (text !== undefined) {
+
+            element.textContent = text;
+        }
+
+        return element;
+    }
+
+    // ==========================================
+    // MENSAJES
+    // ==========================================
+
+    function showStatus(
+        element,
+        message,
+        type = ""
+    ) {
+
+        element.textContent = message;
+
+        element.className =
+
+            "status" +
+
+            (type ? " " + type : "");
+    }
+
+    // ==========================================
+    // VALIDAR URL
+    // ==========================================
+
+    function safeUrl(value) {
+
+        if (!value || typeof value !== "string") {
+
+            return "";
+        }
+
+        try {
+
+            const url =
+                new URL(value.trim());
+
+            if (
+                url.protocol !== "https:" &&
+                url.protocol !== "http:"
+            ) {
+
+                return "";
+            }
+
+            if (
+                !url.hostname ||
+                url.username ||
+                url.password
+            ) {
+
+                return "";
+            }
+
+            return url.href;
+
+        } catch (error) {
+
+            return "";
+        }
+    }
+
+    // ==========================================
+    // VALIDAR COLOR
+    // ==========================================
+
+    function validColor(value) {
+
+        return typeof value === "string" &&
+
+            /^#[0-9a-fA-F]{6}$/.test(value);
+    }
+
+    // ==========================================
+    // CONEXION CON EL SERVIDOR
+    // ==========================================
+
+    async function request(
+        url,
+        method = "GET",
+        data
+    ) {
+
+        const headers = {
+
+            "Accept": "application/json"
+
+        };
+
+        if (method !== "GET") {
+
+            headers["X-CSRF-Token"] =
+                csrfToken;
+        }
+
+        if (data !== undefined) {
+
+            headers["Content-Type"] =
+                "application/json";
+        }
+
+        const response = await fetch(url, {
+
+            method: method,
+
+            headers: headers,
+
+            credentials: "same-origin",
+
+            cache: "no-store",
+
+            body: data === undefined
+
+                ? undefined
+
+                : JSON.stringify(data)
+
+        });
+
+        if (response.status === 401) {
+
+            window.location.href =
+                context + "/login.html";
+
+            throw new Error(
+
+                "Debes iniciar sesión nuevamente."
+
+            );
+        }
+
+        let result;
+
+        try {
+
+            result = await response.json();
+
+        } catch (error) {
+
+            throw new Error(
+
+                "El servidor devolvió una respuesta no válida."
+
+            );
+        }
+
+        if (
+            !response.ok ||
+            result.success === false
+        ) {
+
+            throw new Error(
+
+                result.error ||
+
+                result.mensaje ||
+
+                "No se pudo completar la operación."
+
+            );
+        }
+
+        return result;
+    }
+
+    // ==========================================
+    // CONTROLAR BOTONES
+    // ==========================================
+
+    function updateControls() {
+
+        const disabled =
+            busy || !ready;
+
+        form.querySelectorAll(
+
+            "input, select, button"
+
+        ).forEach(function (element) {
+
+            element.disabled = disabled;
+
+        });
+
+        linksList.querySelectorAll("button")
+            .forEach(function (button) {
+
+                button.disabled =
+
+                    disabled ||
+
+                    button.dataset.boundary === "true";
+
+            });
+
+        colorButtons.forEach(function (button) {
+
+            button.disabled = disabled;
+
+        });
+
+        customColor.disabled = disabled;
+
+        saveThemeButton.disabled = disabled;
+    }
+
+    function setBusy(value) {
+
+        busy = value;
+
+        updateControls();
+    }
+
+    // ==========================================
+    // CARGAR ENLACES DE MYSQL
+    // ==========================================
+
+    async function loadLinks() {
+
+        const result =
+            await request(API_ENLACES);
+
+        if (!Array.isArray(result)) {
+
+            throw new Error(
+
+                "No se recibió una lista válida de enlaces."
+
+            );
+        }
+
+        links = result.slice().sort(
+
+            function (a, b) {
+
+                return Number(a.orden) -
+
+                       Number(b.orden) ||
+
+                       Number(a.id) -
+
+                       Number(b.id);
+            }
+        );
+
+        renderLinks();
+
+        renderPreview();
+    }
+
+    // ==========================================
+    // MOSTRAR VISTA PREVIA
+    // ==========================================
+
+    function renderPreview() {
+
+        previewLinks.replaceChildren();
+
+        if (links.length === 0) {
+
+            previewLinks.appendChild(
+
+                createElement(
+
+                    "div",
+
+                    "preview-empty",
+
+                    "Your little links will appear here ♡"
+
+                )
+            );
+
+            return;
+        }
+
+        links.forEach(function (link) {
+
+            const url =
+                safeUrl(link.url);
+
+            if (!url) {
+
+                return;
+            }
+
+            const anchor = createElement(
+
+                "a",
+
+                "preview-link"
+
+            );
+
+            anchor.href = url;
+
+            anchor.target = "_blank";
+
+            anchor.rel =
+                "noopener noreferrer";
+
+            anchor.append(
+
+                createElement(
+
+                    "span",
+
+                    "",
+
+                    link.icono || "🌷"
+
+                ),
+
+                createElement(
+
+                    "span",
+
+                    "",
+
+                    link.titulo
+
+                )
+
+            );
+
+            previewLinks.appendChild(anchor);
+        });
+    }
+
+    // ==========================================
+    // PERSONALIZACION DEL COLOR
+    // ==========================================
+
+    function selectColor(color) {
+
+        if (!validColor(color)) {
+
+            return;
+        }
+
+        selectedColor =
+            color.toLowerCase();
+
+        customColor.value =
+            selectedColor;
+
+        phoneScreen.style.setProperty(
+
+            "--preview-color",
+
+            selectedColor
+
+        );
+
+        colorButtons.forEach(function (button) {
+
+            const selected =
+
+                button.dataset.color.toLowerCase()
+
+                === selectedColor;
+
+            button.classList.toggle(
+
+                "active",
+
+                selected
+
+            );
+
+            button.setAttribute(
+
+                "aria-pressed",
+
+                String(selected)
+
+            );
+        });
+    }
+
+    // ==========================================
+    // GUARDAR COLOR EN MYSQL
+    // ==========================================
+
+    async function saveTheme() {
+
+        if (busy || !ready) {
+
+            return;
+        }
+
+        if (!validColor(selectedColor)) {
+
+            showStatus(
+
+                themeStatus,
+
+                "Selecciona un color válido.",
+
+                "error"
+
+            );
+
+            return;
+        }
+
+        setBusy(true);
+
+        showStatus(
+
+            themeStatus,
+
+            "Guardando personalización..."
+
+        );
+
+        try {
+
+            const result = await request(
+
+                API_CONFIGURACION,
+
+                "PUT",
+
+                {
+
+                    colorEnlaces: selectedColor
+
+                }
+
+            );
+
+            savedColor =
+
+                result.configuracion &&
+
+                validColor(
+                    result.configuracion.colorEnlaces
+                )
+
+                ? result.configuracion.colorEnlaces
+
+                : selectedColor;
+
+            selectColor(savedColor);
+
+            showStatus(
+
+                themeStatus,
+
+                "♡ Estilo guardado en MySQL.",
+
+                "success"
+
+            );
+
+        } catch (error) {
+
+            showStatus(
+
+                themeStatus,
+
+                error.message,
+
+                "error"
+
+            );
+
+        } finally {
+
+            setBusy(false);
+        }
+    }
+
+    // ==========================================
+    // REINICIAR FORMULARIO
+    // ==========================================
+
+    function cancelEditing() {
+
+        editingId = null;
+
+        form.reset();
+
+        iconInput.value = "🌷";
+
+        formTitle.textContent =
+            "✿ ADD A NEW LINK";
+
+        saveButton.textContent =
+            "♡ ADD TO MY LINKS";
+
+        cancelButton.style.display =
+            "none";
+    }
+
+    // ==========================================
+    // EDITAR ENLACE
+    // ==========================================
+
+    function startEditing(link) {
+
+        if (busy || !ready) {
+
+            return;
+        }
+
+        editingId = link.id;
+
+        titleInput.value =
+            link.titulo || "";
+
+        urlInput.value =
+            link.url || "";
+
+        const icon =
+            link.icono || "🌷";
+
+        const exists =
+
+            Array.from(iconInput.options).some(
+
+                option => option.value === icon
+
+            );
+
+        if (!exists) {
+
+            const option =
+                document.createElement("option");
+
+            option.value = icon;
+
+            option.textContent = icon;
+
+            iconInput.appendChild(option);
+        }
+
+        iconInput.value = icon;
+
+        formTitle.textContent =
+            "✿ EDIT YOUR LINK";
+
+        saveButton.textContent =
+            "♡ SAVE LINK CHANGES";
+
+        cancelButton.style.display =
+            "block";
+
+        showStatus(
+
+            linkStatus,
+
+            "✿ Estás editando: " + link.titulo
+
+        );
+
+        const reducedMotion =
+
+            window.matchMedia(
+
+                "(prefers-reduced-motion: reduce)"
+
+            ).matches;
+
+        form.scrollIntoView({
+
+            behavior: reducedMotion
+
+                ? "auto"
+
+                : "smooth",
+
+            block: "start"
+
+        });
+
+        titleInput.focus({
+
+            preventScroll: true
+
+        });
+    }
+
+    // ==========================================
+    // ELIMINAR ENLACE
+    // ==========================================
+
+    async function deleteLink(link) {
+
+        if (busy || !ready) {
+
+            return;
+        }
+
+        const confirmed = window.confirm(
+
+            '¿Eliminar el enlace "' +
+
+            link.titulo +
+
+            '"?'
+
+        );
+
+        if (!confirmed) {
+
+            return;
+        }
+
+        setBusy(true);
+
+        showStatus(
+
+            linkStatus,
+
+            "Eliminando enlace..."
+
+        );
+
+        try {
+
+            const result = await request(
+
+                API_ENLACES +
+
+                "?id=" +
+
+                encodeURIComponent(link.id),
+
+                "DELETE"
+
+            );
+
+            links = links.filter(
+
+                item => item.id !== link.id
+
+            );
+
+            if (editingId === link.id) {
+
+                cancelEditing();
+            }
+
+            renderLinks();
+
+            renderPreview();
+
+            showStatus(
+
+                linkStatus,
+
+                result.mensaje ||
+
+                "♡ Enlace eliminado correctamente.",
+
+                "success"
+
+            );
+
+        } catch (error) {
+
+            showStatus(
+
+                linkStatus,
+
+                error.message,
+
+                "error"
+
+            );
+
+        } finally {
+
+            setBusy(false);
+        }
+    }
+
+    // ==========================================
+    // CAMBIAR ORDEN DE LOS ENLACES
+    // ==========================================
+
+    async function moveLink(index, direction) {
+
+        if (busy || !ready) {
+
+            return;
+        }
+
+        const targetIndex =
+            index + direction;
+
+        if (
+
+            targetIndex < 0 ||
+
+            targetIndex >= links.length
+
+        ) {
+
+            return;
+        }
+
+        const reordered =
+            links.slice();
+
+        const current =
+            reordered[index];
+
+        reordered[index] =
+            reordered[targetIndex];
+
+        reordered[targetIndex] =
+            current;
+
+        setBusy(true);
+
+        showStatus(
+
+            linkStatus,
+
+            "Guardando nuevo orden..."
+
+        );
+
+        try {
+
+            for (
+                let i = 0;
+                i < reordered.length;
+                i++
+            ) {
+
+                const link = reordered[i];
+
+                if (Number(link.orden) !== i) {
+
+                    await request(
+
+                        API_ENLACES +
+
+                        "?id=" +
+
+                        encodeURIComponent(link.id),
+
+                        "PUT",
+
+                        {
+
+                            orden: i
+
+                        }
+
+                    );
+                }
+            }
+
+            await loadLinks();
+
+            showStatus(
+
+                linkStatus,
+
+                "♡ Orden actualizado correctamente.",
+
+                "success"
+
+            );
+
+        } catch (error) {
+
+            try {
+
+                await loadLinks();
+
+                showStatus(
+
+                    linkStatus,
+
+                    "No se completó todo el cambio de orden. " +
+
+                    "Se cargó el estado actual de MySQL. " +
+
+                    error.message,
+
+                    "error"
+
+                );
+
+            } catch (reloadError) {
+
+                ready = false;
+
+                showStatus(
+
+                    linkStatus,
+
+                    "No se pudo recuperar el orden actual. " +
+
+                    "Recarga la página.",
+
+                    "error"
+
+                );
+            }
+
+        } finally {
+
+            setBusy(false);
+        }
+    }
+
+    // ==========================================
+    // CREAR BOTON DE ACCION
+    // ==========================================
+
+    function actionButton(
+        text,
+        className,
+        handler
+    ) {
+
+        const button = createElement(
+
+            "button",
+
+            "small-button " + className,
+
+            text
+
+        );
+
+        button.type = "button";
+
+        button.addEventListener(
+
+            "click",
+
+            handler
+
+        );
+
+        return button;
+    }
+
+    // ==========================================
+    // MOSTRAR LISTA DE ENLACES
+    // ==========================================
+
+    function renderLinks() {
+
+        linksList.replaceChildren();
+
+        counter.textContent =
+
+            links.length + " LINKS";
+
+        if (links.length === 0) {
+
+            const empty = createElement(
+
+                "div",
+
+                "empty-state"
+
+            );
+
+            empty.append(
+
+                createElement(
+
+                    "span",
+
+                    "",
+
+                    "💌"
+
+                ),
+
+                createElement(
+
+                    "h3",
+
+                    "",
+
+                    "YOUR LINKS ARE WAITING!"
+
+                ),
+
+                createElement(
+
+                    "p",
+
+                    "",
+
+                    "Agrega tu primer enlace creativo ♡"
+
+                )
+
+            );
+
+            linksList.appendChild(empty);
+
+            updateControls();
+
+            return;
+        }
+
+        links.forEach(function (link, index) {
+
+            const card = createElement(
+
+                "article",
+
+                "link-card"
+
+            );
+
+            const icon = createElement(
+
+                "div",
+
+                "link-icon",
+
+                link.icono || "🌷"
+
+            );
+
+            const info = createElement(
+
+                "div",
+
+                "link-info"
+
+            );
+
+            const title = createElement(
+
+                "h3",
+
+                "",
+
+                link.titulo
+
+            );
+
+            const url =
+                safeUrl(link.url);
+
+            const urlElement = createElement(
+
+                url ? "a" : "span",
+
+                "link-url",
+
+                link.url
+
+            );
+
+            if (url) {
+
+                urlElement.href = url;
+
+                urlElement.target = "_blank";
+
+                urlElement.rel =
+                    "noopener noreferrer";
+            }
+
+            info.append(
+
+                title,
+
+                urlElement
+
+            );
+
+            const actions = createElement(
+
+                "div",
+
+                "link-actions"
+
+            );
+
+            const editButton = actionButton(
+
+                "✎ EDIT",
+
+                "edit-button",
+
+                function () {
+
+                    startEditing(link);
+                }
+
+            );
+
+            const deleteButton = actionButton(
+
+                "✕ DELETE",
+
+                "delete-button",
+
+                function () {
+
+                    deleteLink(link);
+                }
+
+            );
+
+            const upButton = actionButton(
+
+                "↑ UP",
+
+                "move-button",
+
+                function () {
+
+                    moveLink(index, -1);
+                }
+
+            );
+
+            upButton.dataset.boundary =
+
+                String(index === 0);
+
+            upButton.setAttribute(
+
+                "aria-label",
+
+                "Subir enlace " + link.titulo
+
+            );
+
+            const downButton = actionButton(
+
+                "↓ DOWN",
+
+                "move-button",
+
+                function () {
+
+                    moveLink(index, 1);
+                }
+
+            );
+
+            downButton.dataset.boundary =
+
+                String(index === links.length - 1);
+
+            downButton.setAttribute(
+
+                "aria-label",
+
+                "Bajar enlace " + link.titulo
+
+            );
+
+            actions.append(
+
+                editButton,
+
+                deleteButton,
+
+                upButton,
+
+                downButton
+
+            );
+
+            card.append(
+
+                icon,
+
+                info,
+
+                actions
+
+            );
+
+            linksList.appendChild(card);
+
+        });
+
+        updateControls();
+    }
+
+    // ==========================================
+    // CREAR O ACTUALIZAR ENLACE
+    // ==========================================
+
+    form.addEventListener(
+
+        "submit",
+
+        async function (event) {
+
+            event.preventDefault();
+
+            if (busy || !ready) {
+
+                return;
+            }
+
+            const title =
+                titleInput.value.trim();
+
+            const url =
+                safeUrl(urlInput.value);
+
+            const icon =
+                iconInput.value || "🌷";
+
+            if (!title || title.length > 70) {
+
+                showStatus(
+
+                    linkStatus,
+
+                    "El título debe contener entre 1 y 70 caracteres.",
+
+                    "error"
+
+                );
+
+                return;
+            }
+
+            if (!url || url.length > 2000) {
+
+                showStatus(
+
+                    linkStatus,
+
+                    "Introduce una URL HTTP o HTTPS válida.",
+
+                    "error"
+
+                );
+
+                return;
+            }
+
+            if (icon.length > 20) {
+
+                showStatus(
+
+                    linkStatus,
+
+                    "Selecciona un icono válido.",
+
+                    "error"
+
+                );
+
+                return;
+            }
+
+            const isEditing =
+                editingId !== null;
+
+            const data = {
+
+                titulo: title,
+
+                url: url,
+
+                icono: icon
+
+            };
+
+            if (!isEditing) {
+
+                const maxOrder = links.reduce(
+
+                    function (max, link) {
+
+                        return Math.max(
+
+                            max,
+
+                            Number(link.orden) || 0
+
+                        );
+                    },
+
+                    -1
+
+                );
+
+                data.orden = maxOrder + 1;
+            }
+
+            const endpoint = isEditing
+
+                ? API_ENLACES +
+
+                  "?id=" +
+
+                  encodeURIComponent(editingId)
+
+                : API_ENLACES;
+
+            const method = isEditing
+
+                ? "PUT"
+
+                : "POST";
+
+            setBusy(true);
+
+            showStatus(
+
+                linkStatus,
+
+                "Guardando en MySQL..."
+
+            );
+
+            try {
+
+                const result = await request(
+
+                    endpoint,
+
+                    method,
+
+                    data
+
+                );
+
+                cancelEditing();
+
+                try {
+
+                    await loadLinks();
+
+                    showStatus(
+
+                        linkStatus,
+
+                        result.mensaje ||
+
+                        (
+
+                            isEditing
+
+                            ? "♡ Enlace actualizado."
+
+                            : "♡ Enlace guardado en MySQL."
+
+                        ),
+
+                        "success"
+
+                    );
+
+                } catch (error) {
+
+                    ready = false;
+
+                    showStatus(
+
+                        linkStatus,
+
+                        "El enlace se guardó, pero no se pudo " +
+
+                        "actualizar la lista. Recarga la página.",
+
+                        "error"
+
+                    );
+                }
+
+            } catch (error) {
+
+                showStatus(
+
+                    linkStatus,
+
+                    error.message,
+
+                    "error"
+
+                );
+
+            } finally {
+
+                setBusy(false);
+            }
+        }
+    );
+
+    // ==========================================
+    // EVENTOS DE PERSONALIZACION
+    // ==========================================
+
+    colorButtons.forEach(function (button) {
+
+        button.addEventListener(
+
+            "click",
+
+            function () {
+
+                selectColor(button.dataset.color);
+
+                showStatus(
+
+                    themeStatus,
+
+                    "✿ Recuerda guardar tu nuevo estilo."
+
+                );
+            }
+        );
+    });
+
+    customColor.addEventListener(
+
+        "input",
+
+        function () {
+
+            selectColor(customColor.value);
+
+            showStatus(
+
+                themeStatus,
+
+                "✿ Recuerda guardar tu nuevo estilo."
+
+            );
+        }
+    );
+
+    saveThemeButton.addEventListener(
+
+        "click",
+
+        saveTheme
+
+    );
+
+    cancelButton.addEventListener(
+
+        "click",
+
+        function () {
+
+            cancelEditing();
+
+            showStatus(
+
+                linkStatus,
+
+                "✿ Edición cancelada."
+
+            );
+        }
+    );
+
+    // ==========================================
+    // AVISO DE COLOR SIN GUARDAR
+    // ==========================================
+
+    window.addEventListener(
+
+        "beforeunload",
+
+        function (event) {
+
+            if (selectedColor !== savedColor) {
+
+                event.preventDefault();
+
+                event.returnValue = "";
+            }
+        }
+    );
+
+    // ==========================================
+    // INICIALIZAR PAGINA
+    // ==========================================
+
+    async function initialize() {
+
+        ready = false;
+
+        setBusy(true);
+
+        showStatus(
+
+            linkStatus,
+
+            "Conectando con MySQL..."
+
+        );
+
+        try {
+
+            const perfil =
+                await request(API_PERFIL);
+
+            csrfToken =
+                perfil.csrfToken;
+
+            if (
+
+                typeof csrfToken !== "string" ||
+
+                !csrfToken
+
+            ) {
+
+                throw new Error(
+
+                    "No se recibió el token de seguridad."
+
+                );
+            }
+
+            const configuracion =
+                await request(API_CONFIGURACION);
+
+            previewName.textContent =
+
+                perfil.nombreArtistico ||
+
+                "My artist name";
+
+            previewAvatar.textContent =
+
+                configuracion.avatar ||
+
+                "☀️";
+
+            previewMessage.textContent =
+
+                configuracion.mensajeBienvenida ||
+
+                "♡ WELCOME TO MY WORLD";
+
+            savedColor =
+
+                validColor(configuracion.colorEnlaces)
+
+                ? configuracion.colorEnlaces.toLowerCase()
+
+                : "#e8ddff";
+
+            selectColor(savedColor);
+
+            if (perfil.id) {
+
+                publicLinks.href =
+
+                    context +
+
+                    "/enlaces.html?id=" +
+
+                    encodeURIComponent(perfil.id);
+            }
+
+            await loadLinks();
+
+            ready = true;
+
+            showStatus(
+
+                linkStatus,
+
+                "♡ Enlaces conectados a MySQL.",
+
+                "success"
+
+            );
+
+        } catch (error) {
+
+            showStatus(
+
+                linkStatus,
+
+                error.message,
+
+                "error"
+
+            );
+
+            linksList.replaceChildren(
+
+                createElement(
+
+                    "div",
+
+                    "empty-state",
+
+                    "No se pudieron cargar los enlaces. " +
+
+                    "Recarga la página para volver a intentarlo."
+
+                )
+
+            );
+
+        } finally {
+
+            setBusy(false);
+        }
+    }
+
+    initialize();
+
+});
+
+</script>
+
+</body>
+</html>

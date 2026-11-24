@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Welcome Back ♡ | Artfolio</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Nunito:wght@400;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #302538;
+            --pink: #ffd4e7;
+            --purple: #e8ddff;
+            --yellow: #fff0b8;
+            --blue: #d9edff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 15% 25%,
+                    #ffd4e7 0,
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    #d9edff 0,
+                    transparent 35%
+                ),
+                #fff9fc;
+            color: var(--ink);
+            font-family: "Nunito", sans-serif;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 6%;
+            background: white;
+            border-bottom: 3px solid var(--ink);
+        }
+
+        .logo {
+            color: var(--ink);
+            font-size: 27px;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ed6ca9;
+        }
+
+        .back {
+            padding: 10px 17px;
+            background: var(--yellow);
+            border: 2px solid var(--ink);
+            border-radius: 30px;
+            box-shadow: 3px 3px 0 var(--ink);
+            color: var(--ink);
+            font-size: 12px;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 540px;
+            margin: 75px auto;
+            padding: 0 22px;
+        }
+
+        .eyebrow {
+            display: block;
+            margin-bottom: 22px;
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .card {
+            position: relative;
+            padding: 45px 40px;
+            background: white;
+            border: 3px solid var(--ink);
+            border-radius: 32px;
+            box-shadow: 8px 8px 0 var(--ink);
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "✿";
+            position: absolute;
+            top: -80px;
+            right: -25px;
+            font-size: 230px;
+            color: #e8ddff88;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 9px 14px;
+            background: var(--purple);
+            border: 2px solid var(--ink);
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .avatar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 95px;
+            height: 95px;
+            margin: 30px auto 15px;
+            background: var(--pink);
+            border: 3px solid var(--ink);
+            border-radius: 50%;
+            box-shadow: 4px 4px 0 var(--ink);
+            font-size: 48px;
+        }
+
+        h1 {
+            margin: 20px 0 12px;
+            font-size: clamp(35px, 7vw, 48px);
+            line-height: 1.1;
+            letter-spacing: -2px;
+            text-align: center;
+        }
+
+        .description {
+            margin-bottom: 30px;
+            font-size: 14px;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 9px;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            padding: 15px 16px;
+            background: #fffafd;
+            border: 2px solid var(--ink);
+            border-radius: 13px;
+            color: var(--ink);
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: 3px solid var(--purple);
+            outline-offset: 2px;
+        }
+
+        .submit-button {
+            width: 100%;
+            margin-top: 12px;
+            padding: 17px;
+            background: var(--pink);
+            border: 3px solid var(--ink);
+            border-radius: 16px;
+            box-shadow: 4px 4px 0 var(--ink);
+            color: var(--ink);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background: var(--yellow);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid var(--ink);
+            border-radius: 14px;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .message.success {
+            background: #d8f5dc;
+        }
+
+        .message.error {
+            background: var(--pink);
+        }
+
+        .register-link {
+            margin-top: 28px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .register-link a {
+            color: var(--ink);
+            font-weight: 900;
+        }
+
+        .footer {
+            margin: 35px 0;
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 30px 22px;
+            }
+
+            .container {
+                margin-top: 35px;
+            }
+
+            .topbar {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="topbar">
+
+        <a href="index.html" class="logo">
+            artfolio<span>!</span> ✳
+        </a>
+
+        <a href="index.html" class="back">
+            ← BACK HOME
+        </a>
+
+    </header>
+
+    <main class="container">
+
+        <span class="eyebrow">
+            ✳ YOUR CREATIVE SPACE AWAITS
+        </span>
+
+        <section class="card">
+
+            <div class="content">
+
+                <span class="tag">
+                    ♡ HELLO AGAIN, ARTIST!
+                </span>
+
+                <div class="avatar">
+                    ☀️
+                </div>
+
+                <h1>
+                    Welcome<br>back! ✿
+                </h1>
+
+                <p class="description">
+                    Your little creative universe
+                    is waiting for you.
+                    Log in and keep making magic! ♡
+                </p>
+
+                <form id="loginForm"
+                      action="login"
+                      method="POST">
+
+                    <div class="form-group">
+
+                        <label for="correo">
+                            💌 EMAIL ADDRESS
+                        </label>
+
+                        <input type="email"
+                               id="correo"
+                               name="correo"
+                               placeholder="artista@ejemplo.com"
+                               maxlength="255"
+                               autocomplete="email"
+                               required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            🔐 PASSWORD
+                        </label>
+
+                        <input type="password"
+                               id="password"
+                               name="password"
+                               placeholder="Tu contraseña"
+                               maxlength="128"
+                               autocomplete="current-password"
+                               required>
+
+                    </div>
+
+                    <button type="submit"
+                            id="submitButton"
+                            class="submit-button">
+                        ENTER MY WORLD ↗
+                    </button>
+
+                </form>
+
+                <div id="mensaje"
+                     class="message"
+                     role="status"
+                     aria-live="polite"
+                     hidden>
+                </div>
+
+                <p class="register-link">
+                    New around here?
+                    <a href="registro.html">
+                        Create an account ♡
+                    </a>
+                </p>
+
+            </div>
+
+        </section>
+
+        <footer class="footer">
+            MADE WITH ♡ ON ARTFOLIO
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                "use strict";
+
+                const form =
+                    document.getElementById("loginForm");
+
+                const message =
+                    document.getElementById("mensaje");
+
+                const button =
+                    document.getElementById("submitButton");
+
+                const dashboardUrl =
+                    new URL("admin/dashboard", document.baseURI);
+
+                form.addEventListener(
+                    "submit",
+                    async function (event) {
+
+                        event.preventDefault();
+
+                        message.hidden = true;
+                        message.textContent = "";
+                        message.className = "message";
+
+                        button.disabled = true;
+                        button.textContent =
+                            "LOGGING IN... ♡";
+
+                        try {
+
+                            const data = new FormData(form);
+
+                            const response = await fetch(
+                                form.action,
+                                {
+                                    method: "POST",
+                                    body: new URLSearchParams(data),
+                                    credentials: "same-origin",
+                                    redirect: "follow"
+                                }
+                            );
+
+                            const result =
+                                await response.text();
+
+                            if (response.ok) {
+
+                                message.textContent =
+                                    "Welcome back! Redirecting... ♡";
+
+                                message.className =
+                                    "message success";
+
+                                message.hidden = false;
+
+                                window.location.assign(
+                                    dashboardUrl.href
+                                );
+
+                                return;
+
+                            } else {
+
+                                message.textContent =
+                                    result ||
+                                    "No se pudo iniciar sesión.";
+
+                                message.className =
+                                    "message error";
+
+                                message.hidden = false;
+                            }
+
+                        } catch (error) {
+
+                            message.textContent =
+                                "No se pudo conectar con el servidor.";
+
+                            message.className =
+                                "message error";
+
+                            message.hidden = false;
+
+                        } finally {
+
+                            button.disabled = false;
+
+                            button.textContent =
+                                "ENTER MY WORLD ↗";
+                        }
+                    }
+                );
+
+            }
+        );
+    </script>
+
+</body>
+</html>
