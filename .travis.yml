@@ -1,0 +1,21 @@
+
+language: java
+
+os: linux
+dist: noble
+
+jdk:
+  - openjdk25
+
+install: skip
+
+script:
+  - java -version
+  - mvn clean test -B
+
+cache:
+  directories:
+    - $HOME/.m2/repository
+
+notifications:
+  email: false
